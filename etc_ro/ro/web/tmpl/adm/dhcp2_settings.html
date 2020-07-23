@@ -1,0 +1,104 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+
+        <div class="col-xs-10">
+            <form action="#" id="frmLan" role="form">
+                <ul class="nav nav-tabs margin-bottom-20" id="nav-tabs"></ul>
+                <div class="form-body margin-top-20">
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" for="txtIpAddress" data-trans="ip_address"></label>
+                            <div class="col-xs-3">
+                                <input id="txtIpAddress" name="txtIpAddress" type="text" data-bind="value: ipAddress"
+                                       class="required form-control" maxlength="15"/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" for="txtSubnetMask" data-trans="subnet_mask"></label>
+                            <div class="col-xs-3">
+                                <input id="txtSubnetMask" name="txtSubnetMask" type="text" data-bind="value: subnetMask"
+                                       class="required form-control" maxlength="15"/>
+                            </div>
+                        </div>
+                        <div id="macAddress" class="row form-group" data-bind="visible: showMacAddress() && hasWifi()">
+                            <label class="col-xs-4 side-right" data-trans="mac_address"></label>
+                            <div class="col-xs-3">
+                                <label id="txtMacAddress" class="label-content" data-bind="text: macAddress"></label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans="dhcp_server"></label>
+                            <div class="col-xs-8">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="dhcpServer" id="dhcpEnable"
+                                               data-bind="checked: dhcpServer,click: dhcpServerHandler" value="1"/>
+                                        <label for="dhcpEnable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="dhcpServer" id="dhcpDisable"
+                                               data-bind="checked: dhcpServer,click: dhcpServerHandler" value="0"/>
+                                        <label for="dhcpDisable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-bind='visible: dhcpServer() == "1"'>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='dhcp_dns'
+                                       for="txtDhcpDns"></label>
+                                <div class="col-xs-8 form-inline">
+                                     <input id='txtDhcpDns' name="txtDhcpDns" type="text"
+                                           data-bind="value: dhcpDns" class="form-control"
+                                           maxlength="15"/>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='dhcp_ip_pool'
+                                       for="txtDhcpIpPoolStart"></label>
+                                <div class="col-xs-8 form-inline">
+                                    <input id='txtDhcpIpPoolStart' name="txtDhcpIpPoolStart" type="text"
+                                           data-bind="value: dhcpStart" class="required rangeInput form-control"
+                                           maxlength="15"/>
+                                    -
+                                    <input id='txtDhcpIpPoolEnd' name="txtDhcpIpPoolEnd" type="text"
+                                           data-bind="value: dhcpEnd" class="required rangeInput form-control"
+                                           maxlength="15"/>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" for="txtDhcpLease" data-trans="dhcp_lease"></label>
+                                <div class="col-xs-3">
+                                    <div class="input-group">
+                                        <input id="txtDhcpLease" name="txtDhcpLease" type="text"
+                                               data-bind="value: dhcpLease" class="required form-control"
+                                               maxlength="5"/>
+                                        <div data-trans="hours" id="leaseLabel" class="input-group-addon"></div>
+
+                                    </div>
+                                    <div id="errorHolder"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans="apply"/>
+                    </div>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="lan_note_ip_address"></li>
+                            <li data-trans="lan_note_subnet_mask"></li>
+                            <li data-trans="lan_note_dhcp_server_enable"></li>
+                            <li data-trans="lan_note_dhcp_server_disable"></li>
+                            <li data-trans="lan_note_dhcp_ip_pool"></li>
+                            <li data-trans="lan_note_dhcp_lease_time"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+######USB端口配置#######
+
+#配置强制网卡类型
+forcenetcard_type=force_rndis
+
+#配置usb模式类型默认模式
+usb_modetype=debug
+
+#####USB端口配置END###########
+

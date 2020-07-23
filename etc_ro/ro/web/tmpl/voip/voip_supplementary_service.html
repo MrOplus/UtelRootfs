@@ -1,0 +1,54 @@
+<form id="voipSupplementaryServiveForm">
+    <div class="form-body">
+        <div class="form-title" data-trans="sip_protocol_voip"></div>
+        <div class="content">
+            <div class="row-fluid">
+                <label class="span4 side-right" for='voip_forwarding_mode' data-trans='sip_protocol_call_forw'></label>
+                <div class="span8">
+                    <select name="voip_forwarding_mode"  id="voip_forwarding_mode"
+                            data-bind="options: voip_forwarding_modes, value: selectedMode, optionsText: transOption('voip_forwarding_mode'), optionsValue: 'value'" data-transid="voip_forwarding_mode"></select>
+                </div>
+            </div>
+            <div class="row-fluid" data-bind='visible: selectedMode() != "0"'>
+                <label class="span4 side-right" for='voip_forwarding_uri' data-trans='sip_protocol_forw_uri'></label>
+
+                <div class="span8">
+                    <input id='voip_forwarding_uri' name="voip_forwarding_uri" type="text" data-bind="value: voipForwardingUri" class="required"
+                            maxlength='31'/>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <label class="span4 side-right" data-trans="sip_protocol_incoming_call"></label>
+                <div class="span8">
+                    <input type="radio" name="voip_not_disturb_enable" id="sipProtocolIncomingCallEnable" data-bind="checked: sipProtocolIncomingCallMode" value="1" />
+                    <label for="sipProtocolIncomingCallEnable" data-trans="enable"></label>
+                    <input type="radio" name="voip_not_disturb_enable" id="sipProtocolIncomingCallDisable" data-bind="checked: sipProtocolIncomingCallMode" value="0"/>
+                    <label for="sipProtocolIncomingCallDisable" data-trans="disable"></label>
+                </div>
+            </div>
+            <div class="row-fluid" style="display:none">
+                <label class="span4 side-right"></label>
+                    <div id="show_msg" data-trans="show_msg"></div>
+            </div>
+            <div class="row-fluid">
+                <label class="span4 side-right" data-trans="sip_protocol_call_waiting"></label>
+                <div class="span8">
+                    <input type="radio" name="voip_call_waiting_in_enable" id="sipProtocolCallWaitingEnable" data-bind="checked: sipProtocolCallWaitingMode" value="1" />
+                    <label for="sipProtocolCallWaitingEnable" data-trans="enable"></label>
+                    <input type="radio" name="voip_call_waiting_in_enable" id="sipProtocolInCallWaitingDisable" data-bind="checked: sipProtocolCallWaitingMode" value="0"/>
+                    <label for="sipProtocolInCallWaitingDisable" data-trans="disable"></label>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <input type="submit" class="btn-1 " data-trans="apply"/>
+
+            </div>
+            <div class="form-note">
+                <div class="notes-title">&nbsp;</div>
+                <ul class="notes-content">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</form>

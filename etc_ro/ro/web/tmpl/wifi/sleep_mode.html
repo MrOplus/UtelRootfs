@@ -1,0 +1,162 @@
+<div id="innerContainer">
+<div class="row header-row">
+    <div class="col-xs-1">
+        <a href="#home">
+            <img alt="" src="img/arrow-back.png">
+        </a>
+    </div>
+    <div class="col-xs-11">
+        <div class="form-title">
+            <h1 data-trans='advanced_settings'></h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+		<div class="nav_right">
+		    <ul>
+            <!--<li class="active"><a href="#sleep_mode" data-trans="sleep_mode"></a></li>-->
+            <li><a href="#router_setting" data-trans="router_setting"></a></li>
+            <li data-bind="visible:false"><a href="#firewall" data-trans="firewall"></a></li>
+            <!--<li data-bind="visible:hasUpdateCheck"><a href="#ota_update" data-trans="update_settings"></a></li>-->
+            <li data-bind="visible:hasUssd"><a href="#ussd" data-trans="USSD"></a></li>
+            <li data-bind="visible:hasUsb"><a href="#usb" data-trans="hardware_setting"></a></li>
+			<li data-bind="visible:hasDdns"><a href="#ddns" data-trans="DDNS"></a></li>
+			<li data-bind="visible:hasTr069"><a href="#tr069config" data-trans="tr069config"></a></li>
+            <li><a href="#others" data-trans="others"></a></li>
+            <li><a href="#frequency" data-trans="frequency"></a></li>
+        </ul>
+	    </div>
+	</div>
+    <div class="col-xs-10">
+        
+
+<div class="form-body margin-top-20">
+    <!--hide wifi range settings until sw implements it-->
+    <form id='wifiRangeForm'>
+        <h3 class="form-title" data-trans="wifi_range_settings"></h3>
+        <div class="content">
+            <div class="row">
+                <label class="col-xs-3" data-trans='wifi_range'></label>
+                <div class="col-xs-8">
+                    <input type="radio" name="rangeGroup" id='short_mode' value="short_mode" data-bind="checked: wifiRangeMode" />
+                    <label data-bind="visible: !isCPE" for='short_mode' data-trans='wifi_short_mode'></label>
+                    <label data-bind="visible: isCPE" for='short_mode' data-trans='wifi_des_short_mode'></label>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-xs-3"></label>
+                <div class="col-xs-8">
+                    <input type="radio" name="rangeGroup" id='medium_mode'  value="medium_mode" data-bind="checked: wifiRangeMode" />
+                    <label for='medium_mode' data-trans='wifi_medium_mode'></label>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-xs-3"></label>
+                <div class="col-xs-8">
+                    <input type="radio" name="rangeGroup" id='long_mode'  value="long_mode" data-bind="checked: wifiRangeMode" />
+                    <label for='long_mode' data-trans='wifi_long_mode'></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <input type="submit" class="btn btn-primary" data-trans='apply'/>
+        </div>
+        <div class="form-note">
+            <div class="notes-title">&nbsp;</div>
+            <ul class="notes-content">
+                <li data-trans="wifi_range_note_range"></li>
+                <li class="no-style">
+                    <ul data-bind="visible: !isCPE">
+                        <li data-trans="wifi_range_note_short"></li>
+                        <li data-trans="wifi_range_note_medium"></li>
+                        <li data-trans="wifi_range_note_long"></li>
+                    </ul>
+                    <ul data-bind="visible: isCPE">
+                        <li data-trans="wifi_range_note_short_cpe"></li>
+                        <li data-trans="wifi_range_note_medium_cpe"></li>
+                        <li data-trans="wifi_range_note_long_cpe"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <form id="frmTsw" data-bind="visible: showTSWDiv">
+        <div class="form-body">
+            <h3 class="form-title" data-trans="time_sleep_wake_up"></h3>
+            <div class="content">
+                <div class="row form-group">
+                    <label class="col-xs-3 side-right" data-trans="tsw_settings"></label>
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <input type="radio" name="tswGrp" id="tswEnable" data-bind="checked: openEnable" value="1"/>
+                                <label for="tswEnable" data-trans="enable"></label>
+                            </div>
+                            <div class="col-xs-5">
+                                <input type="radio" name="tswGrp" id="tswDisable" data-bind="checked: openEnable" value="0"/>
+                                <label for="tswDisable" data-trans="disable"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group" data-bind="visible: openEnable() == '1'">
+                    <div class="col-xs-3">
+                        <span data-trans="tsw_timer_on"></span>
+                    </div>
+                    <div class="col-xs-9">
+                        <div>
+                            <input class="required form-control" type="text" style="width: 27px;display:inline-block;padding: 5px 4px;" name="openH" id="openH" data-bind="value: openH" min="0" max="23" maxlength="2"> :
+                            <input class="required form-control" type="text" style="width: 27px;display:inline-block;padding: 5px 4px;" name="openM" id="openM" data-bind="value: openM" min="0" max="59" maxlength="2">
+                        </div>
+                    </div>
+                    <div class="col-xs-9 col-md-offset-3" id="openErrorDiv"></div>
+                </div>
+                <div class="row form-group" data-bind="visible: openEnable() == '1'">
+                    <div class="col-xs-3">
+                        <span data-trans="tsw_timer_off"></span>
+                    </div>
+                    <div class="col-xs-9">
+                        <input class="required form-control" type="text" style="width: 27px;display:inline-block;padding: 5px 4px;" name="closeH" id="closeH" data-bind="value: closeH" min="0" max="23" maxlength="2"> :
+                        <input class="required form-control" type="text" style="width: 27px;display:inline-block;padding: 5px 4px;" name="closeM" id="closeM" data-bind="value: closeM" min="0" max="59" maxlength="2">
+                    </div>
+                    <div class="col-xs-9 col-md-offset-3" id="closeErrorDiv"></div>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <input type="submit" class="btn btn-primary" data-trans="apply"/>
+            </div>
+            <div class="form-note">
+                <div class="notes-title">&nbsp;</div>
+                <ul class="notes-content">
+                    <li data-trans="tsw_note"></li>
+                    <li data-trans="tsw_note_on"></li>
+                    <li data-trans="tsw_note_off"></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+    <form id='sleepModeForm' data-bind="visible: showSleepDiv">
+        <h3 class="form-title" data-trans='wifi_sleep'></h3>
+        <div class="content">
+            <div class="row">
+                <label class="col-xs-3" for='mode' data-trans='sleep_time'></label>
+                <div class="col-xs-4">
+                <select data-transid='sleep_mode' id="mode" data-bind="options: modes, value: selectedMode, optionsText: transOption('sleep_mode'), optionsValue: 'value'" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <input type="submit" class="btn btn-primary" data-trans='apply'/>
+        </div>
+        <div class="form-note">
+            <div class="notes-title">&nbsp;</div>
+            <ul class="notes-content">
+                <li data-trans="wifi_sleep_note_info"></li>
+            </ul>
+        </div>
+    </form>
+</div>
+    </div>
+</div>
+</div>

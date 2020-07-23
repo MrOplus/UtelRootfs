@@ -1,0 +1,106 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body">
+                <form id="tr069Form" action="#">
+                    <h3 class="form-title" data-trans='tr069config'></h3>
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='select_configuration'></label>
+                            <div class="col-xs-4">
+                                <select id="selectConfiguration" class="form-control"
+                                        data-bind="options: mode, optionsText: 'text',optionsValue: 'value', value: currentMode, event:{change: changeMode}"></select>
+                            </div>
+                        </div>
+                        <div data-bind="visible: permissionTozed || isHide_tr069_items">
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='enable'></label>
+                                <div class="col-xs-4">
+                                    <input type="checkbox" data-bind="checked: tr069Enable,enable: tr069Disabled"
+                                           id="enable" name="enable">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='acs_url'></label>
+                                <div class="col-xs-4">
+                                    <input type="text" id="acsUrl" name="acsUrl" class="form-control"
+                                           data-bind="value: acsUrl,enable: tr069Disabled">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='periodic_inform'></label>
+                                <div class="col-xs-4">
+                                    <input type="checkbox" id="periodicInform"
+                                           data-bind="checked: periodicInformEnable,enable: tr069Disabled"
+                                           name="periodicInform">
+                                    <label for="periodicInform" data-trans="enable"></label>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='periodic_inform_interval'></label>
+                                <div class="col-xs-4">
+                                    <input type="text" id="periodicInformInterval" name="periodicInformInterval"
+                                           class="form-control"
+                                           data-bind="value: periodicInformInterval,enable: tr069Disabled">
+                                </div>
+                                <span class="col-xs-4" style="display: inline-block; line-height: 30px;" data-trans="min_30"></span>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='acs_auth'></label>
+                                <div class="col-xs-4">
+                                    <input type="checkbox" name="acsAuth" id="acsAuth"
+                                           data-bind="checked: acsAuthEnable,enable: tr069Disabled"/>
+                                    <label for="acsAuth" data-trans="enable"></label>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans="acs_username"></label>
+                                <div class="col-xs-4">
+                                    <input type="text" data-bind="value: acsUsername,enable: tr069Disabled"
+                                           id="acsUsername" name="acsUsername" class="form-control">
+                                    <input autocomplete="off" type="password" style="display: none!important;"/>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans="acs_password"></label>
+                                <div class="col-xs-4">
+                                    <input type="password" id="acsPassword"
+                                           data-bind="value: acsPassword,enable: tr069Disabled" name="acsPassword"
+                                           class="form-control" autocomplete="off"/>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans="cpe_auth"></label>
+                                <div class="col-xs-3">
+                                    <input type="checkbox" data-bind="checked: cpeAuthEnable,enable: tr069Disabled"
+                                           name="cpeAuth" id="cpeAuth"/>
+                                    <label for="cpeAuth" data-trans="enable"></label>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans="cpe_username"></label>
+                                <div class="col-xs-4">
+                                    <input id="cpeUsername" data-bind="value: cpeUsername,enable: tr069Disabled"
+                                           name="cpeUsername" type="text" class="form-control"/>
+                                    <input type="password" autocomplete="off" style="display: none!important;"/>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='cpe_password'></label>
+                                <div class="col-xs-4">
+                                    <input type="password" data-bind="value: cpePassword,enable: tr069Disabled"
+                                           id="cpePassword" autocomplete="off" name="cpePassword" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans="apply"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

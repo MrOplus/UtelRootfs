@@ -1,0 +1,16 @@
+#dev_name#
+logfile /pppd.log
+debug
+local 192.168.2.1:192.168.2.100
+ms-dns 114.114.114.114
+nodetach
+noaccomp
+nobsdcomp
+nodeflate
+nopcomp
+novj
+novjccomp
+default-asyncmap
+noauth
+persist
+ipcp-accept-local

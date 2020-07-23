@@ -1,0 +1,15 @@
+#!/bin/sh
+
+LAN_IP=`nv get lan_ipaddr`
+WEB_USED_PORT=`nv get web_used_port`
+
+ALLOW_LOGIN_FROM_WAN=`nv get allow_login_from_wan`
+if [ "$ALLOW_LOGIN_FROM_WAN" = "yes" -a "-$WEB_USED_PORT" != "-" ]; then 
+	iptables -t nat -A PREROUTING -d $LAN_IP -i br0 -p tcp -m tcp --dport 80 -j REDIRECT --to-ports $WEB_USED_PORT
+fi
+
+WAN_SSL_ENABLE=$(nv get wan_ssl_enable)
+WAN_SSL_PORT=$(nv get wan_ssl_port)
+if [ "$WAN_SSL_ENABLE" = "1" -a "-$WAN_SSL_PORT" != "-" ]; then
+	iptables -t nat -A PREROUTING -d $LAN_IP -i br0 -p tcp -m tcp --dport 443 -j REDIRECT --to-ports $WAN_SSL_PORT
+fi

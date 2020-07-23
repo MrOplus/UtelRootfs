@@ -1,0 +1,47 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10 m-t-15">
+            <form action="#" id="urlFilterForm">
+                <div class="form-body">
+                <ul class="nav nav-tabs margin-bottom-20 hide_url_tabs" id="nav-tabs" style="display: none;"></ul>
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" data-trans="URL"></label>
+                            <div class="col-xs-6">
+                                <input type="text" name="addURLFilter" id="addURLFilter" maxlength="32"
+                                       class="required form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans="apply"/>
+                        <!--input type="button" class="btn " data-trans="reset" data-bind="click:clear"/-->
+                    </div>
+                </div>
+            </form>
+            <form action="#" id="urlFilterListForm">
+                <div class="form-body">
+                    <div class="form-title">
+                        <h2 data-trans="url_filter_list"></h2>
+                    </div>
+                    <div class="content">
+                        <div id="urlFilters" data-bind="simpleGrid: gridTemplate"></div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans="delete"
+                               data-bind="enable: gridTemplate.checkedCount() > 0"/>
+                    </div>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="url_note1"></li>
+                            <li data-trans="url_note2"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

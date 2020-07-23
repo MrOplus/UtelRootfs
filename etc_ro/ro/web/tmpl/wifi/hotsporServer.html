@@ -1,0 +1,89 @@
+<link type="text/css" href="./js/lib/jqui/jquery-ui.min.css" rel="stylesheet"/>
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="pageForward()" class="hidePageForward">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title form-title-multi">
+                <h1 data-trans='wifi_wireless_settings'></h1>
+                <p data-trans="wifi_main_sub_title"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body">           
+            <div class="content margin-top-20"></div>
+                <form action="#" id="hotsporServerssss">
+                    <h3 class="form-title" data-trans="hotsporServer"></h3>
+                    <div class="content">
+                        <div class="row form-group">
+                          <label class="col-xs-4 side-right" data-trans="hotsporServer"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="hotsporServer" 
+                                               data-bind="checked: hotsporServer" value="1"/>
+                                        <label  data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="hotsporServer"
+                                               data-bind="checked: hotsporServer" value="0"/>
+                                        <label  data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans="hotspotEap"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="hotspotEap"
+                                               data-bind="checked: hotspotEap" value="1"/>
+                                        <label  data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="hotspotEap"
+                                               data-bind="checked: hotspotEap" value="0"/>
+                                        <label  data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right"  data-trans="radiusIp" id="radiusIp" for="radiusIp"></label>
+                            <div class="col-xs-6">
+                                <input type="text" name="radiusIp" class="form-control_sip" data-bind="value:radiusIp">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right"  data-trans="radiusPort" id="radiusPort" for="radiusPort"></label>
+                            <div class="col-xs-6">
+                              <input type="text" name="radiusPort"  class="form-control_sip" data-bind="value:radiusPort">
+                        </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right"  data-trans="radiusPassWd" id="radiusPassWd" for="radiusPassWd"></label>
+                            <div class="col-xs-6">
+                                <input type="text" name="radiusPassWd" class="form-control_sip" data-bind="value:radiusPassWd">
+                        </div>
+                        </div>
+                         <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans="apply"/>
+                    </div>
+                    </div>
+
+                    <!-- <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

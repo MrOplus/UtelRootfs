@@ -1,0 +1,119 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-1 margin-top-15">
+        </div>
+        <div class="col-xs-11">
+
+<div class="form-body" id="station_info_div">
+	<div class="content ko-grid-container">
+        <div id="wireless_div" class="allHideWifi_hide">
+            <h2 data-trans="wireless_access_device"></h2>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="60" data-trans="station_number"></th>
+                        <th data-trans="host_name"></th>
+                        <th data-trans="ip_address"></th>
+                        <th width="100"></th>
+                        <th width="200" data-trans="mac_address"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach:deviceInfo">
+                    <tr data-bind="css: {odd: $index() % 2 == 0, even: $index() % 2 != 0}">
+                        <td data-bind="text: $index()+1"></td>
+                        <td>
+                            <span data-bind="text: hostName, attr: {id: 'hostname_txt_'+idx}"></span>
+                            <input type="text" data-bind="attr: {id: 'hostname_input_'+idx}" maxlength="20" class="form-control" style="display: none;">
+                        </td>
+                        <td data-bind="text: ipAddress"></td>
+                        <td>
+                            <a data-bind="click: $root.editHostNameHandler, attr: {id: 'edit_btn_'+idx}" class="cursorhand"><img src="./img/edit.png" height="25"></a>
+                            <a data-bind="click: $root.saveHostNameHandler, attr: {id: 'save_btn_'+idx}" class="cursorhand" style="display: none;"><img src="./img/save.png" height="25"></a>
+                            <a data-bind="click: $root.cancelEditHostNameHandler, attr: {id: 'cancel_btn_'+idx}" class="cursorhand" style="display: none;"><img src="./img/cancel.png" height="25"></a>
+                        </td>
+                        <td data-bind="text: macAddress"></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p data-bind="visible: deviceInfo().length == 0" data-trans="no_data"></p>
+        </div>
+
+        <div id="cable_div" data-bind="visible: showCableDiv">
+            <h2 data-trans="cable_access_device"></h2>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th width="60" data-trans="station_number"></th>
+                    <th data-trans="host_name"></th>
+                    <th data-trans="ip_address"></th>
+                    <th width="100"></th>
+                    <th width="200" data-trans="mac_address"></th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:cableDeviceInfo">
+                    <tr data-bind="css: {odd: $index() % 2 == 0, even: $index() % 2 != 0}">
+                        <td data-bind="text: $index()+1"></td>
+                        <td>
+                            <span data-bind="text: hostName, attr: {id: 'hostname_txt_'+idx}"></span>
+                            <input type="text" data-bind="attr: {id: 'hostname_input_'+idx}" maxlength="20" class="form-control" style="display: none;">
+                        </td>
+                        <td data-bind="text: ipAddress"></td>
+                        <td>
+                            <a data-bind="click: $root.editHostNameHandler, attr: {id: 'edit_btn_'+idx}" class="cursorhand" ><img src="./img/edit.png" height="25"></a>
+                            <a data-bind="click: $root.saveHostNameHandler, attr: {id: 'save_btn_'+idx}" class="cursorhand" style="display: none;"><img src="./img/save.png" height="25"></a>
+                            <a data-bind="click: $root.cancelEditHostNameHandler, attr: {id: 'cancel_btn_'+idx}" class="cursorhand" style="display: none;"><img src="./img/cancel.png" height="25"></a>
+                        </td>
+                        <td data-bind="text: macAddress"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p data-bind="visible: cableDeviceInfo().length == 0" data-trans="no_data"></p>
+        </div>
+
+        <div id="black_div" data-bind="visible: showBlackDiv">
+            <h2 data-trans="black_list"></h2>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="60" data-trans="station_number"></th>
+                        <th data-trans="host_name" style="display:none"></th>
+                        <th width="100" style="display:none" ></th>
+                        <th data-trans="mac_address"></th>
+                        <th width="150" data-trans="pc_action"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach:blackDevices">
+                    <tr data-bind="css: {odd: $index() % 2 == 0, even: $index() % 2 != 0}">
+                        <td data-bind="text: $index()+1"></td>
+                        <td style="display:none">
+                            <span data-bind="text: hostName, attr: {id: 'hostname_txt_'+idx}"></span>
+                            <input type="text" data-bind="attr: {id: 'hostname_input_'+idx}" maxlength="20" class="form-control" style="display: none;">
+                        </td>
+                        <td style="display:none">
+                            <a data-bind="click: $root.editHostNameHandler, attr: {id: 'edit_btn_'+idx}" class="cursorhand"><img src="./img/edit.png" height="25"></a>
+                            <a data-bind="click: $root.saveHostNameHandler, attr: {id: 'save_btn_'+idx}" class="cursorhand" style="display: none;"><img src="./img/save.png" height="25"></a>
+                            <a data-bind="click: $root.cancelEditHostNameHandler, attr: {id: 'cancel_btn_'+idx}" class="cursorhand" style="display: none;"><img src="./img/cancel.png" height="25"></a>
+                        </td>
+                        <td data-bind="text: macAddress"></td>
+                        <td><a class="btn btn-primary btn-sm" data-trans="pc_remove" data-bind="click: $root.blacklistRemoveHandler"></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div data-bind="visible: showPCLink">
+            <!--<span data-trans="station_info_desc"></span> <a href="#" onclick="tosms('#parental_control')" data-trans="parental_control"></a>-->
+        </div>
+    </div>
+    <!--<div class="form-note">-->
+        <!--<div class="notes-title">&nbsp;</div>-->
+        <!--<ul class="notes-content">-->
+            <!--<li data-trans="wireless_operation_help"></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+</div>
+    </div>
+</div>
+</div>

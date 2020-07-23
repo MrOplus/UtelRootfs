@@ -1,0 +1,29 @@
+
+#!/bin/sh
+set -x
+UPDATEDIR=/tz_upgrade_file_path
+if [ "$1" = "" ] ; then
+	updatefile=$(find $UPDATEDIR -name 'P25*')
+else
+	updatefile=$1
+fi
+
+cd $UPDATEDIR
+#check it frist
+unzip -P tzp258keeper -t $updatefile
+if [ $? -eq 0 ] ; then
+	unzip -P tzp258keeper $updatefile updateit
+	if [ $? -eq 0 ]; then
+		chmod +x updateit
+		./updateit $updatefile
+	else
+		rm $updatefile
+		nv set tz_upgrade_state=error
+		exit 1
+	fi
+else
+	echo "check error!"
+	rm $updatefile
+	nv set tz_upgrade_state=error
+	exit 1
+fi

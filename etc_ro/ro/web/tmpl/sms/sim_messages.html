@@ -1,0 +1,94 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1><span data-trans="sim_messages"></span> <span id="simSmsCapability"></span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div id="simMsglist-main">
+                <div class="simMsgList-btns smslist-btns">
+                    <div class="row">
+                        <div class="col-xs-6 m-t-15">
+                            <input type="button" id="simMsgList-delete" onclick="deleteSelectedSimMsgClickHandler()"
+                                   class="btn btn-primary disabled" disabled="disabled" data-trans="delete"/>
+                        </div>
+                        <div class="col-xs-6 text-right" style="display:none">
+                            <div class="row">
+                                <div class='ko-grid-search'>
+                                    <img src='./img/search.png'>
+                                    <input type='text' id='searchInput'
+                                           class='ko-grid-search-txt-default width102 noDefaultFocus form-control'
+                                           autocomplete='off' data-trans='search' onclick="searchTextClick()"
+                                           maxlength="20"/>
+                                    <img id="clearSearchKey" class='cursor-pointer' src='./img/delete.png'
+                                         onclick="clearSearchKey()"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="width100p overflow-only-y" id="simMsgTableContainer">
+                    <table class="table table-striped table-hover ko-grid table-fixed">
+                        <thead>
+                        <tr>
+                            <th width="20" class="text-center">
+                                <p class="checkbox checkboxToggle" target="simMsgList_container"
+                                   id="simMsgList-checkAll" data-bind="click: selectAll">
+                                    <input type="checkbox" id="checkbox-all" onclick="selectAll()"/>
+                                </p>
+                            </th>
+                            <th data-trans="phone_number" class="text-center"></th>
+                            <th width="450" data-trans="content" class="text-center"></th>
+                            <th width="150" data-trans="time" class="text-center"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="simMsgList_container">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-jquery-tmpl" id="simMsgListTmpl">
+{{each(i, sms) data }}
+    <tr class="smslist-item simMsgList-item-class-${id} ${tag == "1" ? 'font-weight-bold':''}" id="simMsgList-item-${itemId}">
+        <td>
+            <div class="smslist-item-checkbox">
+                <p class="checkbox" id="${id}">
+                    <input type="checkbox" target="simMsgList-checkAll" name="msgId" id="checkbox${id}" value="${id}" number="${number}" number="${number}" />
+                </p>
+            </div>
+        </td>
+        <td>
+            {{if name.length == 0}}
+                {{if number.length > 13}}
+                    <div class="smslist-item-name pull-left">${number.substring(0,13)+"..."}</div>
+                {{else}}
+                     <div class="smslist-item-name pull-left">${number}</div>
+                {{/if}}
+            {{else}}
+                {{if name.length > 11}}
+                    <div class="smslist-item-name pull-left">${name.substring(0,11)+"..."}</div>
+                {{else}}
+                    <div class="smslist-item-name pull-left">${name}</div>
+                {{/if}}                
+            {{/if}}
+        </td>
+        <td class="cursorhand" title="${content}" onclick="simsmsItemClickHandler('${tag}','${id}','${itemId}')">
+            <div class="sms-table-content smslist-item-msg">${content}</div>
+        </td>
+        <td style="padding:8px 0px;"><span class="clock-time ${tag==2||tag==3?'hide':''}" style="white-space: nowrap;">${time}</span></td>
+    </tr>
+{{/each}}
+
+</script>

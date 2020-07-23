@@ -1,0 +1,58 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <form action="#" id='smsSettingForm'>
+                <div class="form-body">
+                    <div class="content">
+                        <h3 class="form-title" data-trans="sms_setting"></h3>
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" for='txtValidity' data-trans='sms_validity'></label>
+                            <div class="col-xs-5">
+                                <select data-transid='sms_validity' id="txtValidity" class="form-control"
+                                        data-bind="options: modes, value: selectedMode, optionsText: transOption('sms_validity'), optionsValue: 'value',disable:smsEdit() == true"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" for='txtCenterNumber' data-trans='center_number'></label>
+                            <div class="col-xs-5">
+                                <input id='txtCenterNumber' name="txtCenterNumber" type="text"
+                                       data-bind="value: centerNumber,disable:smsEdit()== true" class="required form-control" maxlength='40'/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" data-trans='delivery_report'></label>
+                            <div class="col-xs-5">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="deliveryReport" id="reportOn"
+                                               data-bind="checked: deliveryReport,disable:smsEdit()== true" value="1"/>
+                                        <label for="reportOn" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="deliveryReport" id="reportOff"
+                                               data-bind="checked: deliveryReport,disable:smsEdit() == true" value="0"/>
+                                        <label for="reportOff" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans='apply'/>
+                        <!--input type="button" class="btn" data-bind='click: clear' data-trans='cancel'/-->
+                    </div>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="sms_setting_note_validity"></li>
+                            <li data-trans="sms_setting_note_center_number"></li>
+                            <li data-trans="sms_setting_note_delivery_report"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="#home" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='net_setting'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+		<div class="nav_right">
+			<ul>
+			    <li class="active"><a href="#dial_setting" data-trans="dial_mode" onclick="tosms('#dial_setting')"></a></li>
+				<li><a href="#net_select" data-trans="net_select" onclick="tosms('#net_select')"></a></li>
+				<li data-bind="visible: isShowApnSetting()"><a href="#apn_setting" data-trans="apn_setting" onclick="tosms('#apn_setting')"></a></li>
+			</ul>
+		</div>
+	    </div>
+
+	    <div class="col-xs-10">
+
+<form>
+<div class="form-body">
+	    <h3 class="form-title" data-trans="dial_mode"></h3>
+    <div class="content">
+            <div class="row form-group">
+                <label class="col-xs-3 side-right" data-trans='dial_mode'></label>
+                <div class="col-xs-2">
+                    <input type="radio" name="modeGroup" id='auto_mode' value="auto_dial" data-bind="checked: selectMode, enable: enableFlag" />
+                    <label for='auto_mode' data-trans='auto_select'></label>
+                </div>
+                <div class="col-xs-2">
+                    <input type="radio" name="modeGroup" id='manual_mode'  value="manual_dial" data-bind="checked: selectMode, enable: enableFlag" />
+                    <label for='manual_mode' data-trans='manual_select'></label>
+                </div>
+            </div>
+
+            <div class="row form-group" data-bind="visible: selectMode() == 'auto_dial'">
+                <div class="col-xs-3"></div>
+                <div class="col-xs-8 label-absolute">
+                    <p id="roamBtn" class="checkbox floatleft margintop5 checkboxToggle" data-bind="css:{'checkbox_selected': isAllowedRoaming()=='on'}, click: setAllowedRoaming" manualControl="true">
+                        <input type="checkbox" id="isAllowedRoaming" value="on" data-bind="checked:isAllowedRoaming()=='on'"/>
+                    </p>
+                    <label for="isAllowedRoaming" data-trans="dial_roaming_remind" class="update_inline floatleft lineheight25"></label>
+                </div>
+            </div>
+    </div>
+    <div class="form-buttons">
+        <input type="button" class="btn btn-primary" data-bind='click: save, enable: enableFlag' data-trans="apply"/>
+    </div>
+    <div class="form-note">
+        <div class="notes-title">&nbsp;</div>
+        <ul class="notes-content">
+			<li data-trans="diconneted_operate_note"></li>
+            <li data-trans="dial_setting_note_automatic"></li>
+            <li data-trans="dial_setting_note_manual"></li>
+        </ul>
+    </div>
+</div>
+</form>
+    </div>
+</div>
+</div>

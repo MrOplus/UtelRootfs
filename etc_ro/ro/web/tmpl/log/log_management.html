@@ -1,0 +1,45 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#other')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='log_manager'></h1>
+            </div>
+        </div>
+    </div>
+<div class="row">
+<div class="col-xs-12">
+<form id="logmangerform" role="form">
+    <h3 class="form-title" data-trans="log_manager_title"></h3>
+    <div class="form-body margin-top-20">
+        <div class="content">
+			<div class = "row">
+				<div class = "col-xs-12">
+					<textarea class="form-control" id="cpelogshowtext" name = "cpelog_showtext" data-bind = "value:device_log_show" style="height: 500px"></textarea>
+				</div>
+			</div>
+			<div class = "row">		
+				<label class = "col-xs-12" ></label>			
+			</div>
+			<div class = "row">			
+				<div class = "col-xs-2">
+					<input id="btnrefreshlog" type="button" class="btn btn-primary"  data-bind='click:refreshlog' data-trans='refresh_log'></input>
+				</div>	
+				<div>
+				<label class = "col-xs-8" ></label>
+				</div>
+				<div class = "col-xs-2">
+					<input id="btndeletelog" type="button" class="btn btn-primary"  data-bind='click:deletelog' data-trans='delete_log'></input>
+				</div>						
+			</div>
+		</div>	
+	</div>	
+	
+</form>
+    </div>
+    </div>
+</div>

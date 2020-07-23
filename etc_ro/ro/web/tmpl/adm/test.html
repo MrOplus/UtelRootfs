@@ -1,0 +1,71 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='test_title'></h1>
+            </div>
+        </div>
+    </div>
+    
+<div class="row form-group" id="div-test">
+<div class="col-xs-12">
+<form id="nvgetForm" role="form">
+    <div class="form-body">
+        <div class="content">            
+            <div class="row form-group">
+                <label class="col-xs-3 side-right" for="nvName">CMD</label>
+                <div class="col-xs-9">
+                    <input id="nvName" name="nvName" style="width:90%" data-bind="value: cmd" class="required"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-3 side-right" for="cmdParams">Pameter</label>
+                <div class="col-xs-9">
+                    <input id="cmdParams" name="cmdParams" style="width:90%" data-bind="value: cmdParams"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <input type="submit" class="btn btn-primary" data-trans="apply"/>
+        </div>
+    </div>
+</form>
+
+<form id="goformsetForm" role="form">
+    <div class="form-body">
+        <div class="content">
+            <div class="row form-group">
+                <label class="col-xs-3 side-right" for="goformidtext">GoformID</label>
+                <div class="col-xs-9">
+                    <input id="goformidtext" name="goformidtext" style="width:90%" data-bind="value: goformid" class="required"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-3 side-right" for="goformParams">Pameter</label>
+                <div class="col-xs-9">
+                    <input id="goformParams" name="goformParams" style="width:90%" data-bind="value: goformParams"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <input type="submit" class="btn btn-primary" data-trans="apply"/>
+        </div>
+        <div class="row form-group">
+                <label class="col-xs-3 side-right" for="nvValue">result</label>
+                <div class="col-xs-9" id="go">
+                    
+                </div>
+        </div>
+    </div>
+    <div class="form-note">
+            <div class="notes-title">&nbsp;</div>
+            <ul class="notes-content">
+                <li>NV name:Separated by ,</li>
+                <li>Pameter: The format is as follows: &nbsp;&nbsp;   key1:value1,key2:value2</li>
+            </ul>
+        </div>
+</form>
+
+</div>
+</div>
+</div>

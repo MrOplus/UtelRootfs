@@ -1,0 +1,72 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='advanced_settings'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+			<div class="nav_right">
+				<ul>
+					<!--<li><a href="#sleep_mode" data-trans="sleep_mode"></a></li>-->
+					<li><a href="#router_setting" data-trans="router_setting"></a></li>
+					<li class="active"><a href="#firewall" data-trans="firewall"></a></li>
+					<!--<li data-bind="visible:hasUpdateCheck"><a href="#ota_update" data-trans="update_settings"></a></li>-->
+					<li data-bind="visible:hasUssd"><a href="#ussd" data-trans="USSD"></a></li>
+					<li data-bind="visible:hasUsb"><a href="#usb" data-trans="hardware_setting"></a></li>
+					<li data-bind="visible:hasDdns"><a href="#ddns" data-trans="DDNS"></a></li>
+					<li data-bind="visible:hasTr069"><a href="#tr069config" data-trans="tr069config"></a></li>
+                    <li><a href="#frequency" data-trans="frequency"></a></li>
+                    <li><a href="#others" data-trans="others"></a></li>
+				</ul>
+			</div>
+		</div>
+
+    <div class="col-xs-10">
+        <div class="form-body">
+            <div class="content margin-top-20">
+                <div class="col-xs-4">
+                    <div class="row">
+                        <a href="javascript:void(0)" data-bind = "click : portfilter">
+                            <div class="line-height-40 arrow-right cursorhand" data-trans="port_filter"></div>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a href="javascript:void(0)" data-bind = "click :portmap">
+                            <div class="line-height-40 arrow-right cursorhand" data-trans="port_map"></div>
+                        </a>
+                    </div>
+                    <div class="row" >
+                        <a href="javascript:void(0)" data-bind = "click : portforward">
+                            <div class="line-height-40 arrow-right cursorhand" data-trans="port_forward"></div>
+                        </a>
+                    </div>
+                    <div class="row" data-bind="visible: hasUrlFilter">
+                        <a href="javascript:void(0)" data-bind = "click : urlfilter">
+                            <div class="line-height-40 arrow-right cursorhand" data-trans="url_filter"></div>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a href="javascript:void(0)" data-bind = "click : upnp">
+                            <div class="line-height-40 arrow-right cursorhand" data-trans="upnp"></div>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a href="javascript:void(0)" data-bind = "click :dmz">
+                            <div class="line-height-40 arrow-right cursorhand" data-trans="dmz"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+

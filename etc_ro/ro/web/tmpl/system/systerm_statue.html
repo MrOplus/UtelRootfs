@@ -1,0 +1,90 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='systerm_statue'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="nav_right">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" data-trans="device_info" onclick="tosms('#device_info')"></a>
+                    </li>
+                    <li class="active"><a href="javascript:void(0)" data-trans="systerm_statue"
+                                          onclick="tosms('#systerm_statue')"></a></li>
+                    <li><a href="javascript:void(0)" data-trans="mobilenetwork_info"
+                           onclick="tosms('#mobilenetwork_info')"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-10">
+            <form id="SysStatueForm">
+                <div class="form-body">
+                    <h3 class="form-title" data-trans="wan_info"></h3>
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-2 side-right" data-trans='wan_iptype'></label>
+                            <label class="col-xs-3"
+                                   data-bind="text:pdptype_display,attr:{'data-trans':pdptype_trans}"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-2" data-trans='wan_ipaddr'></label>
+                            <label class="col-xs-3" data-bind="text: wan_ipaddr"></label>
+                            <label class="col-xs-2" data-trans='wan_ipv6addr'></label>
+                            <label class="col-xs-3" data-bind="text: ipv6_wan_ipaddr"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-2" data-trans='wan_dnsserver'></label>
+                            <label class="col-xs-3" data-bind="text: wandnsserver"></label>
+                            <label class="col-xs-2" data-trans='ipv6_wan_dnsserver'></label>
+                            <label class="col-xs-3" data-bind="text: ipv6_wandnsserver"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-2 side-right" data-trans='wan_defaultnetgate'></label>
+                            <label class="col-xs-3" data-bind="text: wandefaultnetgate"></label>
+                            <label class="col-xs-2 side-right" data-trans='ipv6_wan_defaultnetgate'></label>
+                            <label class="col-xs-3" data-bind="text: ipv6_wandefaultnetgate"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-2" data-trans='wan_netmask'></label>
+                            <label class="col-xs-3" data-bind="text: wannetmask"></label>
+                        </div>
+                    </div>
+                    <h3 class="form-title" data-trans="lan_info"></h3>
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-2 side-right" data-trans='lan_ipaddr'></label>
+                            <label class="col-xs-3" data-bind="text: lanipaddr"></label>
+                            <label class="col-xs-2" data-trans='ipv6_lan_ipaddr'></label>
+                            <label class="col-xs-3" data-bind="text: ipv6_lanipaddr"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-2 side-right" data-trans='lan_netmask'></label>
+                            <label class="col-xs-3" data-bind="text: lannetmask"></label>
+                            <label class="col-xs-2" data-trans='lan_macaddr'></label>
+                            <label class="col-xs-3" data-bind="text: lanmacaddr"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-2" data-trans='lan_dhcpstatue'></label>
+                            <label class="col-xs-3"
+                                   data-bind="text:dhcpenable_display,attr:{'data-trans':landhcpstatue_trans}"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-2 side-right" data-trans='lan_connectstatue'></label>
+                            <label class="col-xs-3"
+                                   data-bind="text:lanconnectstatue_display,attr:{'data-trans':lanconnectstatue_trans}"></label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

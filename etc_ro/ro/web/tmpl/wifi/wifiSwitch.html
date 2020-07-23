@@ -1,0 +1,59 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body">
+                <form action="#" id="frmWifiSwitch" role="form">
+                    <div class="content margin-top-20">                      
+                        <div class="row form-group" data-bind="visible: hasWifiSwitch">
+                            <label class="col-xs-4 side-right" data-trans="wifi_switch"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="wifi_switch" id="wifi_switch_enable"
+                                               data-bind="checked: wifi_enable" value="1"/>
+                                        <label for="wifi_switch_enable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="wifi_switch" id="wifi_switch_disable"
+                                               data-bind="checked: wifi_enable" value="0"/>
+                                        <label for="wifi_switch_disable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group" style="display: none;">
+                            <label class="col-xs-4 side-right" data-trans="multi_ssid_enable"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="multi_ssid_switch" id="multi_ssid_switch_enable"
+                                               data-bind="checked: multi_ssid_enable" value="1"/>
+                                        <label for="multi_ssid_switch_enable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="multi_ssid_switch" id="multi_ssid_switch_disable"
+                                               data-bind="checked: multi_ssid_enable" value="0"/>
+                                        <label for="multi_ssid_switch_disable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-buttons"
+                             data-bind="visible: hasWifiSwitch || (wifi_enable() == '1' && hasMultiSSID)">
+                            <input id="wifi_switch_apply" type="submit" class="btn btn-primary" data-trans='apply'/>            
+                        </div>
+                    </div>
+                </form>
+                  <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="wifi_main_switch"></li>
+                        </ul>
+                    </div>    
+               </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+
+            <form action="#" id="apn_setting_form">
+                <div class="form-body">
+                    <ul class="nav nav-tabs margin-bottom-20" id="nav-tabs"></ul>
+                    <div class="content">
+                          <div class="row form-group">
+                          <label class="col-xs-3 side-right" data-trans="port_apn_enabled"></label> 
+                          <div class="col-xs-4">
+                          <input type="radio" name="filterApn" id="filterApnEnble"
+                                   data-bind="checked: filterApn,click:filterApncheck.bind($data, '1')" value="1"/>
+                          <label for="filterEnable" data-trans="enable"></label>
+                          </div>
+                          <div class="col-xs-5">
+                          <input type="radio" name="filterApn" id="filterApnDisable"
+                                   data-bind="checked: filterApn,click:filterApncheck.bind($data, '0')" value="0"/>
+                          <label for="filterApnEnble" data-trans="disable"></label>
+                          </div>
+                           </div> 
+                        <div id="apn_form_container">                       
+                            <div class="showApnItems row form-group">
+                                <label class="col-xs-3 side-right" for="apn_pdp_type" data-trans="apn_pdp_type"></label>
+                                <div class="col-xs-6">
+                                    <select name="apn_pdp_type" id="apn_pdp_type" class="form-control"
+                                            data-bind="options: pdpTypes,disable:apnEdit() == true, value: selectedPdpType, optionsText: 'text', optionsValue: 'value'"></select>&nbsp;
+                                </div>
+                            </div>
+                            <div class="row form-group showApnItems">
+                                <label class="col-xs-3 side-right" for="profile_name"
+                                       data-trans="apn_profile_name"></label>
+                                <div class="col-xs-6">
+                                    <input type="text" name="profile_name"
+                                           data-bind="value: profileName,disable:apnEdit() == true" id="profile_name"
+                                           class="required form-control" maxlength="15"/>
+                                </div>
+                            </div>
+                         
+                              <div class="showApnItems" id="ipv4_section">
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" for="apn_ipv4_apn" data-trans="apn_setting"></label>
+                                    <div class="col-xs-6">
+                                        <input type="text" name="apn_ipv4_apn"
+                                               data-bind="value: apn,disable:apnEdit() == true" id="apn_ipv4_apn"
+                                               class="required form-control" maxlength="64"/>
+                                    </div>
+                                </div>
+                               
+                               
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" for="apn_authentication_ipv4" data-trans="apnAuthentication"></label>
+                                    <div class="col-xs-6">
+                                        <select name="apn_authentication_ipv4" id="apn_authentication_ipv4"
+                                                class="form-control"
+                                                data-bind="options: authModes,disable:apnEdit() == true, value: selectedAuthentication, optionsText: 'text', optionsValue: 'value'"></select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" for="apn_user_name_ipv4" data-trans="apnUsername"></label>
+                                    <div class="col-xs-6">
+                                        <input type="text" name="apn_user_name_ipv4" class="form-control"
+                                               data-bind="value: username"
+                                               id="apn_user_name_ipv4" maxlength="64"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" for="apn_password_ipv4" data-trans="apnPassword"></label>
+                                    <div class="col-xs-6">
+                                        <input type="password" autocomplete="off" name="apn_password_ipv4"
+                                               class="form-control"
+                                               data-bind="value: password"
+                                               id="apn_password_ipv4" maxlength="64"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                          
+                        </div>
+                    </div>
+                    <div class="form-buttons">  
+                        <input type="submit" class="btn btn-primary showApnItems" data-trans="apply"/>
+                    </div>
+                    
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="cannot_operate_when_connected"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var url = window.location.href;
+    var el = document.getElementById("innerContainer");
+    if(url.indexOf("tmpl") > 0){
+        el.parentNode.removeChild(el);
+    }
+</script>

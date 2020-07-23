@@ -1,0 +1,50 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10 m-t-15">
+            <div class="form-body">
+                <form action="#" id="rateLimitEnableForm">
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" data-trans="flow_setting"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="port_settings" id="static_ip_switch_enable"
+                                               data-bind="checked: port_settings" value="1"/>
+                                        <label for="static_ip_switch_enable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="port_settings" id="static_ip_switch_disable"
+                                               data-bind="checked: port_settings" value="0"/>
+                                        <label for="static_ip_switch_disable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans="apply" data-bind="click:click1"/>
+                    </div>
+                </form>
+                <div id="staticIpDiv">
+                    <form action="#" id="rateLimitForm">
+                        <div class="form-title">
+                            <h2 data-trans="flow_setting"></h2>
+                        </div>
+                       
+                       <table  cellspacing="0" border="1" style="width: 100%;margin-bottom: 20px;">
+                       </table> 
+                       
+                        <div class="form-buttons">
+                            <input type="submit" class="btn btn-primary" data-trans="apply" data-bind="click:apply"/>
+                        </div>
+                        <div class="form-note">
+                            <div class="notes-title">&nbsp;</div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

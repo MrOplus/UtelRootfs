@@ -1,0 +1,8 @@
+tz_version:S12_1.07
+tz_real_version:S12_1.07
+tz_build_time:2019-06-11_14:39
+tz_build_by:yh@yh-OptiPlex-7040
+tz_branch:master_liuyun_Iran
+tz_sha1:332c6912fd4dea80b139a76507f6d7d314148a1c
+tz_commit_by: yuhui/2019-06-05 16:52:29 +0800
+tz_commita:net-snmp:修改networkVPN节点

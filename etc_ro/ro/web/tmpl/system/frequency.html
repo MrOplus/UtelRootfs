@@ -1,0 +1,55 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <h3 class="form-title" data-trans="frequency_network"></h3>
+                <div class="content">
+                    <div class="row">
+                        <label class="col-xs-11 text-info" data-trans='take_effect_after_restarting'></label>
+                    </div>
+                    <div id="enableFrequency" class="row" data-bind="visible: showEnable">
+                        <label class="col-xs-3" data-trans="bands_locking"></label>
+                        <div class="col-xs-8">
+                            <input id="enable" value="enable" name="bandsLocking" type="radio"
+                                   data-bind="checked: bandEnable,click: clickEnable"/>
+                            <label for="enable" data-trans="enable"></label>
+                            &nbsp;
+                            <input id="disable" value="disable" name="bandsLocking" type="radio"
+                                   data-bind="checked: bandEnable,click: clickDisable"/>
+                            <label for="disable" data-trans="disable"></label>
+                        </div>
+                    </div>
+                    <div class="row showSetBands">
+                        <label class="col-xs-3" data-trans="frequency_locking"></label>
+                        <div class="col-xs-8" id="bandList"></div>
+                    </div>
+                    <div style="margin-top:20px;" class="showSetBands">
+                        <div class="row bandWcdmaList" >
+                        <label class="col-xs-3">WCDMA:</label>
+                        <table class="col-xs-8" id="bandWcdmaList"></table>
+                    </div>
+                    <div class="row bandTdsList">
+                        <label class="col-xs-3">TDS:</label>
+                        <table class="col-xs-8" id="bandTdsList"></table>
+                    </div>
+                   <!--  <div id="bandGsmList"> -->
+                        <div class="row bandGsmList">
+                        <label class="col-xs-3">GSM:</label>
+                        <table class="col-xs-8" id="bandGsmList"></table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-xs-10"></label>
+                <div class="col-xs-2">
+                    <input id="setBandsApply" type="button" data-trans="apply" data-bind="click: setBands"
+                           class="btn btn-primary"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

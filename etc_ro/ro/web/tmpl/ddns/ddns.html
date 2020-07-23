@@ -1,0 +1,87 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <form id="ddnsForm">
+			<div class="form-body">
+				<h3 class="form-title" data-trans="DDNS"></h3>
+			    <div class="content">
+					<div class="row form-group">
+						<label class="col-xs-4 side-right" data-trans='ddns_set_mode'></label>
+						<div class="col-xs-4">
+							<select class="form-control" id="ddnsSetMode" data-transid="mode_set_mode" data-bind="options: ddnsSetModes, value: currentMode, optionsText: transOption('mode_set_mode'), optionsValue: 'value', event:{change: changeSetDdnsMode}"></select>	
+						</div>					
+					</div>
+					<div id="enableSntpTime" data-bind="visible: isEnableSet">
+						<div class="row form-group" data-bind="visible: false">
+							<label class="col-xs-4 side-right" data-trans='ddns_mode'></label>
+							<div class="col-xs-4">
+								<select class="form-control" data-transid="mode_select" data-bind="options: ddns_mode_select, value: currentModeselect, optionsText: transOption('mode_select'), optionsValue: 'value'"></select>
+							</div>
+						</div>
+						<div class="row form-group">
+							<label class="col-xs-4 side-right" data-trans='ddns_ProviderList'></label>
+							<div class="col-xs-4">
+								<select class="form-control" data-bind="options: ddnsProviderList, value: currentProviderList, optionsText: 'text', optionsValue: 'value', event:{change: changeDdnsProvider}"></select>
+							    <!--<input type="text" maxlength="30" id="ddns_other_Provider" name="ddns_other_Provider" data-bind="value:customProvider, visible:currentProviderList()=='other'" class="required"/>-->
+							</div>
+						</div>
+						<div class="row form-group" data-bind="visible: isddnsaccount">
+							<label class="col-xs-4 side-right" data-trans='ddns_account'></label>
+							<div class="col-xs-4">
+								<input type="text" maxlength="30" id="ddns_account_input" name="ddns_account_input" data-bind="value:DDNSaccount" class="required form-control"/>
+							</div>
+						</div>
+						<div class="row form-group" data-bind="visible: isddnspasswd">
+							<label class="col-xs-4 side-right" data-trans='ddns_passwd'></label>
+							<div class="col-xs-4">
+								<input type="password" maxlength="30" id="ddns_passwd_input" name="ddns_passwd_input" data-bind="value:DDNSpasswd,visible:!showPassword_ddns()" class="required floatleft margintop5 form-control" />
+			                    <input type="text" maxlength="30" id="ddns_passwd_inputshow" name="ddns_passwd_inputshow" data-bind="value:DDNSpasswd,visible:showPassword_ddns()" class="required floatleft margintop5 form-control"/>
+
+			                    <p class="checkbox floatleft margintop10 marginleft5 marginright5" data-bind="css:{'checkbox_selected': showPassword_ddns()}, click: showPasswordHandler_ddns"
+			                       manualControl="true">
+			                        <input class="form-control" id="showPassword_ddns" type="checkbox" data-bind="checked:showPassword_ddns"/>
+			                    </p>
+			                    <label class="floatleft lineheight25 margintop5" data-trans="display_password"></label>
+			                    <div id="lblShowPassword" class="clear"></div>
+							</div>
+						</div>
+						<div class="row form-group" data-bind="visible: isddnsdomainName">
+							<label class="col-xs-4 side-right" data-trans='ddns_domainName'></label>
+							<div class="col-xs-4">
+								<input type="text" id="DDNS" maxlength="32" name="DDNS" data-bind="value:DDNSname" class="required form-control"/>
+							</div>
+						</div>
+						<div class="row form-group" data-bind="visible: isHashValue">
+							<label class="col-xs-4 side-right" data-trans='DDNSHashValue'></label>
+							<div class="col-xs-4">
+								<input type="text" maxlength="100" id="DDNS_Hash_Value" name="DDNS_Hash_Value" data-bind="value:DDNS_HashValue" class="required form-control"/>
+							</div>
+						</div>
+						<div class="row form-group" data-bind="visible: isDDNSStatus">
+							<label class="col-xs-4 side-right" data-trans='DDNS_Status'></label>
+							<div class="col-xs-4">
+								<span class="side-left" data-bind="visible: onStates, text:isddnsStatusTrans"></span>
+							</div>
+						</div>
+					</div>		
+				</div>
+				<div class="form-buttons">
+					<input type="submit" data-bind="" class="btn btn-primary margin-right-20" data-trans="apply"/>
+				</div>
+			    <div class="form-note">
+			        <div class="notes-title">&nbsp;</div>
+			        <ul class="notes-content">
+					    <li data-trans="ddns_note1"></li>
+			            <li data-trans="ddns_note2"></li>
+						<li data-trans="ddns_note3"></li>
+						<li data-trans="ddns_note4"></li>
+						<!--li data-trans="ddns_note5"></li-->
+			        </ul>
+			    </div>
+			</div>
+			</form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+    "name": "P18X WebUI 5.0",
+    "description": "P18X WebUI 5.0",
+    "version": "1.0.0",
+    "url": "http://www.zte.com.cn",
+    "options": {
+        "outdir": "../../apidoc",
+		"ignorePaths": ["lib"],
+		"exclude": "lib"
+    }
+}

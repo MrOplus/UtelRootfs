@@ -1,0 +1,77 @@
+<form id="voioUserDetailsForm">
+    <div class="form-body">
+        <div class="form-title" data-trans="user_details_title"></div>
+        <div class="content">            
+			<div class="row-fluid">
+				<label class="span4 side-right" for="sip_register_server" data-trans="sip_register_server"></label>
+				<div class="span8">
+					<input id="sip_register_server" name="sip_register_server" type="text" data-bind="value: sipRegisterServer" class="required" maxlength="63"/>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4 side-right" for="sip_domain" data-trans="sip_domain"></label>
+				<div class="span8">
+					<input id="sip_domain" name="voip_sip_domain"  type="text" data-bind="value: sipDomain" class="required" maxlength="63"/>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4 side-right" for="voip_sip_realm" data-trans="sip_realm"></label>
+				<div class="span8">
+					<input id="voip_sip_realm" name="voip_sip_realm"  type="text" data-bind="value: sipRealm" class="required" maxlength="63"/>
+				</div>
+			</div>
+			<div class="row-fluid" style="display:none">
+				<label class="span4 side-right" data-trans="sip_proxy_mode"></label>
+				<div class="span8">
+					<input type="radio" name="voip_sip_proxy_enable" id="SipProxyModeEnable" data-bind="checked: sipProxyMode" value="1" />
+					<label for="SipProxyModeEnable" data-trans="enable"></label>
+					<input type="radio" name="voip_sip_proxy_enable" id="SipProxyModeDisable" data-bind="checked: sipProxyMode" value="0"/>
+					<label for="SipProxyModeDisable" data-trans="disable"></label>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4 side-right" for="voip_sip_proxy_server" data-trans="sip_proxy_server"></label>
+				<div class="span8">
+					<input id="voip_sip_proxy_server" name="voip_sip_proxy_server"  type="text" data-bind="value: voipSipProxyServer" class="required" maxlength="63"/>
+				</div>
+			</div>
+			<div class="form-title" data-trans="authorization"></div>
+			<div class="content">
+				<div class="row-fluid">
+					<label class="span4 side-right" for="voip_account_display_account1" data-trans="display_name"></label>
+					<div class="span8">
+						<input id="voip_account_display_account1" name="voip_account_display_account1" type="text" data-bind="value: displayName" class="required" maxlength="63"/>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<label class="span4 side-right" for="auth_username2" data-trans="authorized_user_name"></label>
+					<div class="span8">
+						<input id="auth_username2" name="voip_account_auth2" type="text" data-bind="value: authorizedUserName" class="required" maxlength="63"/>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<label class="span4 side-right" for="voip_account_password2" data-trans="authorized_password"></label>
+					<div class="span8">
+						 <input id="voip_account_password2" name="voip_account_password2" type="password" data-bind="value: authorizedPassword" class="required" maxlength="63"/>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<label class="span4 side-right" for="hvoip_state" data-trans="voip_register_status"></label>
+					<div class="span8">
+						<span id="hvoip_state" data-bind="text: registerStatusTrans"></span>
+					</div>
+				</div>
+			</div> 
+			<div class="form-buttons">
+				<input type="submit" class="btn-1 " data-bind="visible:isRegisterSuccess() == false" data-trans="apply"/>
+				<input type="button" data-bind="visible: isRegisterSuccess, click: deregister" class="btn-1 " data-trans="deregister"/>
+			</div>
+		   <div class="form-note">
+				<div class="notes-title">&nbsp;</div>
+				<ul class="notes-content">
+					<li data-trans="connect_note"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</form>

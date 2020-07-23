@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="renderer" content="webkit">
+<meta charset="utf-8" />
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta http-equiv="pragma" content="no-store">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta http-equiv="Cache" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title></title>
+<!-- <link type="text/css" href="theme/css.css" rel="stylesheet"/> -->
+<link href="favicon.ico" rel="shortcut icon" />
+<script src="js/lib/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+        function theme(theme){
+            var styleTag = document.createElement("link");
+            styleTag.setAttribute('type', 'text/css');
+            styleTag.setAttribute('rel', 'stylesheet');
+            styleTag.setAttribute('href', 'theme/'+theme);
+            $("head")[0].appendChild(styleTag);
+
+        };
+        function changeTheme(){
+            var requestParams = {};
+            requestParams.cmd = "tz_change_theme,add_special_login_page";
+            requestParams.multi_data = 1;
+            $.ajax({
+            url: '/goform/goform_get_cmd_process',
+            type: 'GET',
+            dataType: "json",
+            cache: false,
+            async: true,
+            data: requestParams,
+            success:function(data){
+                if(data.add_special_login_page == "5"){
+                    theme("css.css");
+                }else{
+                    theme(data.tz_change_theme);
+                }
+            },
+            error:function(data){
+              theme("css.css");
+            }
+            })
+        }
+         changeTheme();   
+</script>
+
+<!--[if lt IE 9]>
+   <script type="text/javascript" src="js/lib/html5shiv.js"></script>
+   <script type="text/javascript" src="js/lib/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="container" id="topContainer">
+    <div id="langLogoBar" class="row">
+        <div class="col-xs-4" id="logoBar">
+            <img type="image/png" data-bind="attr: {src : logo}"/>
+            <img id="siemprePic" src="img/siempre2.png" style="margin-left:15px;display: none;cursor: pointer;" onclick="siemprePicsss()"/>
+           <span class="statusItem22" style="display: none;"> UR-707NE</span>
+        </div>
+        <div id="statusBar" class="col-xs-8 text-right" style="display: none;">
+
+            <span id="siempre" i18n="true" data-bind="text: siempre"></span>
+            <span class="statusItem" title="volte_status_2" i18n="true" data-bind="text: volteHD"></span>
+            <span class="statusItem" title="network_type" i18n="true" id="networkType" data-bind="text: networkType"></span>
+            <span class="statusItem" title="network_provider" i18n="true" id="operator"></span>
+            <span data-bind="visible: showBattery()" title="battery" i18n="true" id="battery_display"><i  style="width: 43px;
+             ;height:23px;display: inline-block;" data-bind="attr:{'class': batteryDisplayCss}">&nbsp;</i></span>
+            <span class="statusItem" title="signal_strength" i18n="true" id="signal_strength"><i class="signal" data-bind="attr:{'class': signalCssClass}">&nbsp;</i></span>
+            <span class="statusItem" title="connection_status" i18n="true" id="connection_status"><i class="icon_connection" data-bind="attr:{'class': connectionCssClass}">&nbsp;</i></span>
+            <span class="statusItem" title="rj45_connection_status" i18n="true" id="rj45_connection_status" data-bind="visible: false"><i class="icon_connection" data-bind="attr:{'class': rj45ConnectionCssClass}">&nbsp;</i></span>
+            <span id="hideSMS">
+                <span class="statusItem" title="sms_unread_count" i18n="true" id="sms_unread_count" data-bind="visible: smsUnreadCount() > 0 || showSmsDeleteConfirm()" style="display: none; position: relative;">
+                <a onclick="return gotoSmsList();" href="javascript: void(0)">
+                    <img data-bind="visible: smsUnreadCount() > 0 && !showSmsDeleteConfirm()" id="sms_unread" class="paddingbottom6" src="./img/sms_unread.png" />
+                    <img data-bind="visible: showSmsDeleteConfirm()" class="paddingbottom6" id="sms_full"/>
+                    <sup data-bind="visible: smsUnreadCount() > 0, text: smsUnreadCount" class="smsUnreadCount"></sup>
+                </a>
+            </span>
+            </span>
+                <span class="statusItem" title="sim_status" i18n="true" id="statusItemSimStatus"><img data-bind="attr: {src: simStatus}" class="paddingbottom6"/></span>
+            <span class="allHideWifi_hide hide_index_status_wifi">
+                <span class="statusItem" title="wifi_status" i18n="true" id="wifi_status" data-bind="visible: hasWifi">
+                <i class="wifi_status" data-bind="attr:{'class': wifiStatusCssClass}">&nbsp;</i>
+            </span>
+            </span>
+            <span id="telcelLogo" style="display: none;"><img id="telcelLogoImg" src="../img/logo_telecl.png"></span>
+        </div>
+    </div>
+    <div id="languageBar" class="row">
+        <div id="themeContainer" class="col-xs-12 text-right">
+            <span id="refresh">
+                <a class="margin-right-10" id="refreshlink" data-trans="refresh" href="javascript:void(0)" data-bind="click:refresh,visible:showRefresh()" style="display: none;"></a>
+            </span>
+            <span id="logout">
+                <a class="margin-right-10" id="logoutlink" data-trans="logout" href="javascript:void(0)" data-bind="click:logout,visible:showLogout() " style="display: none;"></a>
+            </span>
+            <span id="login">
+                <a class="margin-right-10" id="loginlink" data-trans="login" href="javascript:void(0)" data-bind="click:login,visible:showLogin() " style="display: none;"></a>
+            </span>
+            <span id="refreshStatus" style="display: none;">
+                <a class="margin-right-10" data-trans="net_status" href="javascript:void(0)" data-bind="click:refreshStatus"></a>
+            </span>
+            <!--<select id="language" class="marginright10"></select>-->
+            <select id="language" class="marginright10" data-bind="options: languages,value: currentLan, optionsText: 'text', optionsValue: 'value', event:{ change: langChangeHandler}" style="display: none;">
+                <!-- <option value="zh-cn" id="language_cn">中文</option>
+                <option value="en" id="language_en">English</option>
+                <option value="el" id="language_el">Español</option> -->
+            </select>
+        </div>
+    </div>
+</div>
+<div class="container" id="navContainer" style="display: none;">
+    <div class="row">
+        <div class="type_items" id="items">
+            <ul>
+                <li><a href="javascript:void(0)" onclick="tosms('#home')" data-trans="home" class="germanFont"></a></li>
+                <li class="allHideWifi_hide"><a href="javascript:void(0)" onclick="tosms('#quick_setting')" data-trans="quick_setting" class="germanFont"></a></li>
+                <li><a href="javascript:void(0)" onclick="tosms('#device_settings')" data-trans="device_setting" class="germanFont"></a></li>
+                <li><a href="javascript:void(0)" onclick="tosms('#sms')" data-bind='visible:isHide_sms == "yes"' data-trans="sms" class="germanFont"></a></li>
+                <li><a href="javascript:void(0)" data-bind='visible:isHide_pb  == "yes"' onclick="tosms('#phonebook')" id="phoneBook" data-trans="phonebook" class="germanFont"></a></li>
+                <li><a href="javascript:void(0)" data-trans="firewall" onclick="tosms('#firewall_switch')" class="germanFont"></a></li>
+                <li><a href="javascript:void(0)" data-trans="system_settings" onclick="tosms('#time_setting')" class="germanFont"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" id="indexContainer">
+    <div id="mainContainer" style="min-height: 450px;">
+        <div id='container'></div>
+    </div>
+    <p id="arg_company" style="display: none;">Powered by ARG TELECOMMUNICATION COMPANY</p>
+</div>
+
+<div id='result-overlay'>
+    <div class='header'></div>
+    <br/>
+    <div class="text-center">
+        <div>
+            <div id="result-image"></div>
+        </div>
+        <div id="result_wording"></div>
+    </div>
+</div>
+
+<div id='loading'>
+    <div class='header'><span id="loadMsg"></span></div>
+    <br/>
+    <div class="text-center">
+        <div><span id="loading_wording" class="message"></span></div>
+        <img id="loadingImg"/>
+        <div id="loading_container"></div>
+    </div>
+</div>
+
+<div id='progress'>
+    <div class='header'><span id="barMsg"></span></div>
+     <br/>
+     <div class="progress-content">
+         <div class="progress-bar-container">
+             <div id="bar" class="progress-bar"></div>
+             <div id="barValue" class="progress-bar-value"></div>
+         </div>
+         <div id="progress_container" class="progress-prompt"></div>
+     </div>
+ </div>
+<!-- confirm content -->
+<div id='confirm'>
+    <div class='header'><span id="popTitle"></span></div>
+    <div id="confirm-message-container">
+        <div class='icon'><img id='confirmImg'/></div>
+        <div class="confirm-message">
+            <div class='message'></div>
+            <div class='promptDiv'>
+                <input name="promptInput" id="promptInput" type="text" maxlength="25" class="width190"/><br/>
+                <label class="promptErrorLabel colorRed"></label>
+            </div>
+        </div>
+    </div>
+    <div class='buttons'>
+        <input type="button" class="btn btn-default simplemodal-close" id='okbtn' data-trans='ok'/>
+        <input type="button" class="btn btn-default " id='yesbtn' data-trans='yes'/>
+        <input type="button" class="btn btn-default simplemodal-close" id='nobtn' data-trans='no'/>
+    </div>
+</div>
+<div id='popupSettingWindow'>
+    <div class='header'>
+        <p class="tag-popup-close"><a href="javascript:hidePopupSettingWindow();"></a></p>
+    </div>
+    <div id="htmlContainer" class="modal-body"></div>
+</div>
+<div id="buttom-bubble">
+</div>
+<script type="text/x-jquery-tmpl" id="newMessagePopTmpl">
+    <div class="bubbleItem ${report}" id="${mark}">
+        <h3>
+            <span data-trans="${titletrans}">${title}</span> ${name} <a href="javascript:void(0);" data-targetid="${mark}" class="bubbleCloseBtn"></a>
+        </h3>
+        <div class="bubbleContainer">
+            <div class="bubbleContent">${content}</div>
+            <div class="bubbleDatetime">${datetime}</div>
+        </div>
+    </div>
+</script>
+<script type="text/javascript" data-main="js/main" src="js/lib/require/require-jquery.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div id="nav-right" class="col-xs-2"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs" id="nav-tabs"></ul>
+                <form id="usbForm" class="margin-top-20" action="#">
+                    <div class="form-body" style="display: none;" id="showUnlock">
+                        <div class="content">
+                            <div class="row form-group">
+                                <label class="col-xs-3 side-right" data-trans="unlock" style="font-size: 20px;font-weight: bold;"></label>
+                                <div class="col-xs-9">
+                                    <input type="password" name="unlockCode" id="unlockCode" data-bind="value:tz_unlock_plmn_pwd" class="form-control_sip" /> 
+                                    <p style="font-size: 16px;font-weight: bold;"><span data-trans="remaining_attempts"></span><span data-bind="text:attempt"></span></p>
+                                </div>
+                      </div>  
+                        </div>
+                        <div class="form-buttons">
+                            <input type="button" class="btn btn-primary" data-trans="apply" data-bind="click: save2" id="applyUn" />
+                        </div>
+                    </div>
+                </form>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display: none;">
+</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:200px;"> 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel" data-trans="enter_unlock">
+                </h4>
+            </div>
+            <div class="modal-body">
+            <input type="password" name="unlock_modal" style="margin-left:20%;width: 60%;" data-bind="value:tz_unlock_private_mark" class="form-control_sip">
+            </div>
+            <div class="modal-footer">
+               
+                <button type="button" class="btn btn-primary" id="appleUnlock" data-bind="click:save1" data-trans="apply">
+                </button>
+                 <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel" data-trans="close">
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+            </div>
+        </div>
+    </div>
+
+
+</div>

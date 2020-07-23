@@ -1,0 +1,70 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <form action="#" id="lock_cell_form" role="form">
+                <input type="hidden" name="CSRFToken">
+                <div class="form-body">
+                    <h3 class="form-title" data-trans="net_lockpci"></h3>
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" data-trans="pci_lock_enbale"></label>
+                            <div class="col-xs-4">
+                                <input type="radio" name="lock_switch" id="lock_enable" value="1"
+                                       data-bind="checked:isAllowPciLock,enable: isEnableflag"/>
+                                <label for="lock_enable" data-trans="enable"></label>
+                            </div>
+                            <div class="col-xs-5">
+                                <input type="radio" name="lock_switch" id="lock_disable" value="0"
+                                       data-bind="checked:isAllowPciLock,enable: isEnableflag"/>
+                                <label for="lock_disable" data-trans="disable"></label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" data-trans="current_register_pci_list"></label>
+                            <label class="col-xs-6" data-bind="text: current_network_pci"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" data-trans="current_celllock_statue"></label>
+                            <label class="col-xs-6" data-bind="text: celllockstatue"></label>
+                        </div>
+                        <div data-bind="visible:isAllowPciLock() == '1'">
+                            <div class="row form-group">
+                                <label class="col-xs-3" data-trans="locked_arfrcn"></label>
+                                <label class="col-xs-9" data-bind="text: locked_arfrcn_info"></label>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-3" data-trans="locked_pci_id"></label>
+                                <label class="col-xs-9" data-bind="text: locked_pci_info"></label>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-3" for="user_input_arfrcn" data-trans="user_input_arfrcn"></label>
+                                <input type="text" name="user_input_arfrcn" id="user_input_arfrcn"
+                                       data-bind="value: user_input_arfrcn" maxlength="5" class="required form-control"
+                                       style="width:150px;height:23px"></input>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-3" for="user_input_pci" data-trans="user_input_pci"></label>
+                                <input type="text" name="user_input_pci" id="user_input_pci"
+                                       data-bind="value: user_input_pci_info" maxlength="5"
+                                       class="required form-control" style="width:150px;height:23px"></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans="apply"/>
+                    </div>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="diconneted_operate_note"></li>
+                            <li data-trans="dial_setting_note_automatic"></li>
+                            <li data-trans="dial_setting_note_manual"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

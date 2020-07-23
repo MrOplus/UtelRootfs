@@ -1,0 +1,39 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div id="nav-right" class="col-xs-2"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs" id="nav-tabs"></ul>
+				<form id="sysSecurityForm" class="margin-top-20" action="#">
+				    <div class="form-body">
+				        <div class="content">
+				            <div class="row">
+				                <label class="col-xs-5 side-right" data-trans="remote_management"></label>
+				                <div class="col-xs-5">
+				                    <input type="radio" name="remoteGrp" id="remoteEnable" data-bind="checked: remoteFlag" value="1"/>
+				                    <label for="remoteEnable" data-trans="enable"></label>
+				                    <input type="radio" name="remoteGrp" id="remoteDisable" data-bind="checked: remoteFlag" value="0"/>
+				                    <label for="remoteDisable" data-trans="disable"></label>
+				                </div>
+				            </div>
+				            <!--<div class="row" data-bind="visible:false">-->
+				                <!--<label class="col-xs-5 side-right" data-trans="ping_from_wan"></label>-->
+				                <!--<div class="col-xs-5">-->
+				                    <!--<input type="radio" name="pingGrp" id="pingEnable" data-bind="checked: pingFlag" value="1"/>-->
+				                    <!--<label for="pingEnable" data-trans="enable"></label>-->
+				                    <!--<input type="radio" name="pingGrp" id="pingDisable" data-bind="checked: pingFlag" value="0"/>-->
+				                    <!--<label for="pingDisable" data-trans="disable"></label>-->
+				                <!--</div>-->
+				            <!--</div>-->
+				        </div>
+				        <div class="form-buttons">
+				            <input type="submit" class="btn btn-primary" data-trans="apply"/>
+				            <!--<input type="button" data-bind="click: clear" class="btn btn-primary" data-trans="cancel"/>-->
+				        </div>
+				    </div>
+				</form>
+            </div>
+        </div>
+    </div>
+</div>

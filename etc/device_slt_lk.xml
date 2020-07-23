@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cwmp>
+ <model name="InternetGatewayDevice:1.14">
+    <object name="InternetGatewayDevice"  minEntries="1" maxEntries="1" version="1.0">
+        <param name="DeviceSummary"  status="deprecated" forcedInform="true" version="1.1" get_func="TRF_Get_DeviceSummary">
+      </param>
+        <param name="LANDeviceNumberOfEntries"   forcedInform="true" version="1.0" get_func="TRF_Get_LANDeviceNumberOfEntries">
+      </param>
+        <param name="WANDeviceNumberOfEntries"   forcedInform="true" version="1.0" get_func="TRF_Get_WANDeviceNumberOfEntries">
+      </param>
+      <object name="Services"  minEntries="1" maxEntries="1" version="1.1" >
+            <object name="Https">
+                <param name="Status" forcedInform="true" rw="1" get_func="cpe_get_igd_https_Status" set_func="cpe_set_igd_https_Status"/>
+                <param name="RemotePort" rw="1" get_func="cpe_get_igd_https_Port" set_func="cpe_set_igd_https_Port"/>
+            </object>
+            <object name="VoiceService"  refresh_func="cpe_refresh_igd_VoiceService">
+		<object name="{i}">
+			<object name="Capabilities">
+				<param name="DigitMap" rw="1" noti_rw="1" get_func="cpe_get_igd_DigitMapOfCapabilities"/>
+			</object>
+			<object name="VoiceProfile" refresh_func="cpe_refresh_igd_VoiceProfile">
+				<object name="{i}">
+					<param name="DigitMap" rw="1" noti_rw="1" forcedInform="true" get_func="cpe_get_igd_DigitMap" set_func="cpe_set_igd_DigitMap"/>
+  					<param name="DigitMapEnable" rw="1" noti_rw="1" forcedInform="true" get_func="cpe_get_igd_DigitMapEnable" set_func="cpe_set_igd_DigitMapEnable"/>
+				</object>
+			</object>
+		</object>
+	    </object>
+        </object>
+        <object name="Capabilities"  minEntries="1" maxEntries="1" version="1.3">
+            <object name="PerformanceDiagnostic"  minEntries="1" maxEntries="1" version="1.3">
+                <param name="DownloadTransports"  version="1.3" get_func="cpe_get_igd_DownloadTransports">
+                </param>
+                <param name="UploadTransports"  version="1.3" get_func="cpe_get_igd_UploadTransports">
+                </param>
+            </object>
+        </object>
+        <object name="DeviceInfo"  minEntries="1" maxEntries="1" version="1.0">
+            <param name="SpecVersion" forcedInform="true" get_func="cpe_get_igd_di_specversion">
+            </param>
+            <param name="Manufacturer"  forcedInform="true" version="1.0" get_func="cpe_get_igd_di_manufacturer">
+            </param>
+            <param name="ManufacturerOUI"  forcedInform="true" version="1.0" get_func="cpe_get_igd_di_manufactureroui">
+            </param>
+            <param name="ModelName" forcedInform="true" version="1.0" get_func="cpe_get_igd_di_ModelName">
+            </param>
+            <param name="ModelNumber"  version="1.14" get_func="cpe_get_igd_di_ModelNumber">
+            </param>
+            <param name="Description"  version="1.0" get_func="cpe_get_igd_di_Description">
+            </param>
+            <param name="ProductClass"  forcedInform="true" version="1.0" get_func="cpe_get_igd_di_productclass">
+            </param>
+            <param name="SerialNumber"  forcedInform="true" version="1.0" get_func="cpe_get_igd_di_serialnumber">
+            </param>
+            <param name="HardwareVersion"  forcedInform="true" version="1.0" get_func="cpe_get_igd_di_hardwareversion">
+            </param>
+            <param name="SoftwareVersion" forcedInform="true" activeNotify="forceEnabled"  version="1.0" rw="0" get_func="cpe_get_igd_di_softwareversion">
+            </param>
+            <param name="AdditionalHardwareVersion"  version="1.0" get_func="cpe_get_igd_di_AdditionalHardwareVersion">
+            </param>
+            <param name="AdditionalSoftwareVersion"  version="1.0" get_func="cpe_get_igd_di_AdditionalSoftwareVersion">
+            </param>
+            <param name="UpTime"  activeNotify="canDeny" forcedInform="true" version="1.0" get_func="cpe_get_igd_di_uptime" setattr_func="cpe_set_attr_UpTime">
+            </param>
+            <param name="IMSI" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_IMSI"/>
+            <param name="IMEI" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_IMEI"/>
+            <param name="ICCID" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_ICCID"/>
+            <param name="FirstUseDate"  version="1.0" get_func="cpe_get_FirstUseDate">
+            </param>
+            <param name="ProcessorNumberOfEntries"  version="1.8" get_func="cpe_get_ProcessorNumberOfEntries">
+            </param>
+            <param name="Memory" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_DeviceMemory"/>
+            <object name="MemoryStatus"  minEntries="1" maxEntries="1" version="1.5">
+                <param name="Total"  version="1.5" get_func="cpe_get_TotalOfMemoryStatus">
+                </param>
+                <param name="Free"  activeNotify="canDeny" version="1.5" get_func="cpe_get_FreeOfMemoryStatus">
+                </param>
+            </object>
+            <object name="ProcessStatus"  minEntries="1" maxEntries="1" version="1.5">
+                <param name="CPUUsage"  activeNotify="canDeny" version="1.5" get_func="cpe_get_CPUUsage">
+                </param>
+                <param name="ProcessNumberOfEntries"  version="1.5" get_func="cpe_get_ProcessNumberOfEntries">
+                </param>
+                <object name="Process"  numEntriesParameter="ProcessNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.5" refresh_func="cpe_refresh_ProcessStatus">
+                    <object name="{i}">
+                        <param name="PID"  version="1.5" get_func="cpe_get_PIDOfProcess">
+                        </param>
+                        <param name="Command"  version="1.5" get_func="cpe_get_CommandOfProcess">
+                        </param>
+                        <!--<param name="CPUTime"  version="1.5" get_func="cpe_get_CPUTimeOfProcess">
+                        </param>-->
+                        <!--<param name="Size"  activeNotify="canDeny" version="1.5" get_func="cpe_get_SizeOfProcess">
+                        </param>
+                        <param name="State"  activeNotify="canDeny" version="1.5" get_func="cpe_get_StateOfProcess">
+                        </param>-->
+                    </object>
+                </object>
+            </object>
+            <object name="Processor"  numEntriesParameter="ProcessorNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.8"  noUniqueKeys="true" refresh_func="cpe_refresh_Processor">
+                <object name="{i}">
+                    <param name="Architecture"  version="1.8" get_func="cpe_get_ArchitectureOfProcessor">
+                    </param>
+                </object>
+            </object>
+            <!--<object name="VendorLogFile"  numEntriesParameter="VendorLogFileNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.8" refresh_func="cpe_refresh_VendorLogFile">
+                <object name="{i}">
+                    <param name="Name"  version="1.8" get_func="cpe_get_NameOfVendorLogFile">
+                    </param>
+                    <param name="MaximumSize"  version="1.8" get_func="cpe_get_MaximumSizeOfVendorLogFile">
+                    </param>
+                    <param name="Persistent"  version="1.8" get_func="cpe_get_PersistentOfVendorLogFile">
+                    </param>
+                </object>
+            </object>-->
+        </object>
+        <object name="ManagementServer"  minEntries="1" maxEntries="1" version="1.0">
+            <param name="EnableCWMP" rw="1" version="1.4" get_func="cpe_get_EnableCWMP" set_func="cpe_set_EnableCWMP">
+            </param>
+            <param name="URL" rw="1" forcedInform="true" version="1.0" get_func="cpe_get_igd_ms_url" set_func="cpe_set_igd_ms_url">
+            </param>
+            <param name="Username" rw="1" forcedInform="true" version="1.0" get_func="cpe_get_igd_ms_username" set_func="cpe_set_igd_ms_username">
+            </param>
+            <param name="Password" rw="1" forcedInform="true" version="1.0" get_func="cpe_get_igd_ms_password" set_func="cpe_set_igd_ms_password">
+            </param>
+            <param name="PeriodicInformEnable" rw="1" forcedInform="true" version="1.0" type="s" get_func="cpe_get_igd_ms_period_en" set_func="cpe_set_igd_ms_period_en">
+            </param>
+            <param name="PeriodicInformInterval" rw="1" forcedInform="true" version="1.0" get_func="cpe_get_igd_ms_period_intval" set_func="cpe_set_igd_ms_period_intval">
+            </param>
+            <!-- <param name="PeriodicInformTime" rw="1" version="1.0">
+            </param>
+            <param name="ParameterKey"  activeNotify="canDeny" forcedInform="false" version="1.0">
+            </param> -->
+            <param name="ConnectionRequestURL"  activeNotify="forceDefaultEnabled" forcedInform="true" version="1.0" get_func="cpe_get_igd_ms_connectionrequesturl">
+            </param>
+            <param name="ConnectionRequestUsername" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_ms_connectionrequestusername" set_func="cpe_set_igd_ms_connectionrequestusername">
+            </param>
+            <param name="ConnectionRequestPassword" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_ms_connectionrequestpassword" set_func="cpe_set_igd_ms_connectionrequestpassword">
+            </param>
+            <param name="UpgradesManaged" rw="0" version="1.0" get_func="cpe_get_igd_ms_UpgradesManaged">
+            </param>
+            <param name="AliasBasedAddressing"  forcedInform="true" version="1.9" get_func="cpe_get_igd_ms_aliasbasedaddressing">
+            </param>
+            <param name="SupportedConnReqMethods"  version="1.13" get_func="cpe_get_SupportedConnReqMethods">
+            </param>
+        </object>
+       <object name="Time"  minEntries="1" maxEntries="1" version="1.0">
+            <param name="Enable" rw="1" version="1.4" get_func="cpe_get_igd_Time_Enable">
+            </param>
+            <param name="Status"  version="1.4" get_func="cpe_get_igd_Time_Status">
+            </param>
+            <param name="NTPServer1" rw="1" version="1.0" get_func="cpe_get_igd_Time_NTPServer0" set_func="cpe_set_igd_Time_NTPServer0">
+            </param>
+            <param name="NTPServer2" rw="1" version="1.0" get_func="cpe_get_igd_Time_NTPServer1" set_func="cpe_set_igd_Time_NTPServer1">
+            </param>
+            <param name="NTPServer3" rw="1" version="1.0" get_func="cpe_get_igd_Time_NTPServer2" set_func="cpe_set_igd_Time_NTPServer2">
+            </param>
+            <param name="CurrentLocalTime"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_Time_CurrentLocalTime">
+            </param>
+            <param name="LocalTimeZone" rw="1" status="obsoleted" version="1.0" get_func="cpe_get_igd_Time_LocalTimeZone">
+            </param>
+            <param name="LocalTimeZoneName" rw="1" version="1.0" get_func="cpe_get_igd_Time_LocalTimeZoneName">
+            </param>
+        </object>
+       <object name="IPPingDiagnostics"  minEntries="1" maxEntries="1" version="1.0">
+            <param name="DiagnosticsState" rw="1" activeNotify="canDeny" version="1.0"  get_func="cpe_get_igd_ping_DiagnosticsState" set_func="cpe_set_igd_ping_DiagnosticsState">
+            </param>
+            <param name="Interface" rw="1" version="1.0" get_func="cpe_get_igd_ping_Interface" set_func="cpe_set_igd_ping_Interface">
+            </param>
+            <param name="Host" rw="1" version="1.0" get_func="cpe_get_igd_ping_Host" set_func="cpe_set_igd_ping_Host">
+            </param>
+            <param name="NumberOfRepetitions" rw="1" version="1.0" get_func="cpe_get_igd_ping_NumberOfRepetitions" set_func="cpe_set_igd_ping_NumberOfRepetitions">
+            </param>
+            <param name="Timeout" rw="1" version="1.0" get_func="cpe_get_igd_ping_Timeout" set_func="cpe_set_igd_ping_Timeout">
+            </param>
+            <param name="DataBlockSize" rw="1" version="1.0" get_func="cpe_get_igd_ping_DataBlockSize" set_func="cpe_set_igd_ping_DataBlockSize">
+            </param>
+            <param name="DSCP" rw="1" version="1.0"  get_func="cpe_get_igd_ping_DSCP" set_func="cpe_set_igd_ping_DSCP">
+            </param>
+            <param name="SuccessCount"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_ping_SuccessCount">
+            </param>
+            <param name="FailureCount"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_ping_FailureCount">
+            </param>
+            <param name="AverageResponseTime"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_ping_AverageResponseTime">
+            </param>
+            <param name="MinimumResponseTime"  activeNotify="canDeny" version="1.1" get_func="cpe_get_igd_ping_MinimumResponseTime">
+            </param>
+            <param name="MaximumResponseTime"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_ping_MaximumResponseTime">
+            </param>
+        </object>
+        <object name="TraceRouteDiagnostics"  minEntries="1" maxEntries="1" version="1.4">
+            <param name="DiagnosticsState" rw="1" activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_tr_DiagnosticsState" set_func="cpe_set_igd_tr_DiagnosticsState">
+            </param>
+            <param name="Interface" rw="1" version="1.4" get_func="cpe_get_igd_tr_Interface" set_func="cpe_set_igd_tr_Interface">
+            </param>
+            <param name="Host" rw="1" version="1.4" get_func="cpe_get_igd_tr_Host" set_func="cpe_set_igd_tr_Host">
+            </param>
+            <param name="NumberOfTries" rw="1" version="1.4" get_func="cpe_get_igd_tr_NumberOfTries" set_func="cpe_set_igd_tr_NumberOfTries">
+            </param>
+            <param name="Timeout" rw="1" version="1.4" get_func="cpe_get_igd_tr_Timeout" set_func="cpe_set_igd_tr_Timeout">
+            </param>
+            <param name="DataBlockSize" rw="1" version="1.4"  get_func="cpe_get_igd_tr_DataBlockSize" set_func="cpe_set_igd_tr_DataBlockSize">
+            </param>
+            <param name="DSCP" rw="1" version="1.4"  get_func="cpe_get_igd_tr_DSCP" set_func="cpe_set_igd_tr_DSCP">
+            </param>
+            <param name="MaxHopCount" rw="1" version="1.4" get_func="cpe_get_igd_tr_MaxHopCount" set_func="cpe_set_igd_tr_MaxHopCount">
+            </param>
+            <param name="ResponseTime"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_tr_ResponseTime">
+            </param>
+            <param name="RouteHopsNumberOfEntries"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_tr_HopsNumberOfEntries">
+            </param>
+            <object name="RouteHops"  numEntriesParameter="RouteHopsNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.4"  noUniqueKeys="true" add_func="cpe_add_igd_tr_RouteHops" del_func="cpe_del_igd_tr_RouteHops"  refresh_func="cpe_refresh_igd_TraceRouteDiagnostics_RouteHops">
+                <object name="{i}">
+                    <param name="HopHost"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_tr_HopHost">
+                    </param>
+                    <param name="HopHostAddress"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_tr_HopHostAddress">
+                    </param>
+                    <param name="HopErrorCode"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_tr_HopErrorCode">
+                    </param>
+                    <param name="HopRTTimes"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_tr_HopRTTimes">
+                    </param>
+                </object>
+            </object>
+        </object>
+        <object name="DownloadDiagnostics"  minEntries="1" maxEntries="1" version="1.3">
+            <param name="DiagnosticsState" rw="1" activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Download_DiagnosticsState" set_func="cpe_set_igd_Download_DiagnosticsState">
+            </param>
+            <param name="Interface" rw="1" version="1.3" get_func="cpe_get_igd_Download_Interface" set_func="cpe_set_igd_Download_Interface">
+            </param>
+            <param name="DownloadURL" rw="1" version="1.3" get_func="cpe_get_igd_Download_URL" set_func="cpe_set_igd_Download_URL">
+            </param>
+            <param name="DSCP" rw="1" version="1.3" get_func="cpe_get_igd_Download_DSCP" set_func="cpe_set_igd_Download_DSCP">
+            </param>
+            <param name="EthernetPriority" rw="1" version="1.3" get_func="cpe_get_igd_Download_Priority" set_func="cpe_set_igd_Download_Priority">
+            </param>
+            <param name="ROMTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Download_ROMTime">
+            </param>
+            <param name="BOMTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Download_BOMTime">
+            </param>
+            <param name="EOMTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Download_EOMTime">
+            </param>
+            <param name="TestBytesReceived"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Download_TestBytesReceived">
+            </param>
+            <param name="TotalBytesReceived"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Download_TotalBytesReceived">
+            </param>
+            <param name="TCPOpenRequestTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Download_TCPOpenRequestTime">
+            </param>
+            <param name="TCPOpenResponseTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Download_TCPOpenResponseTime">
+            </param>
+        </object>
+       <object name="UploadDiagnostics"  minEntries="1" maxEntries="1" version="1.3">
+            <param name="DiagnosticsState" rw="1" activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Upload_DiagnosticsState" set_func="cpe_set_igd_Upload_DiagnosticsState">
+            </param>
+            <param name="Interface" rw="1" version="1.3" get_func="cpe_get_igd_Upload_Interface" set_func="cpe_set_igd_Upload_Interface">
+            </param>
+            <param name="UploadURL" rw="1" version="1.3" get_func="cpe_get_igd_Upload_URL" set_func="cpe_set_igd_Upload_URL">
+            </param>
+            <param name="DSCP" rw="1" version="1.3" get_func="cpe_get_igd_Upload_DSCP" set_func="cpe_set_igd_Upload_DSCP">
+            </param>
+            <param name="EthernetPriority" rw="1" version="1.3" get_func="cpe_get_igd_Upload_EthernetPriority" set_func="cpe_set_igd_Upload_EthernetPriority">
+            </param>
+            <param name="TestFileLength" rw="1" version="1.3" get_func="cpe_get_igd_Upload_TestFileLength" set_func="cpe_set_igd_Upload_TestFileLength">
+            </param>
+            <param name="ROMTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Upload_ROMTime">
+            </param>
+            <param name="BOMTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Upload_BOMTime">
+            </param>
+            <param name="EOMTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Upload_EOMTime">
+            </param>
+            <param name="TotalBytesSent"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Upload_TotalBytesSent">
+            </param>
+            <param name="TCPOpenRequestTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Upload_TCPOpenRequestTime">
+            </param>
+            <param name="TCPOpenResponseTime"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_Upload_TCPOpenResponseTime">
+            </param>
+        </object>
+        <object name="UDPEchoConfig"  minEntries="1" maxEntries="1" version="1.3">
+            <param name="Enable" rw="1" activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_UdpEcho_Enable" set_func="cpe_set_igd_UdpEcho_Enable">
+            </param>
+            <param name="Interface" rw="1" version="1.3" get_func="cpe_get_igd_UdpEcho_Interface" set_func="cpe_set_igd_UdpEcho_Interface">
+            </param>
+            <param name="SourceIPAddress" rw="1" version="1.3" get_func="cpe_get_igd_UdpEcho_SourceIPAddress" set_func="cpe_set_igd_UdpEcho_SourceIPAddress">
+            </param>
+            <param name="UDPPort" rw="1" version="1.3" get_func="cpe_get_igd_UdpEcho_UDPPort" set_func="cpe_set_igd_UdpEcho_UDPPort">
+            </param>
+            <param name="EchoPlusEnabled" rw="1" version="1.3" get_func="cpe_get_igd_UdpEcho_EchoPlusEnabled" set_func="cpe_set_igd_UdpEcho_EchoPlusEnabled">
+            </param>
+            <param name="EchoPlusSupported" version="1.3" get_func="cpe_get_igd_UdpEcho_EchoPlusSupported">
+            </param>
+            <param name="PacketsReceived"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_UdpEcho_PacketsReceived">
+            </param>
+            <param name="PacketsResponded"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_UdpEcho_PacketsResponded">
+            </param>
+            <param name="BytesReceived"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_UdpEcho_BytesReceived">
+            </param>
+            <param name="BytesResponded"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_UdpEcho_BytesResponded">
+            </param>
+            <param name="TimeFirstPacketReceived"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_UdpEcho_TimeFirstPacketReceived">
+            </param>
+            <param name="TimeLastPacketReceived"  activeNotify="canDeny" version="1.3" get_func="cpe_get_igd_UdpEcho_TimeLastPacketReceived">
+            </param>
+        </object>
+        <object name="LANDevice" rw="1" numEntriesParameter="LANDeviceNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.0" refresh_func="cpe_refresh_igd_LANDevice">
+            <object name="{i}">
+                <param name="LANEthernetInterfaceNumberOfEntries" forcedInform="true" version="1.0" get_func="cpe_get_igd_LANEthernetInterfaceNumberOfEntries">
+                </param>
+                <param name="LANWLANConfigurationNumberOfEntries" forcedInform="true" version="1.0"  get_func="cpe_get_igd_LANWLANConfigurationNumberOfEntries">
+                </param>
+                <object name="LANHostConfigManagement"  minEntries="1" maxEntries="1" version="1.0">
+                    <param name="MACAddress"  version="1.4" get_func="cpe_get_igd_MACAddress" >
+                    </param>
+                    <param name="DHCPServerConfigurable" rw="1" version="1.0" get_func="cpe_get_igd_DHCPServerConfigurable" set_func="cpe_set_igd_DHCPServerConfigurable">
+                    </param>
+                    <param name="DHCPServerEnable" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_DHCPServerEnable" set_func="cpe_set_igd_DHCPServerEnable">
+                    </param>
+                    <param name="DHCPRelay"  status="deprecated" version="1.0" get_func="cpe_get_igd_DHCPRelay">
+                    </param>
+                    <param name="MinAddress" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_MinAddress" set_func="cpe_set_igd_MinAddress">
+                    </param>
+                    <param name="MaxAddress" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_MaxAddress" set_func="cpe_set_igd_MaxAddress">
+                    </param>
+                    <!--<param name="ReservedAddresses" rw="1" version="1.0" get_func="cpe_get_igd_ReservedAddresses">
+                    </param>-->
+                    <param name="SubnetMask" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_SubnetMask" set_func="cpe_set_igd_SubnetMask">
+                    </param>
+                    <param name="DNSServers" rw="1" version="1.0"  forcedInform="true" get_func="cpe_get_igd_DNSServers" set_func="cpe_set_igd_DNSServers">
+                    </param>
+                    <param name="DomainName" rw="1" version="1.0" get_func="cpe_get_igd_DomainName" set_func="cpe_set_igd_DomainName">
+                    </param>
+                    <param name="IPRouters" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_IPRouters" set_func="cpe_set_igd_IPRouters">
+                    </param>
+                    <param name="DHCPLeaseTime" rw="1" version="1.0"  forcedInform="true" get_func="cpe_get_igd_DHCPLeaseTime" set_func="cpe_set_igd_DHCPLeaseTime">
+                    </param>
+                    <param name="IPInterfaceNumberOfEntries"  version="1.0" forcedInform="true" get_func="cpe_get_igd_IPInterfaceNumberOfEntries">
+                    </param>
+                    <param name="DHCPStaticAddressNumberOfEntries"  version="1.4" get_func="cpe_get_igd_DHCPStaticAddressNumberOfEntries">
+                    </param>
+                    <object name="IPInterface" rw="1" numEntriesParameter="IPInterfaceNumberOfEntries" enableParameter="Enable" minEntries="0" maxEntries="unbounded" version="1.0" refresh_func="cpe_refresh_igd_IPInterface">
+                        <object name="{i}">
+                            <param name="Enable" rw="1" version="1.0" get_func="cpe_get_igd_EnableOfIPInterface" set_func="cpe_set_igd_EnableOfIPInterface">
+                            </param>
+                            <param name="IPInterfaceIPAddress" rw="1" version="1.0" get_func="cpe_get_igd_IPInterfaceIPAddress" set_func="cpe_set_igd_IPInterfaceIPAddress">
+                            </param>
+                            <param name="IPInterfaceSubnetMask" rw="1" version="1.0" get_func="cpe_get_igd_IPInterfaceSubnetMask" set_func="cpe_set_igd_IPInterfaceSubnetMask">
+                            </param>
+                            <param name="IPInterfaceAddressingType" rw="1" version="1.0" get_func="cpe_get_igd_IPInterfaceAddressingType">
+                            </param>
+                        </object>
+                    </object>
+                    <!--<object name="DHCPStaticAddress" rw="1" numEntriesParameter="DHCPStaticAddressNumberOfEntries" enableParameter="Enable" minEntries="0" maxEntries="unbounded" version="1.4" add_func="cpe_add_igd_DHCPStaticAddress" del_func="cpe_del_igd_DHCPStaticAddress" refresh_func="cpe_refresh_igd_DHCPStaticAddress">
+                        <object name="{i}">
+                            <param name="Enable" rw="1" version="1.4" get_func="cpe_get_igd_DHCPStaticAddressEnable" set_func="cpe_set_igd_DHCPStaticAddressEnable">
+                            </param>
+                            <param name="Chaddr" rw="1" version="1.4" get_func="cpe_get_igd_DHCPStaticAddressMac" set_func="cpe_set_igd_DHCPStaticAddressMac">
+                            </param>
+                            <param name="Yiaddr" rw="1" version="1.4" get_func="cpe_get_igd_DHCPStaticAddressIp" set_func="cpe_set_igd_DHCPStaticAddressIp">
+                            </param>
+                        </object>
+                    </object>-->
+                </object>
+                <object name="LANEthernetInterfaceConfig"  numEntriesParameter="LANEthernetInterfaceNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.0" refresh_func="cpe_refresh_igd_LANEthernetInterfaceConfig">
+                    <object name="{i}">
+                        <param name="Enable" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_EnableOfEth" set_func="cpe_set_igd_EnableOfEth">
+                        </param>
+                        <param name="Status"  version="1.0" forcedInform="true"  get_func="cpe_get_igd_StatusOfEth">
+                        </param>
+                        <param name="Name"  version="1.4" get_func="cpe_get_igd_NameofLANEth">
+                        </param>
+                        <param name="MACAddress" forcedInform="true" version="1.0" get_func="cpe_get_igd_MACAddressOfEth">
+                        </param>
+                        <param name="MACAddressControlEnabled" rw="1" version="1.0"  get_func="cpe_get_igd_MACAddressControlEnabled">
+                        </param>
+                        <param name="MaxBitRate" rw="0" version="1.0" forcedInform="true" get_func="cpe_get_igd_MaxBitRateOfEth">
+                        </param>
+                        <param name="DuplexMode" rw="0" version="1.0" forcedInform="true" get_func="cpe_get_igd_DuplexModeOfEth">
+                        </param>
+                        <object name="Stats"  minEntries="1" maxEntries="1" version="1.0">
+                            <param name="BytesSent"  activeNotify="canDeny" forcedInform="true" version="1.0" get_func="cpe_get_igd_BytesSentOfEth">
+                            </param>
+                            <param name="BytesReceived"  activeNotify="canDeny" forcedInform="true" version="1.0" get_func="cpe_get_igd_BytesReceivedOfEth">
+                            </param>
+                            <param name="PacketsSent"  activeNotify="canDeny" version="1.0" forcedInform="true" get_func="cpe_get_igd_PacketsSentOfEth">
+                            </param>
+                            <param name="PacketsReceived"  activeNotify="canDeny" version="1.0" forcedInform="true" get_func="cpe_get_igd_PacketsReceivedOfEth">
+                            </param>
+                            <param name="ErrorsSent"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_ErrorsSentOfEth">
+                            </param>
+                            <param name="ErrorsReceived"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_ErrorsReceivedOfEth">
+                            </param>
+                        </object>
+                    </object>
+                </object>
+                <object name="WLANConfiguration"  numEntriesParameter="LANWLANConfigurationNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.0" refresh_func="cpe_refresh_igd_WLANConfiguration">
+                    <object name="{i}">
+                        <param name="Enable" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_EnableOfWLAN" set_func="cpe_set_igd_EnableOfWLAN">
+                        </param>
+                        <param name="Status"  version="1.0" forcedInform="true" get_func="cpe_get_igd_StatusOfWLAN">
+                        </param>
+                        <param name="Name"  version="1.4" get_func="cpe_get_igd_NameOfWLANConfiguration">
+                        </param>
+                        <param name="BSSID" forcedInform="true" version="1.0" get_func="cpe_get_igd_BSSID">
+                        </param>
+                        <param name="MaxBitRate" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_MaxBitRateOfWlan">
+                        </param>
+                        <param name="Channel" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_Channel" set_func="cpe_set_igd_Channel">
+                        </param>
+                        <param name="AutoChannelEnable" rw="1" version="1.4" forcedInform="true" get_func="cpe_get_igd_AutoChannelEnable" set_func="cpe_set_idg_AutoChannelEnable">
+                        </param>
+                        <param name="SSID" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_SSID" set_func="cpe_set_igd_SSID">
+                        </param>
+                        <param name="BeaconType" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_BeaconType"  set_func="cpe_set_igd_BeaconType">
+                        </param>
+                        <param name="MACAddressControlEnabled" rw="1" version="1.0" get_func="cpe_get_igd_MACAddressControlEnabled">
+                        </param>
+                        <param name="Standard"  version="1.0" forcedInform="true" get_func="cpe_get_igd_Standard" ><!--set_func="cpe_set_igd_Standard"-->
+                        </param>
+                        <!-- <param name="WEPKeyIndex" rw="1" version="1.0">
+                        </param>
+                        <param name="KeyPassphrase" rw="1" version="1.0">
+                        </param> -->
+                       <param name="WEPEncryptionLevel"  version="1.0" forcedInform="true" get_func="cpe_get_igd_WEPEncryptionLevel">
+                        </param>
+                        <param name="BasicEncryptionModes" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_BasicEncryptionModes">
+                        </param>
+                        <param name="BasicAuthenticationMode" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_BasicAuthenticationMode">
+                        </param>
+                        <param name="WPAEncryptionModes" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_WPAEncryptionModes" set_func="cpe_set_igd_WPAEncryptionModes">
+                        </param>
+                        <param name="WPAAuthenticationMode" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_WPAAuthenticationMode" set_func="cpe_set_igd_WPAAuthenticationMode">
+                        </param>
+                        <param name="IEEE11iEncryptionModes" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_IEEE11iEncryptionModes" set_func="cpe_set_igd_WPAEncryptionModes">
+                        </param>
+                        <param name="IEEE11iAuthenticationMode" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_IEEE11iAuthenticationMode" set_func="cpe_set_igd_WPAAuthenticationMode">
+                        </param>
+                        <param name="PossibleChannels"  version="1.0" get_func="cpe_get_igd_PossibleChannels">
+                        </param>
+                        <param name="BasicDataTransmitRates" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_BasicDataTransmitRates">
+                        </param>
+                        <param name="OperationalDataTransmitRates" rw="1" version="1.0" get_func="cpe_get_igd_OperationalDataTransmitRates">
+                        </param>
+                        <param name="PossibleDataTransmitRates"  version="1.0" get_func="cpe_get_igd_PossibleDataTransmitRates">
+                        </param>
+                        <param name="InsecureOOBAccessEnabled" rw="1" version="1.0" get_func="cpe_get_InsecureOOBAccessEnabled">
+                        </param>
+                        <param name="BeaconAdvertisementEnabled" rw="1" version="1.0" get_func="cpe_get_BeaconAdvertisementEnabled">
+                        </param>
+                        <param name="SSIDAdvertisementEnabled" rw="1" version="1.4" forcedInform="true" get_func="cpe_get_igd_SSIDAdvertisementEnabled" set_func="cpe_set_igd_SSIDAdvertisementEnabled">
+                        </param>
+                        <param name="RadioEnabled" rw="1" version="1.0" get_func="cpe_get_igd_RadioEnabled">
+                        </param>
+                        <!--<param name="TransmitPowerSupported"  version="1.4" get_func="cpe_get_TransmitPowerSupported">
+                        </param>
+                        <param name="TransmitPower" rw="1" version="1.4" get_func="cpe_get_TransmitPower" set_func="cpe_set_TransmitPower">
+                        </param>-->
+                        <param name="AutoRateFallBackEnabled" rw="1" version="1.0" forcedInform="true" get_func="cpe_get_igd_AutoRateFallBackEnabled">
+                        </param>
+                        <param name="ChannelsInUse"  activeNotify="canDeny" version="1.0" get_func="cpe_get_ChannelsInUse">
+                        </param>
+                        <param name="DeviceOperationMode" rw="1" version="1.0" get_func="cpe_get_DeviceOperationMode">
+                        </param>
+                        <param name="AuthenticationServiceMode" rw="1" version="1.0" get_func="cpe_get_AuthenticationServiceMode">
+                        </param>
+                        <param name="WMMSupported"  version="1.4" get_func="cpe_get_WMMSupported">
+                        </param>
+                        <param name="UAPSDSupported"  version="1.4" get_func="cpe_get_UAPSDSupported">
+                        </param>
+                        <!--<param name="WMMEnable" rw="1" version="1.4" get_func="cpe_get_igd_WMMEnable" set_func="cpe_set_igd_WMMEnable">
+                        </param>
+                        <param name="UAPSDEnable" rw="1" version="1.4" get_func="cpe_get_igd_UAPSDEnable">
+                        </param>-->
+                        <param name="TotalBytesSent"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_TotalBytesSent">
+                        </param>
+                        <param name="TotalBytesReceived"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_TotalBytesReceived">
+                        </param>
+                        <param name="TotalPacketsSent"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_TotalPacketsSent">
+                        </param>
+                        <param name="TotalPacketsReceived"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_TotalPacketsReceived">
+                        </param>
+                         <param name="TotalAssociations"  activeNotify="canDeny" version="1.0" forcedInform="true" get_func="cpe_get_igd_TotalAssociations">
+                        </param>
+                        <param name="MultiSSIDEnable" noti_rw="1" get_func="cpe_get_igd_MultiSSIDEnable" set_func="cpe_set_igd_MultiSSIDEnable"/>
+                       <object name="Stats"  minEntries="1" maxEntries="1" version="1.4">
+                            <param name="ErrorsSent"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_ErrorsSent">
+                            </param>
+                            <param name="ErrorsReceived"  activeNotify="canDeny" version="1.4"  get_func="cpe_get_igd_ErrorsReceived">
+                            </param>
+                            <param name="DiscardPacketsSent"  activeNotify="canDeny" version="1.4" get_func="cpe_get_DiscardPacketsSentOfWlan">
+                            </param>
+                            <param name="DiscardPacketsReceived"  activeNotify="canDeny" version="1.4" get_func="cpe_get_DiscardPacketsReceivedOfWlan">
+                            </param>
+                        </object>
+                        <object name="MultiSSID" rw="1" add_func="cpe_add_igd_tr_MultiSSID" refresh_func="cpe_refresh_igd_MultiSSID">
+                            <object name="{i}">
+	                            <param name="Enable" rw="1" get_func="cpe_get_igd_EnableOfMultiSSID" set_func="cpe_set_igd_EnableOfMultiSSID"/>
+	                            <param name="SSID" rw="1" get_func="cpe_get_igd_SSIDOfMultiSSID" set_func="cpe_set_igd_SSIDOfMultiSSID"/>
+	                            <param name="Password" rw="1" get_func="cpe_get_igd_PasswordOfMultiSSID" set_func="cpe_set_igd_PasswordOfMultiSSID"/>
+	                            <param name="EncryptionMode" rw="1" get_func="cpe_get_igd_EncrypModeOfMultiSSID" set_func="cpe_set_igd_EncrypModeOfMultiSSID"/>
+	                            <param name="NATSwitch" rw="1" get_func="cpe_get_igd_NATSwitchOfMultiSSID" set_func="cpe_set_igd_NATSwitchOfMultiSSID"/>
+                                <object name="DHCP">
+                                    <param name="DHCPSwitch" rw="1" get_func="cpe_get_igd_DHCPSwitchOfMultiSSID" set_func="cpe_set_igd_DHCPSwitchOfMultiSSID"/>
+                                    <param name="IPAddress" rw="1" get_func="cpe_get_igd_IPAddressOfMultiSSID" set_func="cpe_set_igd_IPAddressOfMultiSSID"/>
+                                    <param name="DHCPLeaseTime" rw="1" get_func="cpe_get_igd_DHCPLeaseTimeOfMultiSSID" set_func="cpe_set_igd_DHCPLeaseTimeOfMultiSSID"/>
+                                    <param name="MinAddress" rw="1" get_func="cpe_get_igd_MinAddressOfMultiSSID" set_func="cpe_set_igd_MinAddressOfMultiSSID"/>
+                                    <param name="MaxAddress" rw="1" get_func="cpe_get_igd_MaxAddressOfMultiSSID" set_func="cpe_set_igd_MaxAddressOfMultiSSID"/>
+                                    <param name="SubnetMask"  rw="1" get_func="cpe_get_igd_SubnetMaskOfMultiSSID" set_func="cpe_set_igd_SubnetMaskOfMultiSSID"/>
+                                    <param name="Gateway" rw="1" get_func="cpe_get_igd_GatewayOfMultiSSID" set_func="cpe_set_igd_GatewayOfMultiSSID"/>
+                                    <param name="FirstDNS" rw="1" get_func="cpe_get_igd_FirstDNSOfMultiSSID" set_func="cpe_set_igd_FirstDNSOfMultiSSID"/>
+                                    <param name="SecondDNS" rw="1" get_func="cpe_get_igd_SecondDNSOfMultiSSID" set_func="cpe_set_igd_SecondDNSOfMultiSSID"/>
+                                </object>
+                                <object name="APN">
+                                    <param name="APNSwitch" rw="1" get_func="cpe_get_igd_APNSwitchOfMultiSSID" set_func="cpe_set_igd_APNSwitchOfMultiSSID"/>
+                                    <param name="ConfigName" rw="1" get_func="cpe_get_igd_ConfigNameOfMultiSSID" set_func="cpe_set_igd_ConfigNameOfMultiSSID"/>
+                                    <param name="APNName" rw="1" get_func="cpe_get_igd_APNNameOfMultiSSID" set_func="cpe_set_igd_APNNameOfMultiSSID"/>
+                                    <param name="Username" rw="1" get_func="cpe_get_igd_UsernameOfMultiSSID" set_func="cpe_set_igd_UsernameOfMultiSSID"/>
+                                    <param name="Password" rw="1" get_func="cpe_get_igd_APNPasswordOfMultiSSID" set_func="cpe_set_igd_APNPasswordOfMultiSSID"/>
+                                    <param name="PDPType" rw="1" get_func="cpe_get_igd_PDPTypeOfMultiSSID" set_func="cpe_set_igd_PDPTypeOfMultiSSID"/>
+                                    <param name="WanIP"  get_func="cpe_get_igd_ApnWanIpOfMultiSSID" />
+                                    <param name="PrimaryDNS" get_func="cpe_get_igd_ApnPrimaryDNSOfMultiSSID" />
+                                    <param name="SecondDNS" get_func="cpe_get_igd_ApnSecondDNSOfMultiSSID"/>
+                                </object>
+                            </object>
+                    </object>  
+                       <object name="WPS"  minEntries="1" maxEntries="1" version="1.4">
+                            <param name="Enable" rw="1" version="1.4" get_func="cpe_get_EnableOfWPS" set_func="cpe_set_EnableOfWPS">
+                            </param>
+                            <param name="DeviceName"  version="1.4" get_func="cpe_get_DeviceName">
+                            </param>
+                            <param name="DevicePassword" rw="1" version="1.4" get_func="cpe_get_DevicePassword" set_func="cpe_set_DevicePassword">
+                            </param>
+                            <param name="Version"  version="1.4" get_func="cpe_get_VersionOfWPS">
+                            </param>
+                            <param name="ConfigMethodsSupported"  version="1.4" get_func="cpe_get_ConfigMethodsSupported">
+                            </param>
+                            <param name="ConfigMethodsEnabled" rw="1" version="1.4" get_func="cpe_get_ConfigMethodsEnabled" set_func="cpe_set_ConfigMethodsEnabled">
+                            </param>
+                            <param name="SetupLockedState"  version="1.4" get_func="cpe_get_SetupLockedState">
+                            </param>
+                            <param name="ConfigurationState"  version="1.4" get_func="cpe_get_ConfigurationState">
+                            </param>
+                            <param name="LastConfigurationError"  version="1.4" get_func="cpe_get_LastConfigurationError">
+                            </param>
+                            <!--<param name="RegistrarNumberOfEntries"  version="1.4" get_func="cpe_get_RegistrarNumberOfEntries">
+                            </param>-->
+                            <param name="RegistrarEstablished"  version="1.4" get_func="cpe_get_RegistrarEstablishedOfWPS">
+                            </param>
+    						 <!--<object name="Registrar"  numEntriesParameter="RegistrarNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.4" refresh_func="cpe_refresh_igd_WPSRegistrar">
+                                <object name="{i}">
+                                    <param name="Enable" rw="1" version="1.4" get_func="cpe_get_WPSRegistrarEnable" set_func="cpe_set_WPSRegistrarEnable">
+                                    </param>
+                                    <param name="UUID"  version="1.4" get_func="cpe_get_WPSRegistrarUUID">
+                                    </param>
+                                    <param name="DeviceName"  version="1.4" get_func="cpe_get_WPSRegistrarDeviceName">
+                                    </param>
+                                </object>
+                            </object>-->
+
+
+                        </object>
+                    <object name="AssociatedDevice"  numEntriesParameter="TotalAssociations" minEntries="0" maxEntries="unbounded" version="1.0" refresh_func="cpe_refresh_igd_AssociatedDevice">
+                            <object name="{i}">
+                                <param name="AssociatedDeviceMACAddress"  activeNotify="canDeny" version="1.0" get_func="cpe_get_AssociatedDeviceMACAddress">
+                                </param>
+                                <param name="AssociatedDeviceIPAddress"  activeNotify="canDeny" version="1.0" get_func="cpe_get_AssociatedDeviceIPAddress">
+                                </param>
+                                <param name="AssociatedDeviceAuthenticationState"  activeNotify="canDeny" version="1.0" get_func="cpe_get_AssociatedDeviceAuthenticationState">
+                                </param>
+                               <!-- <param name="LastDataTransmitRate"  activeNotify="canDeny" version="1.4" get_func="cpe_get_LastDataTransmitRate">
+                                </param>-->
+                            </object>
+                        </object>
+                         <object name="WEPKey"  minEntries="4" maxEntries="4" version="1.0" refresh_func="cpe_refresh_igd_WEPKey">
+                            <object name="{i}">
+                                <param name="WEPKey" rw="1" version="1.0" get_func="cpe_get_igd_WEPKey" set_func="cpe_set_igd_WEPKey">
+                                </param>
+                            </object>
+                        </object>
+                       <object name="PreSharedKey"  minEntries="10" maxEntries="10" version="1.0" refresh_func="cpe_refresh_igd_WEPKey">
+                            <object name="{i}">
+                                <param name="PreSharedKey" rw="1" version="1.0" get_func="cpe_get_igd_WEPKey" set_func="cpe_set_igd_WEPKey">
+                                </param>
+                                <!--<param name="KeyPassphrase" rw="1" version="1.0">
+                                </param>
+                                <param name="AssociatedDeviceMACAddress" rw="1" version="1.0">
+                                </param>-->
+                            </object>
+                        </object>
+                    </object>
+               </object>
+               <object name="Hosts"  minEntries="1" maxEntries="1" version="1.0">
+                    <param name="HostNumberOfEntries" forcedInform="true" version="1.0" get_func="cpe_get_igd_HostNumberOfEntries">
+                    </param>
+                    <object name="Host" forcedInform="true"  numEntriesParameter="HostNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.0"  add_func="cpe_add_igd_Host" del_func="cpe_del_igd_Host" refresh_func="cpe_refresh_igd_Host">
+                        <object name="{i}">
+                            <param name="IPAddress" forcedInform="true" version="1.0" get_func="cpe_get_IPAddress">
+                            </param>
+                            <param name="AddressSource" forcedInform="true" version="1.0" get_func="cpe_get_AddressSourceOfHost">
+                            </param>
+                            <param name="LeaseTimeRemaining" forcedInform="true" activeNotify="canDeny" version="1.0" get_func="cpe_get_LeaseTimeRemainingOfHost">
+                            </param>
+                            <param name="MACAddress" forcedInform="true" version="1.0" get_func="cpe_get_igd_MACAddressOfHost">
+                            </param>
+                            <param name="HostName" forcedInform="true" version="1.0" get_func="cpe_get_igd_HostName">
+                            </param>
+                            <param name="InterfaceType" forcedInform="true" version="1.0" get_func="cpe_get_igd_InterfaceType">
+                            </param>
+                            <param name="Active"  version="1.0" forcedInform="true" get_func="cpe_get_igd_ActiveOfHost">
+                            </param>
+                            <param name="Quota" version="1.0" get_func="cpe_get_igd_Quota">
+                            </param>
+                        </object>
+                    </object>
+
+		     <param name="HostRecordNumberOfEntries" forcedInform="true" version="1.0" get_func="cpe_get_igd_HostNumberOfEntriesRecord">
+                    </param>
+		      <object name="HostRecord" forcedInform="true" numEntriesParameter="HostRecordNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.0"  refresh_func="cpe_refresh_igd_HostRecord">
+                        <object name="{i}">
+                            <param name="IPAddress" forcedInform="true" version="1.0" get_func="cpe_get_IPAddressRecord">
+                            </param>
+                            <param name="AddressSource" version="1.0" get_func="cpe_get_AddressSourceOfHostRecord">
+                            </param>
+                            <param name="LeaseTimeRemaining" activeNotify="canDeny" version="1.0" get_func="cpe_get_LeaseTimeRemainingOfHostRecord">
+                            </param>
+                            <param name="MACAddress" forcedInform="true" version="1.0" get_func="cpe_get_igd_MACAddressOfHostRecord">
+                            </param>
+                            <param name="HostName" forcedInform="true" version="1.0" get_func="cpe_get_igd_HostNameRecord">
+                            </param>
+                            <param name="InterfaceType"  version="1.0" get_func="cpe_get_igd_InterfaceTypeRecord">
+                            </param>
+                            <param name="Active"  version="1.0" get_func="cpe_get_igd_ActiveOfHostRecord">
+                            </param>
+                            <param name="Quota" version="1.0" get_func="cpe_get_igd_QuotaRecord">
+                            </param>
+                        </object>
+                    </object>
+                    
+                </object>
+            </object>
+        </object>
+        <object name="LANInterfaces"  minEntries="1" maxEntries="1" version="1.4">
+            <param name="LANEthernetInterfaceNumberOfEntries"  version="1.4" get_func="cpe_get_igd_LANEthernetInterfaceNumberOfEntries">
+            </param>
+            <param name="LANWLANConfigurationNumberOfEntries"  version="1.4" get_func="cpe_get_igd_LANWLANConfigurationNumberOfEntries">
+            </param>
+        </object>
+        <object name="WANDevice"  numEntriesParameter="WANDeviceNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.0"  rw="1" refresh_func="cpe_refresh_igd_wandevice">
+            <object name="{i}">
+                <param name="WANConnectionNumberOfEntries"  version="1.0" get_func="cpe_get_igd_WANConnectionNumberOfEntries">
+                </param>
+                <param name="X_TGT_CurrentAPNProfile" rw="1" get_func="cpe_get_CurrentProfileOfAPN" set_func="cpe_set_CurrentProfileOfAPN">
+                </param>
+                <object name="MNO_WANNetConfigInfo">
+                    <param name="PLMN" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_PLMN" set_func=""/>
+                    <param name="SignalQuality" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_SignalQuality" set_func=""/>
+                    <param name="RSRQ" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_RSRQ" set_func=""/>
+                    <param name="RSRP" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_RSRP" set_func=""/>
+                    <param name="RSSI" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_RSSI" set_func=""/>
+                    <param name="SINR" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_SINR" set_func=""/>
+                    <param name="Act" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_CurrentNetmode" set_func=""/>
+                    <param name="LAC" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_LAC" set_func=""/>
+                    <param name="ECGI" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_ECGI"/>
+                    <param name="TAC" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_TAC"/>
+                    <param name="FrequencyPoint" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_FrequencyPoint" set_func=""/>
+                    <param name="Band" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_Band" set_func=""/>
+                    <param name="EnodeBId" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_EnodeBId" set_func=""/>
+                    <param name="CellId" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_CellId" set_func=""/>
+                    <param name="GlobeCellId" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_GlobeCellId" set_func=""/>
+                    <param name="PhysicsCellId" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_PhysicsCellId" set_func=""/>
+                    <param name="PCI" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_PhysicsCellId" set_func=""/>
+                    <param name="SupportedBands" forcedInform="true" get_func="cpe_get_igd_di_X_CMCC_SupportedBands" /><!--set_func="cpe_set_igd_di_X_CMCC_SupportedBands"/>-->
+                </object>
+                <object name="X_TGT_APN_PROFILE" refresh_func="cpe_refresh_X_TOZED_APN_PROFILE">
+                    <object name="{i}">
+                        <param name="ConfigName" rw="1" forcedInform="true" get_func="cpe_get_ProfileNameOfAPN" set_func="cpe_set_ProfileNameOfAPN"/>
+                        <param name="APNName" rw="1" forcedInform="true" get_func="cpe_get_APNNameOfAPN" set_func="cpe_set_APNNameOfAPN"/>
+                        <param name="Username" rw="1" forcedInform="true" get_func="cpe_get_PPPUserNameOfAPN" set_func="cpe_set_PPPUserNameOfAPN"/>
+                        <param name="Password" rw="1" forcedInform="true" get_func="cpe_get_PPPPasswdOfAPN" set_func="cpe_set_PPPPasswdOfAPN"/>
+                        <param name="AuthType" rw="1" get_func="cpe_get_AuthTypeOfAPN" set_func="cpe_set_AuthTypeOfAPN"/>
+                        <param name="PDPType" rw="1" forcedInform="true" get_func="cpe_get_PDPTypeOfAPN" set_func="cpe_set_PDPTypeOfAPN"/> <!--set_func="cpe_set_PDPTypeOfAPN"-->
+                    </object>
+                </object>
+                <object name="WANCommonInterfaceConfig"  minEntries="1" maxEntries="1" version="1.0">
+                    <param name="EnabledForInternet" rw="1" version="1.0" get_func="cpe_get_idg_EnableofWANCommonInterfaceConfig" set_func="cpe_set_idg_EnableofWANCommonInterfaceConfig">
+                    </param>
+                    <param name="WANAccessType"  version="1.0" get_func="cpe_get_WANAccessType">
+                    </param>
+                    <param name="Layer1UpstreamMaxBitRate"  version="1.0" get_func="cpe_get_idg_Layer1UpstreamMaxBitRate">
+                    </param>
+                    <param name="Layer1DownstreamMaxBitRate"  version="1.0" get_func="cpe_get_idg_Layer1DownstreamMaxBitRate">
+                    </param>
+                    <param name="PhysicalLinkStatus"  version="1.0" get_func="cpe_get_idg_PhysicalLinkStatus">
+                    </param>
+                    <param name="WANAccessProvider"  version="1.0" get_func="cpe_get_igd_di_X_CMCC_PLMN">
+                    </param>
+                    <param name="TotalBytesSent"  activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_TotalBytesSentofWANCommonInterfaceConfig">
+                    </param>
+                    <param name="TotalBytesReceived"  activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_TotalBytesReceivedofWANCommonInterfaceConfig">
+                    </param>
+                    <param name="TotalPacketsSent"  activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_PacketsSentofWANEthernetInterfaceConfig">
+                    </param>
+                    <param name="TotalPacketsReceived"  activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_PacketsReceivedofWANEthernetInterfaceConfig">
+                    </param>
+                    <param name="MaximumActiveConnections"  activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_MaximumActiveConnections">
+                    </param>
+                    <param name="NumberOfActiveConnections"  version="1.0" get_func="cpe_get_idg_NumberOfActiveConnections">
+                    </param>
+                    <object name="Connection"  numEntriesParameter="NumberOfActiveConnections" minEntries="0" maxEntries="unbounded" version="1.0" refresh_func="cpe_refresh_ConnectionOfWANCommonInterface">
+                        <object name="{i}">
+                            <param name="ActiveConnectionDeviceContainer"  version="1.0" get_func="cpe_get_ActiveConnectionDeviceContainer">
+                            </param>
+                            <param name="ActiveConnectionServiceID"  version="1.0" get_func="cpe_get_ActiveConnectionServiceID">
+                            </param>
+                        </object>
+                    </object>
+                  </object>
+                <object name="WANEthernetInterfaceConfig"  minEntries="0" maxEntries="1" version="1.0">
+                    <param name="Enable" rw="1" version="1.0" get_func="cpe_get_idg_EnableofWANCommonInterfaceConfig"  set_func="cpe_set_idg_EnableofWANCommonInterfaceConfig">
+                    </param>
+                    <param name="Status"  version="1.0" get_func="cpe_get_idg_StatusofWANEthernetInterfaceConfig">
+                    </param>
+                    <param name="MACAddress"  version="1.0" get_func="cpe_get_idg_MACAddressofWANEthernetInterfaceConfig">
+                    </param>
+                    <param name="MaxBitRate" rw="0" version="1.0" get_func="cpe_get_idg_MaxBitRateofWANEthernetInterfaceConfig">
+                    </param>
+                    <param name="DuplexMode" rw="0" version="1.0" get_func="cpe_get_idg_DuplexModeofWANEthernetInterfaceConfig">
+                    </param>
+                    <object name="Stats"  minEntries="1" maxEntries="1" version="1.0">
+                        <param name="BytesSent"  forcedInform="true" activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_BytesSentofWANEthernetInterfaceConfig">
+                        </param>
+                        <param name="BytesReceived"  forcedInform="true" activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_BytesReceivedofWANEthernetInterfaceConfig">
+                        </param>
+                        <param name="PacketsSent" forcedInform="true" activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_PacketsSentofWANEthernetInterfaceConfig">
+                        </param>
+                        <param name="PacketsReceived" forcedInform="true" activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_PacketsReceivedofWANEthernetInterfaceConfig">
+                        </param>
+                    </object>
+                </object>
+                <object name="WANConnectionDevice" rw="1" numEntriesParameter="WANConnectionNumberOfEntries" minEntries="0" maxEntries="unbounded" version="1.0" refresh_func="cpe_refresh_igd_wanconnectiondevice">
+                    <object name="{i}">
+                        <param name="WANIPConnectionNumberOfEntries"  version="1.0" get_func="cpe_get_igd_wan_WANIPConnectionNumberOfEntries">
+                        </param>
+                        <object name="WANEthernetLinkConfig"  minEntries="0" maxEntries="1" version="1.0">
+                            <param name="EthernetLinkStatus"  version="1.0"  get_func="cpe_get_igd_wan_EthernetLinkStatus" >
+                            </param>
+                        </object>
+                        <object name="WANIPConnection" rw="1" numEntriesParameter="WANIPConnectionNumberOfEntries" enableParameter="Enable" minEntries="0" maxEntries="unbounded" version="1.0"  refresh_func="cpe_refresh_igd_wanipconnection">
+                            <object name="{i}">
+                                <param name="Enable" rw="1" version="1.0" type="s" get_func="cpe_get_idg_EnableofWANCommonInterfaceConfig" set_func="cpe_set_idg_EnableofWANCommonInterfaceConfig">
+                                </param>
+                                <param name="ConnectionStatus" version="1.0" get_func="cpe_get_igd_wan_ip_ConnectionStatus" >
+                                </param>
+                                <param name="PossibleConnectionTypes"   version="1.0" get_func="cpe_get_igd_wan_ip_PossibleConnectionTypes" >
+                                </param>
+                                <param name="ConnectionType" rw="1" version="1.0" get_func="cpe_get_igd_wan_ip_ConnectionType" >
+                                </param>
+                                <param name="Name" version="1.0" get_func="cpe_get_igd_wan_ip_Name" >
+                                </param>
+                                <param name="Uptime"  activeNotify="canDeny" version="1.0" get_func="cpe_get_igd_di_uptime" >
+                                </param>
+                                <param name="LastConnectionError"  version="1.0" get_func="cpe_get_igd_wan_ip_LastConnectionError" >
+                                </param>
+                                <param name="RSIPAvailable"  version="1.0" get_func="cpe_get_igd_wan_ip_RSIPAvailable" >
+                                </param>
+                                <param name="AddressingType"  forcedInform="true" version="1.0" get_func="cpe_get_igd_wan_ip_AddressingType">
+                                </param>
+                                <param name="ExternalIPAddress" forcedInform="true" activeNotify="forceDefaultEnabled" version="1.0" get_func="cpe_get_igd_wan_ip_ExternalIPAddress">
+                                </param>
+                                <param name="SubnetMask" forcedInform="true" version="1.0" get_func="cpe_get_igd_wan_ip_SubnetMask">
+                                </param>
+                                <param name="DefaultGateway" forcedInform="true" version="1.0" get_func="cpe_get_igd_wan_ip_DefaultGateway">
+                                </param>
+                                <param name="DNSEnabled"  version="1.0" get_func="cpe_get_igd_wan_ip_DNSEnabled" >
+                                </param>
+                                <param name="DNSOverrideAllowed" rw="1" version="1.0" get_func="cpe_get_igd_wan_ip_DNSOverrideAllowed" >
+                                </param>
+                                <param name="DNSServers" forcedInform="true" rw="1" version="1.0" get_func="cpe_get_idg_Wan_Dns" set_func="cpe_set_idg_Wan_Dns">
+                                </param>
+                                <param name="MaxMTUSize" rw="1" version="1.0" get_func="cpe_get_igd_wan_ip_MaxMTUSize" >
+                                </param>
+                                <param name="MACAddress" forcedInform="true" version="1.0" get_func="cpe_get_idg_MACAddressofWANEthernetInterfaceConfig">
+                                </param>
+                                <param name="MACAddressOverride" rw="1" version="1.0" get_func="cpe_get_igd_wan_ip_MACAddressOverride" >
+                                </param>
+                                <param name="ConnectionTrigger" rw="1" version="1.0" get_func="cpe_get_igd_wan_ip_ConnectionTrigger" >
+                                </param>
+                                <param name="RouteProtocolRx" rw="1" version="1.0" get_func="cpe_get_igd_wan_ip_RouteProtocolRx">
+                                </param>
+                                <object name="Stats"  minEntries="1" maxEntries="1" version="1.0">
+                                    <param name="EthernetBytesSent"  activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_BytesSentofWANEthernetInterfaceConfig">
+                                    </param>
+                                    <param name="EthernetBytesReceived"  activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_BytesReceivedofWANEthernetInterfaceConfig">
+                                    </param>
+                                    <param name="EthernetPacketsSent"  activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_PacketsSentofWANEthernetInterfaceConfig">
+                                    </param>
+                                    <param name="EthernetPacketsReceived"  activeNotify="canDeny" version="1.0" get_func="cpe_get_idg_PacketsReceivedofWANEthernetInterfaceConfig">
+                                    </param>
+                                    <param name="EthernetErrorsSent"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_wan_ip_EthernetErrorsSent">
+                                    </param>
+                                    <param name="EthernetErrorsReceived"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_wan_ip_EthernetErrorsReceived">
+                                    </param>
+                                    <param name="EthernetDiscardPacketsSent"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_wan_ip_EthernetDiscardPacketsSent">
+                                    </param>
+                                    <param name="EthernetDiscardPacketsReceived"  activeNotify="canDeny" version="1.4" get_func="cpe_get_igd_wan_ip_EthernetDiscardPacketsReceived">
+                                    </param>
+                                </object>
+                            </object>
+                        </object>
+                    </object>
+                </object>
+            </object>
+        </object>
+        <!--<object name="DeviceConfig" access="readOnly" minEntries="1" maxEntries="1" version="1.0">
+            <param name="ConfigFile" access="readOnly" version="1.0" get_func="cpe_get_ConfigFile">
+            </param>
+        </object>-->
+          <object name="WEB_GUI">
+            <object name="WANConfiguration">
+                <param name="NetworkPriority" access="readOnly" get_func="cpe_get_NetworkPriority" set_func=""/>
+            </object>
+            <object name="MobileNetworkStatistics">
+            	<param name="TotalBytesSent" access="readOnly" get_func="cpe_get_idg_TotalBytesSentofWANCommonInterfaceConfig"/>
+            	<param name="TotalBytesReceived" access="readOnly" get_func="cpe_get_idg_TotalBytesReceivedofWANCommonInterfaceConfig"/>
+            	<param name="Duration" access="readOnly" get_func="cpe_get_Duration"/>
+                <param name="UplinkRate" access="readOnly" get_func="cpe_get_UplinkRate" />
+                <param name="DownlinkRate" access="readOnly" get_func="cpe_get_DownlinkRate" />
+            </object>
+            <object name="LTEConfiguration">
+                <param name="USIMCardStatus" access="readOnly" get_func="cpe_get_igd_di_X_USIMCardStatus"/>
+                <param name="RoamingStatus" access="readOnly" get_func="cpe_get_igd_di_X_RoamingStatus"/>
+                <param name="SearchNetMode" access="readWrite" get_func="cpe_get_igd_di_X_SearchNetMode" set_func="cpe_set_igd_di_X_SearchNetMode"/>
+            </object>
+            <object name="CommonStatus">
+                <param name="BitErrorRate" access="readOnly" get_func="cpe_get_CommonStatus_BitErrorRate"/>
+                <param name="Resync" access="readOnly" get_func="cpe_get_CommonStatus_Resync"/>
+            </object>
+        </object>
+    </object>
+
+    </model>
+    <inform>
+        <paramlist>
+            <param name=""/>
+        </paramlist>
+    </inform>
+
+    <rpc>
+    </rpc>
+
+</cwmp>

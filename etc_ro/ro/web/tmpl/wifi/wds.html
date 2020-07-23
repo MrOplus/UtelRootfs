@@ -1,0 +1,51 @@
+<form id='wdsForm'>
+<div class="form-body">
+    <div class="form-title" data-trans='wds'></div>
+    <div class="content">        
+		<div class="row-fluid">
+            <label class="span4 side-right" data-trans='wds_mode'></label>
+            <div class="span8">
+               <select data-bind="options: wdsModes, value: currentMode, optionsText: transOption('wds_mode'), optionsValue: 'value', event: {change: changeWdsMode}" data-transid="wds_mode"></select>
+            </div>
+        </div>
+        <div data-bind="visible: showDivForSSID">
+			<div class="row-fluid">
+				<label class="span4 side-right" data-trans="repeater_ssid" for="repeater_ssid"></label>
+				<div class="span8">
+					<input type="text" name="repeater_ssid" id="repeater_ssid" data-bind="value: wdsSSID" class="required" />
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4 side-right" data-trans="security_mode" for="mode"></label>
+				<div class="span8">
+                    <select data-transid='security_mode' id="mode"
+                    data-bind="options: modes, value: selectedMode, optionsText: transOption('security_mode'), optionsValue: 'value'"></select>
+				</div>
+			</div>
+			<div data-bind='visible: selectedMode() != "OPEN"'>
+				<div class="row-fluid" style="display:none" >
+					<label class="span4 side-right" for='wpa' data-trans='wpa_algorithms'></label>
+					<div class="span8">
+						<input id='wpa' name="wpa" type="radio" value="1" checked />&nbsp;&nbsp;AES
+					</div>
+				</div>
+				<div class="row-fluid">
+					<label class="span4 side-right" for='pass' data-trans='pass_phrase'></label>
+					<div class="span8">
+						<input id='pass' name="pass" type="text" data-bind="value: passPhrase" class="required" minlength='8' maxlength='63'/>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="form-buttons">
+            <input type="submit" class="btn-1 " data-trans='apply'/>
+        </div>
+        <div class="form-note">
+            <div class="notes-title">&nbsp;</div>
+            <ul class="notes-content">
+                <li data-trans="wds_note"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</form>

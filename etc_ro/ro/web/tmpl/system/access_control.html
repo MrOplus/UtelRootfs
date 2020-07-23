@@ -1,0 +1,170 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10 m-t-15">
+            <div class="form-body">
+                <div>
+                    <form action="#">
+                        <div class="form-title">
+                            <h2 data-trans="current_filter_list"></h2>
+                        </div>
+                        <div class="content">
+                            <table class="table table-striped table-center">
+                                <thead>
+                                <tr>
+                                    <td data-trans="order"></td>
+                                    <td data-trans="access_source"></td>
+                                    <td data-trans="service"></td>
+                                    <td data-trans="ip_address_range"></td>
+                                    <td data-trans="action"></td>
+                                    <td data-trans="static_route_status"></td>
+                                    <td data-trans="operation"></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td data-trans="lan"></td>
+                                    <td data-trans="http"></td>
+                                    <td data-bind="text: lan_http_ip"></td>
+                                    <td data-trans="drop"></td>
+                                    <td data-bind="text: enable1"></td>
+                                    <td>
+                                        <button class="btn btn-primary" data-trans="edit"
+                                                data-bind="event:{click: function(data,event){modalTrigger('1',data,event)}}"></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td data-trans="lan"></td>
+                                    <td data-trans="icmp"></td>
+                                    <td data-bind="text: lan_icmp_ip"></td>
+                                    <td data-trans="drop"></td>
+                                    <td data-bind="text: enable2"></td>
+                                    <td>
+                                        <button class="btn btn-primary" data-trans="edit"
+                                                data-bind="event:{click: function(data,event){modalTrigger('2',data,event)}}"></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td data-trans="wan"></td>
+                                    <td data-trans="http"></td>
+                                    <td data-bind="text: wan_http_ip"></td>
+                                    <td data-trans="accept_acl"></td>
+                                    <td data-bind="text: enable3"></td>
+                                    <td>
+                                        <button class="btn btn-primary" data-trans="edit"
+                                                data-bind="event:{click: function(data,event){modalTrigger('3',data,event)}}"></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td data-trans="wan"></td>
+                                    <td data-trans="icmp"></td>
+                                    <td data-bind="text: wan_icmp_ip"></td>
+                                    <td data-trans="accept_acl"></td>
+                                    <td data-bind="text: enable4"></td>
+                                    <td>
+                                        <button class="btn btn-primary" data-trans="edit"
+                                                data-bind="event:{click: function(data,event){modalTrigger('4',data,event)}}"></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="access_control_note1"></li>
+                            <li data-trans="access_control_note2"></li>
+                            <li data-trans="access_control_note3"></li>
+                            <li data-trans="access_control_note4"></li>
+                        </ul>
+                    </div>
+                    <!-- 模态框（Modal） -->
+                        <div class="modal" id="myModal" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content" id="editSection">
+                                    <form id="aclForm" role="form" action="#">
+                                    <div class="modal-header" style="background-color: #00B4FF; color: #fff;">
+                                        <div class="row">
+                                            <label class="col-xs-2 side-right f-w-b" data-trans='order'></label>
+                                            <label class="col-xs-2 side-right" data-bind='text: index'></label>
+                                            <label class="col-xs-2 side-right f-w-b" data-trans='interface'></label>
+                                            <label class="col-xs-2 side-right" data-bind='text: interface'></label>
+                                            <label class="col-xs-2 side-right f-w-b" data-trans='protocol'></label>
+                                            <label class="col-xs-2 side-right" data-bind='text: protocol'></label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body" style="background-color: #fcfcfc;">
+                                        <div class="content">
+                                            <div>
+                                                <div class="row form-group">
+                                                    <label class="col-xs-4 side-right" data-trans='method'></label>
+                                                    <div class="col-xs-8">
+                                                        <select class="form-control"
+                                                                data-bind="options: modes, value: selectedMode, optionsValue: 'value',optionsText: transOption('acl_enable')"></select>
+                                                    </div>
+                                                </div>
+                                               <div  class="isThreeHide">
+                                                    <div class="row form-group">
+                                                    <label class="col-xs-4 side-right" data-trans='source_ip_0'></label>
+                                                    <div class="col-xs-8">
+                                                        <input type="text" id="sourceIp0" name="sourceIp0"
+                                                               data-bind="value: source_ip_0" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <label class="col-xs-4 side-right" data-trans='source_ip_1'></label>
+                                                    <div class="col-xs-8">
+                                                        <input type="text" id="sourceIp1" name="sourceIp1"
+                                                               data-bind="value: source_ip_1" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <label class="col-xs-4 side-right" data-trans='source_ip_2'></label>
+                                                    <div class="col-xs-8">
+                                                        <input type="text" id="sourceIp2" name="sourceIp2"
+                                                               data-bind="value: source_ip_2" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <label class="col-xs-4 side-right" data-trans='source_ip_3'></label>
+                                                    <div class="col-xs-8">
+                                                        <input type="text" id="sourceIp3" name="sourceIp3"
+                                                               data-bind="value: source_ip_3" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <label class="col-xs-4 side-right" data-trans='source_ip_4'></label>
+                                                    <div class="col-xs-8">
+                                                        <input type="text" id="sourceIp4" name="sourceIp4"
+                                                               data-bind="value: source_ip_4" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                               </div>
+                                                <div class="row form-group">
+                                                    <label class="col-xs-4 side-right" data-trans='action'></label>
+                                                    <label class="col-xs-8 side-right" data-bind='text: action'></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-primary" data-bind="click: save" data-trans="apply"/>
+                                        <input type="button" data-bind="click: closeModal" class="btn btn-default"
+                                               data-trans="close"/>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

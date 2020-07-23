@@ -1,0 +1,36 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div id="nav-right" class="col-xs-2"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs" id="nav-tabs"></ul>
+            </div>
+            <div id="uploadSection">
+                <iframe id="fileUploadIframe" name="fileUploadIframe" scrolling="no" frameborder="0" width="0"
+                        height="0" style="height:0px;width:0px;"></iframe>
+                <form method="post" name="fileUploadForm" id="fileUploadForm" enctype="multipart/form-data"
+                      target="fileUploadIframe" action="#">
+                    <input id="fileField" name="filename" maxlength="200" type="file" dir="ltr"/>
+                    <div class="fileUploadDiv">
+                        <input data-trans="upload" id="fileUploadApplyBtn" name="fileUploadApplyBtn" type="button"
+                               class="btn btn-primary margin-left-5 margin-top-2"
+                               onclick="fileUploadSubmitClickHandler();"/>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+            <div class="form-buttons" id="systemUpgrade" style="display:none">
+                <input type="button" class="btn btn-primary" data-trans="upgrade" data-bind="click:startConfigUpgrade"/>
+            </div>
+                <div class="form-body">
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="local_note"></li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

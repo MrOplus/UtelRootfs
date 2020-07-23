@@ -1,0 +1,79 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <h3 class="form-title" data-trans="mcc_mnc_locking"></h3>
+                <div class="content">
+                    <div class="row">
+                        <label class="col-xs-5" data-trans="enable_mcc_mnc_locking"></label>
+                        <div class="col-xs-6">
+                            <input id="enable" value="enable" name="plmnLock" type="radio"
+                                   data-bind="checked: plmnEnable"/>
+                            <label for="enable" data-trans="enable"></label>
+                            &nbsp;
+                            <input id="disable" value="disable" name="plmnLock" type="radio"
+                                   data-bind="checked: plmnEnable"/>
+                            <label for="disable" data-trans="disable"></label>
+                        </div>
+                    </div>
+                    <div class="row form-group" id='inputPLMNInfo'>
+                        <label class="col-xs-4 side-right">PLMN</label>
+                        <div class="col-xs-8">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <input id='plmnInfo' name="plmnInfo" type="text"
+                                           class="required form-control border-color-transition" minlength='1'
+                                           maxlength='6' style="width: 80px;"/>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input type="button" class="btn btn-primary" data-trans="add"
+                                           data-bind="click: addPLMN"/>
+                                </div>
+                            </div>
+                            <div id="editAlertPLMNDiv"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table table-responsive">
+                            <thead>
+                            <tr>
+                                <th data-trans="station_number"></th>
+                                <th data-trans="mccmnc"></th>
+                                <th data-trans="edit"></th>
+                                <th data-trans="delete"></th>
+                            </tr>
+                            </thead>
+                            <tbody data-bind="foreach:plmnlist">
+                            <tr data-bind="css: {odd: $index() % 2 == 0, even: $index() % 2 != 0}">
+                                <td data-bind="text: $index()+1"></td>
+                                <td>
+                                    <span data-bind="text: plmn, attr: {id: 'plmn_txt_'+idx}"></span>
+                                    <input type="text" data-bind="attr: {id: 'plmn_input_'+idx}" minlength='1'
+                                           maxlength='6' style="display: none;">
+                                </td>
+                                <td>
+                                    <a data-bind="click: $root.editPLMNHandler, attr: {id: 'edit_btn_'+idx}"
+                                       class="cursorhand"><img src="./img/edit.png" height="25"></a>
+                                    <a data-bind="click: $root.savePLMNHandler, attr: {id: 'save_btn_'+idx}"
+                                       class="cursorhand" style="display: none;"><img src="./img/save.png" height="25"></a>
+                                    <a data-bind="click: $root.cancelEditPLMNHandler, attr: {id: 'cancel_btn_'+idx}"
+                                       class="cursorhand" style="display: none;"><img src="./img/cancel.png"
+                                                                                      height="25"></a>
+                                </td>
+                                <td><a href="#" data-bind="click: $parent.removePLMN"><img src="./img/delete.png"></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="form-buttons">
+                        <input type="button" data-trans="apply" class="btn btn-primary"
+                               data-bind="click: applyLockPLMN"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

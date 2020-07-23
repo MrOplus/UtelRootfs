@@ -1,0 +1,293 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-1 margin-top-15">
+        </div>
+        <div class="col-xs-11">
+            <form id="trafficAlertForm" action="/server/goahead">
+                <div id="traffic_alert" class="form-body">
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" data-trans="traffic_apply_volume_limit"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="dataLimitEnable" id="dataLimitEnable"
+                                               data-bind="checked: dataLimitChecked" value="1"/>
+                                        <label for="dataLimitEnable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="dataLimitEnable" id="dataLimitDisable"
+                                               data-bind="checked: dataLimitChecked" value="0"/>
+                                        <label for="dataLimitDisable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="row form-group" data-bind='visible: dataLimitChecked() == "1"'>-->
+                        <!--<label class="col-xs-3 side-right" data-trans="traffic_data_limit_type"></label>-->
+                        <!--<div class="col-xs-6">-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-xs-4">-->
+                        <!--<input type="radio" name="dataLimitType" id="dataLimitTypeData" data-bind="checked: dataLimitTypeChecked" value="1"/>-->
+                        <!--<label for="dataLimitTypeData" data-trans="traffic_data"></label>-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-4">-->
+                        <!--<input type="radio" name="dataLimitType" id="dataLimitTypeTime" data-bind="checked: dataLimitTypeChecked" value="0"/>-->
+                        <!--<label for="dataLimitTypeTime" data-trans="traffic_time"></label>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="row form-group" data-bind='visible: dataLimitChecked() == "1"'>
+                            <div class="col-xs-4">
+                                <div id="traffic_graphic"
+                                     style="width: 200px; height: 200px; visibility: visible;"></div>
+                            </div>
+                            <div class="col-xs-8 line-height-40 form-inline form-group-sm">
+                                <div data-bind="visible: true">
+                                    <div>
+                                        <div data-bind="visible: viewEditUsedData() == false">
+                                            <span class="color_block" style="background-color: #8CC916;"></span>
+                                            <span data-trans="traffic_used_text"
+                                                  data-bind="html: usedDataTextDesc, attr:{'data-trans-data': usedDataTextDescData}"></span>
+                                            <a class="margin-left-3em cursorhand" id="editUsedData"
+                                               data-bind="click: editUsedDataHandler, visible: accountPower==1"><img
+                                                    src="./img/edit.png"></a>
+                                        </div>
+                                        <div data-bind="visible: viewEditUsedData" id="viewEditUsedData">
+                                            <span class="color_block" style="background-color: #8CC916;"></span>
+                                            <input id='dataUsed' name="dataUsed" type="text" data-bind="value: dataUsed"
+                                                   class="required form-control border-color-transition" minlength='1'
+                                                   maxlength='7' style="width: 100px;"/>
+                                            <select name="selectedDataUsedUnit" id="selectedDataUsedUnit"
+                                                    data-bind="value: selectedDataUsedUnit" class="width60 form-control"
+                                                    style="width: 80px;">
+                                                <option value="1">MB</option>
+                                                <option value="1024">GB</option>
+                                                <option value="1048576">TB</option>
+                                            </select>
+                                            <a class="cursorhand" id="editUsedDataSave"
+                                               data-bind="click: editUsedDataSaveHandler"><img height="25"
+                                                                                               src="./img/save.png"></a>
+                                            <a class="cursorhand" id="editUsedDataCancel"
+                                               data-bind="click: editUsedDataCancelHandler"><img src="./img/cancel.png"
+                                                                                                 height="25"></a>
+                                            <div id="editUsedDataDiv"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="color_block" style="background-color: #ccc;"></span>
+                                        <span data-trans="traffic_data_left_text"
+                                              data-bind="text: leftDataDesc, attr:{'data-trans-data': leftDataDescData}"></span>
+                                    </div>
+                                    <div>
+                                        <div data-bind="visible: viewEditAlertData() == false">
+                                            <span data-trans="traffic_alert_reach_text"
+                                                  data-bind="text: alertDataReachDesc, attr:{'data-trans-data': alertDataReachDescData}"></span>
+                                            <a class="margin-left-3em cursorhand" id="editAlertData"
+                                               data-bind="click: editAlertDataHandler"><img src="./img/edit.png"></a>
+                                        </div>
+                                        <div data-bind="visible: viewEditAlertData" id="viewEditAlertData">
+                                            <span data-trans="traffic_when"></span>
+                                            <input id='alertDataReach' name="alertDataReach" type="text"
+                                                   data-bind="value: alertDataReach"
+                                                   class="required form-control border-color-transition" minlength='1'
+                                                   maxlength='3' min="1" max="100" style="width: 60px;"/>
+                                            <span data-trans="traffic_remind_me"></span>
+                                            <a class="cursorhand" data-bind="click: editAlertDataSaveHandler"
+                                               id="save_btn_2"><img height="25" src="./img/save.png"></a>
+                                            <a class="cursorhand" id="editAlertDataCancel"
+                                               data-bind="click: editAlertDataCancelHandler"><img src="./img/cancel.png"
+                                                                                                  height="25"></a>
+                                            <div id="editAlertDataDiv"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div data-bind="visible: viewEditTotalData() == false">
+                                            <span data-trans="traffic_limit_data_text"
+                                                  data-bind="html: limitDataMonthDesc, attr:{'data-trans-data': limitDataMonthDescData}"></span>
+                                            <a class="margin-left-3em cursorhand" id="editTotalData"
+                                               data-bind="click: editTotalDataHandler"><img src="./img/edit.png"></a>
+                                        </div>
+                                        <div data-bind="visible: viewEditTotalData" id="viewEditTotalData">
+                                            <input id='limitDataMonth' name="limitDataMonth" type="text"
+                                                   data-bind="value: limitDataMonth"
+                                                   class="required form-control border-color-transition" minlength='1'
+                                                   maxlength='7' style="width: 100px;"/>
+                                            <select name="dataUnit" id="selectedDataUnit"
+                                                    data-bind="value: selectedDataUnit" class="width60 form-control"
+                                                    style="width: 80px;">
+                                                <option value="1">MB</option>
+                                                <option value="1024">GB</option>
+                                                <option value="1048576">TB</option>
+                                            </select>
+                                            <a class="cursorhand" data-bind="click: editTotalDataSaveHandler"
+                                               id="save_btn_1"><img height="25" src="./img/save.png"></a>
+                                            <a class="cursorhand" id="editTotalDataCancel"
+                                               data-bind="click: editTotalDataCancelHandler"><img src="./img/cancel.png"
+                                                                                                  height="25"></a>
+                                            <div id="editTotalDataDiv"></div>
+                                        </div>
+                                    </div>
+                                    <div id="smsPushEnable">
+                                        <span data-trans="traffic_alarm_sms_push"></span>
+                                        <input data-bind="click: enableSmsPush,checked: data_remind_sms_switch == '1'"
+                                               id="trafficSmsPush" class="margin-left-3em cursorhand" type="checkbox">
+                                    </div>
+                                    <div  id="trafficMobileNumber">
+                                        <span data-trans="mobile_phone_number"
+                                              style="display: inline-block;line-height: 30px;"></span>
+                                        <input data-bind="value: data_remind_sms_number" class="margin-left-3em"
+                                               style="height: 30px;line-height: 30px;" id="trafficPhoneNumber"
+                                               name="trafficPhoneNumber" maxlength="40" type="text">
+                                    </div>
+                                    <div  id="trafficSmsContent">
+                                        <span data-trans="sms_content"
+                                              style="vertical-align:top;display: inline-block;line-height: 80px;"></span>
+                                        <textarea maxlength="100" data-bind="text: data_remind_sms_content"
+                                                  placeholder="traffic alarm SMS" class="margin-left-3em"
+                                                  style="line-height: 1em;" rows="4" cols="25"
+                                                  id="trafficTxtSmsContent"></textarea>
+                                    </div>
+                                </div>
+                                <!--<div data-bind="visible: false">
+                                    <div>
+                                        <div data-bind="visible: viewEditUsedTime() == false">
+                                            <span class="color_block" style="background-color: #8CC916;"></span>
+                                            <span data-trans="traffic_used_text"
+                                                  data-bind="html: usedTimeTextDesc, attr:{'data-trans-data': usedTimeTextDescData}"></span>
+                                            <a class="margin-left-3em cursorhand" id="editUsedTime"
+                                               data-bind="click: editUsedTimeHandler"><img src="./img/edit.png"></a>
+                                        </div>
+                                        <div data-bind="visible: viewEditUsedTime">
+                                            <span class="color_block" style="background-color: #8CC916;"></span>
+                                            &lt;!&ndash;div class="input-group"&ndash;&gt;
+                                            <input id='usedTime' name="usedTime" type="text" data-bind="value: usedTime"
+                                                   class="required form-control border-color-transition" minlength='1'
+                                                   maxlength='7' style="width: 100px;"/>
+                                            &lt;!&ndash;div class="input-group-addon" data-trans="hours"></div&ndash;&gt;
+                                            <select name="selectedTimeUsedUnit" id="selectedTimeUsedUnit"
+                                                    data-bind="value: selectedTimeUsedUnit" class="width60 form-control"
+                                                    style="width: 100px;">
+                                                <option value="60" data-trans="minutes"></option>
+                                                <option value="3600" data-trans="hours"></option>
+                                            </select>
+                                            &lt;!&ndash;/div&ndash;&gt;
+                                            <a class="cursorhand" data-bind="click: editUsedTimeSaveHandler"><img
+                                                    height="25" src="./img/save.png"></a>
+                                            <a class="cursorhand" id="editUsedTimeCancel"
+                                               data-bind="click: editUsedTimeCancelHandler"><img src="./img/cancel.png"
+                                                                                                 height="25"></a>
+                                            <div id="editUsedTimeDiv"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="color_block" style="background-color: #ccc;"></span>
+                                        <span data-trans="traffic_data_left_text"
+                                              data-bind="text: leftTimeDesc, attr:{'data-trans-data': leftTimeDescData}"></span>
+                                    </div>
+                                    <div>
+                                        <div data-bind="visible: viewEditAlertTime() == false">
+                                            <span data-trans="traffic_alert_reach_text"
+                                                  data-bind="text: alertTimeReachDesc, attr:{'data-trans-data': alertTimeReachDescData}"></span>
+                                            <a class="margin-left-3em cursorhand" id="editAlertTime"
+                                               data-bind="click: editAlertTimeHandler"><img src="./img/edit.png"></a>
+                                        </div>
+                                        <div data-bind="visible: viewEditAlertTime">
+                                            <span data-trans="traffic_when"></span>
+                                            <div class="input-group">
+                                                <input id='alertTimeReach' name="alertTimeReach" type="text"
+                                                       data-bind="value: alertTimeReach"
+                                                       class="required form-control border-color-transition"
+                                                       minlength='1' maxlength='3' min="1" max="100"
+                                                       style="width: 60px;"/>
+                                                <div class="input-group-addon" data-trans="traffic_percent"></div>
+                                            </div>
+                                            <span data-trans="traffic_remind_me_time"></span>
+                                            <a class="cursorhand" data-bind="click: editAlertTimeSaveHandler"><img
+                                                    height="25" src="./img/save.png"></a>
+                                            <a class="cursorhand" id="editAlertTimeCancel"
+                                               data-bind="click: editAlertTimeCancelHandler"><img src="./img/cancel.png"
+                                                                                                  height="25"></a>
+                                            <div id="editAlertTimeDiv"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div data-bind="visible: viewEditTotalTime() == false">
+                                            <span data-bind="text: limitTimeMonthDesc, attr:{'data-trans':limitTimeMonthDescText,'data-trans-data': limitTimeMonthDescData}"></span>
+                                            <a class="margin-left-3em cursorhand" id="editTotalTime"
+                                               data-bind="click: editTotalTimeHandler"><img src="./img/edit.png"></a>
+                                        </div>
+                                        <div data-bind="visible: viewEditTotalTime">
+                                            &lt;!&ndash;div class="input-group"&ndash;&gt;
+                                            <input id='limitTimeMonth' name="limitTimeMonth" type="text"
+                                                   data-bind="value: limitTimeMonth"
+                                                   class="required form-control border-color-transition" minlength='1'
+                                                   maxlength='7' style="width: 100px;"/>
+                                            &lt;!&ndash;div class="input-group-addon" data-trans="hours"></div&ndash;&gt;
+                                            <select name="timeUnit" id="selectedTimeUnit"
+                                                    data-bind="value: selectedTimeUnit" class="width60 form-control"
+                                                    style="width: 100px;">
+                                                <option value="60" data-trans="minutes"></option>
+                                                <option value="3600" data-trans="hours"></option>
+                                            </select>
+                                            &lt;!&ndash;/div&ndash;&gt;
+                                            <a class="cursorhand" data-bind="click: editTotalTimeSaveHandler"><img
+                                                    height="25" src="./img/save.png"></a>
+                                            <a class="cursorhand" id="editTotalTimeCancel"
+                                               data-bind="click: editTotalTimeCancelHandler"><img src="./img/cancel.png"
+                                                                                                  height="25"></a>
+                                            <div id="editTotalTimeDiv"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span data-trans="time_alarm_sms_push"></span>
+                                        <input data-bind="click: enableSmsPush,checked: data_remind_sms_switch == '1'"
+                                               id="timeSmsPush" class="margin-left-3em cursorhand" type="checkbox">
+                                    </div>
+                                    <div data-bind="visible: data_remind_sms_switch == '1'" id="timeMobileNumber"
+                                         style="display: none;">
+                                        <span data-trans="mobile_phone_number"
+                                              style="display: inline-block;line-height: 30px;"></span>
+                                        <input data-bind="value: data_remind_sms_number" class="margin-left-3em"
+                                               style="height: 30px;line-height: 30px;" id="timePhoneNumber" type="text">
+                                    </div>
+                                    <div data-bind="visible: data_remind_sms_switch == '1'" id="timeSmsContent"
+                                         style="display: none;">
+                                        <span data-trans="sms_content"
+                                              style="vertical-align:top;display: inline-block;line-height: 80px;"></span>
+                                        <textarea data-bind="text: data_remind_sms_content" placeholder="time alarm SMS"
+                                                  class="margin-left-3em" style="line-height: 1em;" rows="4" cols="25"
+                                                  id="timeTxtSmsContent"></textarea>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <!--span id="noteinfo" data-trans="traffic_data_approximated"></span-->
+                            <label class="col-xs-12" id="noteinfo" data-trans="traffic_data_approximated"></label>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6 align-right">
+                                <input type="submit" class="btn btn-primary margin-right-20" data-trans='apply'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="traffic_calibrate_note"></li>
+                            <li data-trans="traffic_note"></li>
+                            <li data-trans="traffic_over_note"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#trafficAlertForm").prop("action", Math.random());
+</script>

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+DROPBEAR_CONF_DIRECTORY="/etc/dropbear"
+
+if [ "${SSH_PORT}" = "" ]; then
+	SSH_PORT=8357
+fi
+
+#删除该文件下的所有文件
+#rm -rf ${DROPBEAR_CONF_DIRECTORY}/*
+#首先创建配置文件所在的目录
+#mkdir -p ${DROPBEAR_CONF_DIRECTORY}
+
+
+#创建公钥和私钥文件
+#dropbearkey -t rsa -f ${DROPBEAR_CONF_DIRECTORY}/dropbear_rsa_host_key
+#dropbearkey -t dss -f ${DROPBEAR_CONF_DIRECTORY}/dropbear_dss_host_key
+
+killall dropbear
+dropbear -p ${SSH_PORT} -r ${DROPBEAR_CONF_DIRECTORY}/dropbear_dss_host_key -r ${DROPBEAR_CONF_DIRECTORY}/dropbear_rsa_host_key
+

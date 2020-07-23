@@ -1,0 +1,78 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs" id="nav-tabs"></ul>
+                <form action="#" id='greSettingForm' class="margin-top-20">
+                    <input type="hidden" name="CSRFToken" data-bind="value: CSRFToken">
+                    <div class="content">
+                        <div class="row form-group">
+			                <label class="col-xs-4 side-right" data-trans="gre_set"></label>
+			                <div class="col-xs-6">
+			                    <div class="row">
+			                        <div class="col-xs-4">
+			                            <input type="radio" name="dmzGrp" id="dmzEnable" data-bind="checked: greEnable" value="1"/>
+			                            <label for="dmzEnable" data-trans="enable"></label>
+			                        </div>
+			                        <div class="col-xs-5">
+			                            <input type="radio" name="dmzGrp" id="dmzDisable" data-bind="checked: greEnable" value="0"/>
+			                            <label for="dmzDisable" data-trans="disable"></label>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			            
+                        <div data-bind='visible: greEnable() == "1"'>
+                        	<div class="row form-group">
+								<label class="col-xs-4 side-right" for="tunnelName" data-trans="gre_tunnel_name"></label>
+								<div class="col-xs-6">
+									<input type="text" name="tunnelName" data-bind="value: tunnelName" id="tunnelName" class="required form-control" maxlength="32"/>
+								</div>
+							</div>
+							<div class="row form-group">
+			                    <label class="col-xs-4"></label>
+			                    <div class="col-xs-8 label-absolute">
+			                        <p class="checkbox" data-bind="css:{'checkbox_selected': defaultGateway() == '1'}">
+			                            <input id="gatewayCheckbox" name="gatewayCheckbox" type="checkbox" data-bind="checked: defaultGateway() == '0'" value="1"/>
+			                        </p>
+			                        <label data-trans="default_Gateway"></label>
+			                    </div>
+			                </div>
+							<div class="row form-group">
+				                <label class="col-xs-4 side-right" for="txtIpAddress" data-trans="ip_address"></label>
+				                <div class="col-xs-6">
+				                    <input id="txtIpAddress" name="txtIpAddress" type="text" data-bind="value: ipAddress, valueUpdate: 'keypress'" class="required form-control" maxlength="15"/>
+				                </div>
+			                </div>
+
+			                <div class="row form-group">
+				                <label class="col-xs-4 side-right" for="txtLocalIp" data-trans="local_ip"></label>
+				                <div class="col-xs-6">
+				                    <input id="txtLocalIp" name="txtLocalIp" type="text" data-bind="value: localIp, valueUpdate: 'keypress'" class="required form-control" maxlength="15"/>
+				                </div>
+			                </div>
+
+			                <div class="row form-group">
+				                <label class="col-xs-4 side-right" for="txtRemoteIp" data-trans="remote_ip"></label>
+				                <div class="col-xs-6">
+				                    <input id="txtRemoteIp" name="txtRemoteIp" type="text" data-bind="value: remoteIp, valueUpdate: 'keypress'" class="required form-control" maxlength="15"/>
+				                </div>
+			                </div>
+			            </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" data-bind="" class="btn btn-primary margin-right-20" data-trans="apply"/>
+                    </div>
+                    <div class="form-note">
+			            <div class="notes-title">&nbsp;</div>
+			            <ul class="notes-content">
+			                <li data-trans="gre_set"></li>
+			            </ul>
+			        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='advanced_settings'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+		    <div class="nav_right">
+		    <ul>
+				<li><a href="javascript:void(0)" data-trans="router_setting" onclick="tosms('#router_setting')"></a></li>
+				<li><a href="javascript:void(0)" data-trans="firewall" onclick="tosms('#firewall')"></a></li>
+				<li data-bind="visible:hasUpdateCheck"><a href="javascript:void(0)" data-trans="update_settings" onclick="tosms('#ota_update')"></a></li>
+				<li data-bind="visible:hasUssd"><a href="javascript:void(0)" data-trans="USSD" onclick="tosms('#ussd')"></a></li>
+				<li data-bind="visible:hasUsb"><a href="javascript:void(0)" data-trans="hardware_setting" onclick="tosms('#usb')"></a></li>
+				<li data-bind="visible:hasDdns"><a href="javascript:void(0)" data-trans="DDNS" onclick="tosms('#ddns')"></a></li>
+				<li data-bind="visible:hasTr069"><a href="javascript:void(0)" data-trans="tr069config" onclick="tosms('#tr069config')"></a></li>
+				<li><a href="javascript:void(0)r" data-trans="sntp_server" onclick="tosms('#sntp_server')"></a></li>
+				<li class="active"><a href="javascript:void(0)" data-trans="reset" onclick="tosms('#reset')"></a></li>
+				<li><a href="javascript:void(0)s" data-trans="others" onclick="tosms('#others')"></a></li>	
+			</ul>
+			</div>
+		</div>
+        <div class="col-xs-10">
+        <form id="frmRestoreReset">
+            <div class="form-body">
+                <h3 class="form-title" data-trans="others_restart_reset"></h3>
+				<div class="row form-group">
+                    <div class="col-xs-12" data-trans="others_note_info"></div>
+                </div>
+                <div class="row form-group">				    
+                    <div class="col-xs-12 align-right">
+                        <input type="button" class="btn btn-primary margin-right-20" data-trans="restart_button" data-bind="click: restart"/>
+						<input type="button" class="btn btn-primary margin-right-20" data-trans="restore_button" data-bind="visible: currentUserInChildGroup() == false, click: restore"/>                   
+				   </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

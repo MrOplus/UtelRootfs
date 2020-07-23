@@ -1,0 +1,266 @@
+#!/bin/sh
+##功能：xl2tpd的配置、启动脚本
+
+#set -x
+
+##是否允许xl2tp
+xl2tp_enable=$(nv get tz_l2tp_state)
+
+if [ ${xl2tp_enable} -ne 1 ]; then
+	exit 1
+fi
+##l2tp客户端名称
+lac_name=$(nv get tz_l2tp_lac_name)
+##lns服务器IP
+lns_ip=$(nv get tz_l2tp_lns_server)
+##终端主机名称/隧道名称
+local_hostname=$(nv get tz_l2tp_tunnel_name)
+##ppp的用户名
+ppp_user_name=$(nv get tz_l2tp_auth_name)
+##ppp的认证密码
+ppp_user_pass=$(nv get tz_l2tp_auth_pass)
+##MTU
+mtu=$(nv get tz_l2tp_mtu)
+##隧道认证密码
+challenge_pass=$(nv get tz_l2tp_challenge_pass)
+##是否进行隧道认证
+if [ -n "${local_hostname}" -a -n "${challenge_pass}" ]; then
+	Ischallenge=yes
+fi
+##是否进行调试, yes 进行调试；其他值不进行调试
+IsDebug=$1
+
+##LNS存活检测
+checkalive=$(nv get tz_l2tp_lns_checkalive)
+
+##default wan interface
+default_wan_if=$(nv get default_wan_rel)
+##l2tp配置文件存放路径
+config_file_l2tp=/tmp/xl2tpd
+config_ppp_resolv=/tmp/ppp
+##l2tp客户端配置文件
+config_file_l2tpc=${config_file_l2tp}/xl2tpd.conf
+##ppp服务配置文件
+config_file_ppp=${config_file_l2tp}/options.l2tpd.lac
+##
+xl2tp_control_file=/var/run/xl2tpd
+xl2tp_control=${xl2tp_control_file}/l2tp-control
+##隧道认证密码文件
+file_l2tp_secrets=${config_file_l2tp}/l2tp-secrets
+
+##xl2tpd的配置
+xl2tpConfig()
+{
+	##删除原有的旧配置文件
+	rm -rf ${config_file_l2tpc}
+	rm -rf ${config_file_ppp}
+	rm -rf ${file_l2tp_secrets}
+	rm -rf ${config_ppp_resolv}/resolv.conf
+
+	##开始往l2tp配置文件中写入配置
+	if [ "${Ischallenge}" == "yes" ]; then
+		echo "[global]" >> ${config_file_l2tpc}
+		echo "auth file =${file_l2tp_secrets}" >> ${config_file_l2tpc}
+	fi
+	
+	echo "[lac ${lac_name}]" >> ${config_file_l2tpc}
+	##xl2tp服务器
+	echo "lns = ${lns_ip}" >> ${config_file_l2tpc}
+	##ppp服务需要的配置文件
+	echo "pppoptfile = ${config_file_ppp}" >> ${config_file_l2tpc}
+	##当连接断开后，自动进行拨号
+	echo "redial = yes" >> ${config_file_l2tpc}
+	##自动拨号间隔时间,单位为秒
+	echo "redial timeout = 15" >> ${config_file_l2tpc}
+	##是否进行调试
+	if [ "${IsDebug:=no}" == "yes" ]; then
+		echo "ppp debug = yes" >> ${config_file_l2tpc}
+	fi
+	##是否进行隧道认证
+	if [ "${Ischallenge}" == "yes" ]; then
+		echo "challenge = yes" >> ${config_file_l2tpc}
+		##终端主机名称/隧道名称
+		echo "hostname = ${local_hostname}" >> ${config_file_l2tpc}
+	fi
+	
+	##开始往ppp配置文件中写入配置
+	##pppd将会接受彼端对於本地IP位址的意见，即使本地的IP位址已经在某个选项中指定
+	echo "ipcp-accept-local" >> ${config_file_ppp} 
+	##pppd将会接受彼端对於它的IP位址的意见，即使远端的IP位址已经在某个选项中指定
+	echo "ipcp-accept-remote" >> ${config_file_ppp} 
+	##拒绝使用EAP认证
+	echo "refuse-eap" >> ${config_file_ppp} 
+	##禁止Compression Control Protocol 压缩控制协议的协商
+	#echo "noccp" >> ${config_file_ppp} 
+	##不要求对方认证自己
+	echo "noauth" >> ${config_file_ppp} 
+	echo "mtu ${mtu:=1401}" >> ${config_file_ppp} 
+	##最大接收单元, 对于VPN, 设置为1410 mru范围在128-1500
+	echo "mru ${mtu:=1401}" >> ${config_file_ppp} 
+	##添加一条默认路由记录到系统路由表, 使用拨号服务器的内网IP作为网关
+	#echo "defaultroute" >> ${config_file_ppp} 
+	##代替默认的路由记录, 默认的数据都从VPN通路走
+	#echo "replacedefaultroute" >> ${config_file_ppp} 
+	##使用VPN拨号提供的DNS服务
+	#echo "usepeerdns" >> ${config_file_ppp} 
+	##应该在此串口上使用UUCP式的锁定以确 定对该设备为互斥(exclusive)存取。 防止别的程序写程序到这个串口,干扰PPP连接
+	#echo "lock" >> ${config_file_ppp} 
+	echo "debug" >> ${config_file_ppp}
+	##ppp的用户名
+	echo "name ${ppp_user_name}" >> ${config_file_ppp}
+	#echo "user ${user_ppp}" >> ${config_file_ppp}  
+	##ppp的认证密码
+	echo "password ${ppp_user_pass}" >> ${config_file_ppp} 
+	if [ "${checkalive}" == "yes" ]; then
+		##pppd每秒将会送出一个LCP回应要求(echo-request)封包(frame)给彼端。
+		echo "lcp-echo-interval 10 " >> ${config_file_ppp} 
+		##如果传送n个LCP回应要求没有接收到有效的LCP回应回覆的话pppd将会推测彼端是死掉的。
+		##如果发生这种情形，pppd将会终结该连线。这个选项的使用要求一个非零的lcp-echo-interval参数值
+		echo "lcp-echo-failure 30" >> ${config_file_ppp} 
+	else
+		echo "lcp-echo-interval 0 " >> ${config_file_ppp}
+		echo "lcp-echo-failure 0" >> ${config_file_ppp}  
+	fi
+	echo "usepeerdns" >> ${config_file_ppp}
+	##是否进入调试
+	if [ "${IsDebug:=no}" == "yes" ]; then
+		echo "debug" >> ${config_file_ppp} 
+	fi
+	
+	##开始往隧道认证密码文件写入配置
+	if [ -n "${challenge_pass}" ]; then
+		echo "* * ${challenge_pass}" > ${file_l2tp_secrets}
+	fi
+}
+
+xl2tpdstart()
+{
+	##停止l2tp服务
+	if [ -n "$(ps | grep xl2tpd | grep -v grep | grep -v rc.xl2tp)" ]; then
+		#service xl2tpd stop
+		killall xl2tpd
+	fi
+	##重启l2tp服务
+	xl2tpd -c ${config_file_l2tpc} &
+	sleep 10
+}
+
+xl2tpconnect()
+{
+	echo "c ${lac_name} " > ${xl2tp_control}
+}
+
+xl2tpdisnect()
+{
+	echo "d ${lac_name} " > ${xl2tp_control}
+}
+
+pppstatus()
+{
+	ppp_state=disconnet
+	ppp_iface=$(ip link | grep ^[0-9] | awk -F: '{print $2}' | grep ppp)
+	ppp_iface=${ppp_iface//" "/""}
+
+	if [ -n "${ppp_iface}" ]; then
+		#获取对端地址
+		ppp_peer_ip=$(ifconfig ${ppp_iface} | grep 'P-t-P:' | awk -F: '{print $3}' | awk -F' ' '{print $1}')
+		
+		if [ -n "${ppp_peer_ip}" ]; then
+			ppp_state=connected
+		fi
+
+		nv set tz_l2tp_peer_ip=${ppp_peer_ip}
+		ppp_get_ip=$(ifconfig ${ppp_iface} | grep 'inet addr:' | awk -F: '{print $2}' | awk -F' ' '{print $1}')
+		nv set tz_l2tp_get_ip=${ppp_get_ip}
+	else
+		nv set tz_l2tp_peer_ip=
+		nv set tz_l2tp_get_ip=
+	fi
+}
+
+PPPRouteDef()
+{
+	route del default
+	route add default gw ${ppp_peer_ip} dev ${ppp_iface}
+	iptables -t nat -F tz_apn1
+	iptables -t nat -A tz_apn1 -o ${ppp_iface} -j MASQUERADE
+}
+
+WANRouteDef()
+{
+	default_wan_gw=$(nv get ${default_wan_if}_gw)
+	route del default
+	route add default gw ${default_wan_gw} dev ${default_wan_if}
+	iptables -t nat -F tz_apn1
+	iptables -t nat -A tz_apn1 -o ${default_wan_if} -j MASQUERADE
+}
+
+##创建l2tp配置文件存放路径
+if [ ! -d "${config_file_l2tp}" ]; then
+	mkdir -p ${config_file_l2tp}
+fi
+
+if [ ! -d "${xl2tp_control_file}" ]; then
+	mkdir -p ${xl2tp_control_file}
+fi
+
+if [ ! -d "${config_ppp_resolv}" ]; then
+	mkdir -p ${config_ppp_resolv}
+fi
+
+WANRouteDef
+
+##配置
+xl2tpConfig
+##启动服务
+xl2tpdstart
+##进行连接
+xl2tpconnect
+##ppp状态检查
+while [ 1 ]
+do
+	##获取ppp当前状态
+	pppstatus
+	
+	if [ "${ppp_state}" = "connected" ]; then
+		if [ "${ppp_state_last:=disconnet}" = "disconnet" ]; then
+			##检查新的默认路由是否存在，如果不存在，则添加之
+			if [ -z "$(route -e | grep default | grep $ppp_iface)" ]; then
+				PPPRouteDef
+			fi
+		elif [ ${routechecktime:=0} -gt 3 ]; then
+			#每隔30秒检查一次路由，看路由是否会出问题
+			if [ -z "$(route -e | grep default | grep $ppp_iface)" ]; then
+				PPPRouteDef
+				routechecktime=0;
+			fi
+		fi
+		
+		if [ -e "${config_ppp_resolv}/resolv.conf" ]; then
+			if [ -z "$(ps | grep dnsmasq | grep -v grep | grep ${config_ppp_resolv}/resolv.conf)" ]; then
+				killall dnsmasq
+				dnsmasq -C /tmp/dnsmasq.conf -r ${config_ppp_resolv}/resolv.conf -K &
+			fi
+		fi
+
+		routechecktime=$(expr ${routechecktime} + 1)
+	else
+		if [ -z "$(route -e | grep default | grep $default_wan_if)" ]; then
+			WANRouteDef
+		fi
+
+		if [ -n "$(ps | grep dnsmasq | grep -v grep)" ]; then
+			if [ -z "$(ps | grep dnsmasq | grep -v grep | grep '/etc_rw/dnsmasq.resolv.conf')" ]; then
+				killall dnsmasq
+				dnsmasq -C /tmp/dnsmasq.conf -r /etc_rw/dnsmasq.resolv.conf -K &
+			fi
+		fi
+		
+	fi
+	
+	if [ "${ppp_state_last:=disconnet}" != "${ppp_state}" ]; then
+		ppp_state_last=${ppp_state}
+	fi
+	
+	sleep 10
+done

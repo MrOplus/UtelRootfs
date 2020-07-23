@@ -1,0 +1,22 @@
+<form id="frmSwitchPort">
+    <div class="form-body">
+        <div class="form-title" data-trans="switch_port_title"></div>
+        <div class="row-fluid margintop15">
+            <label class="span4 side-right"></label>
+            <div class="span8">
+                <input type="radio" name="modeGroup" id='serial_port_enable' value="5" data-bind="checked: openSerialPort" />
+                <label for='serial_port_enable' data-trans='open_serial_port'></label>
+            </div>
+        </div>
+        <div class="row-fluid margintop15">
+            <label class="span4 side-right"></label>
+            <div class="span8">
+                <input type="radio" name="modeGroup" id='serial_port_disable'  value="6" data-bind="checked: openSerialPort" />
+                <label for='serial_port_disable' data-trans='close_serial_port'></label>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <input type="submit" class="btn-1 " data-trans="apply"/>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,388 @@
+<div class="row margin-top-20 label-font-normal margin-bottom-20" id="col2">
+    <div style="width: 940px; margin: 0 auto;">
+        <div class="home-info">
+            <div class="settingLeft home-info-title" data-trans="internet"></div>
+            <div class="settingCss col-info cursor-pointer home-info-title col-link">
+                <label data-trans="setting" class="col-link cursor-pointer" onclick="tosms('#net_select')" data-bind="visible: permissionTorA"></label>
+            </div>
+             <div class="col-xs-12 home-info-subtitle">
+                <div class="apn2_ipv6_hide">
+                    <div class="home-info-detail home_co" data-bind="visible: canConnect() && isShowHomeConnect()">
+                    <label class="row col-xs-12 font-bold" data-trans="internet_connection" ></label>
+                    <label class="row col-xs-12 col-info home_on h_connect_Class1">
+                        <a href="javascript: void(0)" id="h_connect_btn"
+                           data-bind="visible: canConnect() && isShowHomeConnect(), click: connectHandler , css: {'h_connect_on': cStatus()== 1, 'h_connect_off': cStatus() != 1}"
+                           style="float: left;"></a>
+                    </label>
+
+                     <label class="row col-xs-12 col-info home_on h_connect_Class2">
+                        <a href="javascript: void(0)" id="h_connect_btn"
+                           data-bind="visible: canConnect() && isShowHomeConnect(), click: connectHandler , css: {'h_connect_on2': cStatus()== 1, 'h_connect_off2': cStatus() != 1}"
+                           style="float: left;display: none;"></a>
+                    </label>
+
+
+                </div>
+                </div>
+                <div class="home-info-detail apn2_ipv6_hide">
+                    <label class="row col-xs-12 font-bold" data-trans="imei"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:imei"></label>
+                </div>
+                <div class="home-info-detail apn2_ipv6_hide">
+                    <label class="row col-xs-12 font-bold" data-trans="imsi"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: imsi"></label>
+                </div>
+                <div class="apn2_ipv6_show" style="display: none;">
+                     <div style="height: 40px;">
+                    <label data-trans="internet_connection" style="float: left;line-height:35px;"></label>
+                    <label style="margin-left:10px">
+                        <a href="javascript: void(0)" id="h_connect_btn"
+                           data-bind="click: connectHandler , css: {'h_connect_on': cStatus()== 1, 'h_connect_off': cStatus() != 1}"
+                           style="float: left;"></a>
+                    </label>
+                </div>
+                </div>
+                <div class="home-info-detail apn2_ipv6_show" style="height: 30px;display: none;">
+                    <label class="row col-xs-5 font-bold" data-trans="imei"></label>
+                    <label class="row col-xs-9 col-info" data-bind="text:imei"></label>
+                </div>
+                <div class="home-info-detail apn2_ipv6_show" style="height: 30px;display: none;">
+                    <label class="row col-xs-5 font-bold" data-trans="imsi"></label>
+                    <label class="row col-xs-9 col-info" data-bind="text: imsi"></label>
+                </div>
+                <div class="home-info-detail" id="lan_domain">
+                    <label class="row col-xs-12 font-bold" data-trans="lan_domain"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: lanDomain"></label>
+                </div>
+                <div class="home-info-detail">
+                    <label class="row col-xs-12 font-bold" data-trans="wan_ip_address"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: wanIpAddress"></label>
+                     <label class="row col-xs-12 col-info wanIpAddress" data-bind="text: ipv6WanIpAddress"></label>
+                </div>
+                <div class="home-info-detail ipv6WanIpAddress">
+                    <label class="row col-xs-12 font-bold" data-trans="ipv6_wan_ip_address"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: ipv6WanIpAddress"></label>
+                </div>
+                 <div class="home-info-detail" id="wan2_ip_address">
+                    <label class="row col-xs-12 font-bold" data-trans="wan2_ip_address"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: wanIpAddress2"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: ipv6WanIpAddress2"></label>
+                </div>
+                <div class="home-info-detail" id="wan3_ip_address">
+                    <label class="row col-xs-12 font-bold" data-trans="wan3_ip_address"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: wanIpAddress3"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: ipv6WanIpAddress3"></label>
+                </div>
+            </div>
+            <div class="settingLeft home-info-title" data-trans="traffic_statistics"></div>
+            <div class="settingCss col-info cursor-pointer home-info-title col-link" data-trans="setting"
+                 onclick="tosms('#traffic_alert')"></div>
+            <div class="col-xs-12 home-info-subtitle">
+                <div class="home-info-detail">
+                    <label class="row col-xs-12 font-bold" data-trans="used"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:trafficUsed"></label>
+                </div>
+                <div class="home-info-detail">
+                    <label class="row col-xs-12 font-bold" data-trans="total"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:trafficLimited"></label>
+                </div>
+                <div class="home-info-detail col-xs-12 space-69"
+                     data-bind="visible: !(canConnect() && isShowHomeConnect())"></div>
+            </div>
+        </div>
+
+        <div class="home-info">
+            <div class="settingLeft home-info-title" data-trans="advanced"></div>
+             <div class="settingCss col-info cursor-pointer home-info-title col-link">
+                <label data-trans="setting" class="col-link cursor-pointer" onclick="tosms('#router_setting')" data-bind="visible: permissionTorA"></label>
+            </div>
+            <div class="col-xs-12 home-info-subtitle">
+                <div class="home-info-detail" id="firmware_version">
+                    <label class="row col-xs-12 font-bold" data-trans="firmware_version"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:sw_version"></label>
+                </div>
+                <div class="home-info-detail" id="firmware_and_hardware"  style="display: none;">
+                    <label class="row col-xs-12 font-bold" data-trans="firmware_and_hardware" style="font-size: 14px !important;"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:fir_hard_version"></label>
+                </div>
+                <div id="hwVersion" class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="hardware_version"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:hw_version"></label>
+                </div>
+                <div id="configVersion" class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="config_version"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:config_version"></label>
+                </div>
+                <div id="crversion" class="home-info-detail">
+                    <label class="row col-xs-12 font-bold" data-trans="cr_version"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:cr_version"></label>
+                </div>
+                <div id="checkCpStatus" class="home-info-detail">
+                    <label class="row col-xs-12 font-bold" data-trans="check_cp_status"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:check_cp_status"></label>
+                </div>
+                <div class="home-info-detail user_hide is_show_nicolas" style="display: none;">
+                    <label class="row col-xs-12 font-bold" data-trans="sinr"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:sinr"></label>
+                </div>
+                <div class="home-info-detail is_hide_home_nicolas">
+                    <label class="row col-xs-12 font-bold" data-trans="rsrp"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:rsrp"></label>
+                </div>
+                <div class="home-info-detail user_hide is_hide_nicolas">
+                    <label class="row col-xs-12 font-bold" data-trans="sinr"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:sinr"></label>
+                </div>
+                <!-- <div class="home-info-detail user_hide guest_hide is_hide_home_nicolas">
+                    <label class="row col-xs-12 font-bold" data-trans="cell_id_f"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:cell_id_f"></label>
+                </div> -->
+                <div class="home-info-detail user_hide guest_hide is_hide_home_nicolas">
+                    <label class="row col-xs-12 font-bold" data-trans="lte_bands"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:lte_bands"></label>
+                </div>
+                <div class="home-info-detail user_hide guest_hide is_hide_home_nicolas">
+                    <label class="row col-xs-12 font-bold" data-trans="physcellid"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:PhysCellId"></label>
+                </div>
+                <div class="space-11 col-xs-12"></div>
+                <div id="buildTime" class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="build_time"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:build_time"></label>
+                </div>
+                <div id="memTotal" class="home-info-detail" data-bind="visible:permissionTorD">
+                    <label class="row col-xs-12 font-bold" data-trans="mem_total"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:mem_total"></label>
+                </div>
+                <div id="memFree" class="home-info-detail" data-bind="visible: permissionTorD">
+                    <label class="row col-xs-12 font-bold" data-trans="mem_free"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:mem_free"></label>
+                </div>
+                <div id="memCached" class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="mem_cached"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:mem_cached"></label>
+                </div>
+                <div id="memActive" class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="mem_active"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:mem_active"></label>
+                </div>
+                <div id="cpuUsage" class="home-info-detail" data-bind="visible:permissionTorD">
+                    <label class="row col-xs-12 font-bold" data-trans="cpu_usage"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:cpuUsage"></label>
+                </div>
+
+               
+                <div class="home-info-subtitle2">
+                    <div  class="home-info-detail" style="line-height: 3.2em;">
+                   <a class="row col-xs-5" href="#" id="show_more_infomation">More &gt;&gt;</a>
+                </div>
+                <div id="elastic_frame">
+                <div>
+                    <label class=" col-xs-3 font-bold" data-trans="Connection State"> </label>
+                    <label class=" col-xs-3 col-info" data-bind="text:connection_state"></label>
+                    <label class=" col-xs-3 font-bold" data-trans="Connected Time"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:connected_time"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="BandWidth"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:bandWidth"></label>
+                    <label class=" col-xs-3 font-bold" data-trans="UL EARFCN"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:ul_earfcn"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="UL Frequency"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:ul_frequency"></label>
+                    <label class=" col-xs-3 font-bold" data-trans="DL Frequency"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:dl_frequency"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="UL MCS"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:ul_mcs"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="DL MCS"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:dl_mcs"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="RSRP0"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_rsrp"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="RSRP1"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_rsrp1"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="RSRQ0"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_rsrq"></label>
+                      <label class=" col-xs-3 font-bold" data-trans="RSRQ1"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_rsrq1"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="CQI"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:CQI"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="SINR0"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_sinr"></label>
+                 </div>
+                <div>
+                    <label class=" col-xs-3 font-bold" data-trans="SINR1"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_sinr1"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="RSSI0"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:rssi"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="RSSI1"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_rssi1"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="CINR0"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:CINR0"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="CINR1"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:CINR1"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="C-RNTI"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:C_RNTI"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="RRC State"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:RRCState"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="EMM State"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:EMMState"></label>
+                </div>
+                <div >
+                    <label class=" col-xs-3 font-bold" data-trans="Transfer Mode"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:bTransmissionMode"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="Rank Indicator"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:rank_indicator"></label>
+                </div>
+                <div>
+                    <label class=" col-xs-3 font-bold" data-trans="TX Power"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_txpower"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="PCI"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_pci"></label>
+                </div>
+                <div>
+                    <label class=" col-xs-3 font-bold" data-trans="DL EARFCN"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:nv_arfcn"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="eNodeB ID"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_enodebid"></label>
+
+                </div>
+                 <div>
+                    <label class=" col-xs-3 font-bold" data-trans="ECI"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:ECI"></label>
+                     <label class=" col-xs-4 font-bold" data-trans="Registered PLMN"></label>
+                    <label class=" col-xs-2 col-info" data-bind="text:sim_plmn"></label>
+                    
+                </div>
+                 <div>
+                    <label class=" col-xs-4 font-bold" data-trans="Tracking Area Code"></label>
+                    <label class=" col-xs-2 col-info" data-bind="text:tac_code"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="UL Throughput"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_ul_throughput"></label>
+                    
+                </div>
+                 <div>
+                    <label class=" col-xs-3 font-bold" data-trans="DL Throughput"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:lte_dl_throughput"></label>
+                     <label class=" col-xs-3 font-bold" data-trans="Cell ID"></label>
+                    <label class=" col-xs-3 col-info" data-bind="text:Cell_ID"></label>
+                    
+                </div>    
+                </div>
+                </div>
+
+        </div>
+            <div class="col-xs-12 home-info-title" data-trans="router_setting"></div>
+            <div class="col-xs-12 home-info-subtitle">
+                <div class="home-info-detail">
+                    <label class="row col-xs-12 font-bold" data-trans="ip_address"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:ipAddress"></label>
+                </div>
+                <div class="home-info-detail">
+                    <label class="row col-xs-12 font-bold" data-trans="dhcp_ip_pool"></label>
+                    <label style="margin-left: -15px;" class="row col-xs-6 col-info" data-bind="text:dhcpStart"></label>
+                    <label class="col-xs-1 col-info">-</label>
+                    <label class="row col-xs-5 col-info" data-bind="text:dhcpEnd"></label>
+                </div>
+                <div class="col-xs-12 space-3"></div>
+            </div>
+        </div>
+
+        <div class="home-info">
+            <div class="settingLefts home-info-title" data-trans="home_network"></div>
+             <div class="settingCss col-info cursor-pointer home-info-title col-link">
+                <label data-trans="setting" class="col-link cursor-pointer" onclick="tosms('#station_info')" data-bind="visible: permissionTorA"></label>
+            </div>
+            <div class="col-xs-12 home-info-subtitle">
+                <div class="home-info-detail">
+                    <label class="row col-xs-12 font-bold" data-trans="cable_first_caps"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: wireDeviceNum"></label>
+                </div>
+                <div class="home-info-detail allHideWifi">
+                    <label class="row col-xs-12 font-bold" data-trans="wireless_first_caps"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text: wirelessDeviceNum"></label>
+                </div>
+            </div>
+            <div class="settingLeft home-info-title allHideWifi" data-trans="wireless_first_caps"></div>
+            <div class="settingCss col-info cursor-pointer home-info-title col-link allHideWifi" data-trans="setting"
+                 onclick="tosms('#wifiSwitch')"></div>
+            <div class="col-xs-12 home-info-subtitle">
+                <div class="home-info-detail allHideWifi">
+                    <label class="row col-xs-12 font-bold" data-trans="network_name"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:ssid"></label>
+                </div>
+                <div class="home-info-detail allHideWifi">
+                    <label class="row col-xs-12 font-bold" data-trans="max_access_num"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:max_access_num"></label>
+                </div>
+
+                <div class="home-info-detail allHideWifi">
+                    <label class="row col-xs-12 font-bold" data-trans="wifi_mac"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:wifi_mac"></label>
+                </div>
+                <div class="home-info-detail allHideWifi">
+                    <label class="row col-xs-12 font-bold" data-trans="eth0_mac"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:eth0_mac"></label>
+                </div>
+                <div class="home-info-detail allHideWifi">
+                    <label class="row col-xs-12 font-bold" data-trans="wifi_channel_bandwidth"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:selectedChannelBandwidth"></label>
+                </div>
+                <div class="space col-xs-12"></div>
+                <div class="home-info-detail home-hide-restart">
+                    <label class="row col-xs-12 col-info">
+                        <input type="button" class="btn btn-primary margin-right-20" data-trans="restart_button"
+                               data-bind="click: restart" style="float: left;margin-bottom: 10px;"/>
+                    </label>
+                </div>
+            </div>
+            <div id="tdd" class="col-xs-12 home-info-subtitle" data-bind="visible: permissionTozed">
+                <div class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="tdd_calibration"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:tdd_calibration"></label>
+                </div>
+                <div class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="tdd_comprehensive"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:tdd_comprehensive"></label>
+                </div>
+                <div class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="fdd_calibration"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:fdd_calibration"></label>
+                </div>
+                <div class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="fdd_comprehensive"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:fdd_comprehensive"></label>
+                </div>
+                <div class="home-info-detail" data-bind="visible: permissionTozed">
+                    <label class="row col-xs-12 font-bold" data-trans="sn"></label>
+                    <label class="row col-xs-12 col-info" data-bind="text:sn"></label>
+                </div>
+            </div>
+        </div>
+         <div style="width: 940px;height: 100px;">
+             <ul class="home-ul-img" data-bind="visible:showFiveImg()">
+                 <li><a href="https://www.mitelcel.com" target="_blank"><img src="../img/miTelcel.png"></a><p>Mi Telcel</p></li>
+                 <li data-bind="visible:showVideo()"><a href="https://www.claroshop.com" target="_blank"><img src="../img/music.png"></a><p>Claro Shop</p></li>
+                 <li><a href="https://www.clarovideo.com" target="_blank"><img src="../img/video.png"></a><p>Claro Video</p></li>
+                 <li><a href="https://www.claromusica.com" target="_blank"><img src="../img/shop.png"></a><p>Claro Música</p></li>
+                 <li><a href="https://www.claroideas.com" target="_blank"><img src="../img/ideas.png"></a><p>Claro ideas</p></li>
+             </ul>
+         </div>
+    </div>
+</div>
+

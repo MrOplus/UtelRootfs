@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="renderer" content="webkit">
+<meta charset="utf-8" />
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta http-equiv="pragma" content="no-store">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta http-equiv="Cache" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title></title>
+<link type="text/css" href="theme/css.css" rel="stylesheet" />
+<link href="favicon.ico" rel="shortcut icon" />
+<script src="js/lib/jquery/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+   <div  style="text-align: center; margin-top:15%;">
+         <div >
+            <label style="font-size: 30px;margin-right: 30px;font-weight: bold;"> IMEI</label>
+            <label  id="iemi" style="font-size: 30px;font-weight: bold;margin-bottom: 50px;"></label>
+         </div>
+         <div>
+            <label style="font-size: 30px;font-weight: bold;margin-right: 30px;"> Wi-Fi MAC</label>
+            <label  id="mac" style="font-size: 30px;font-weight: bold;"></label>
+         </div>
+   </div>
+</div>
+</body>
+<script type="text/javascript">
+   function changeTheme(){
+            var requestParams = {};
+            requestParams.cmd = "imei,m_wifi_mac";
+            requestParams.multi_data = 1;
+            $.ajax({
+            url: '/goform/goform_get_cmd_process',
+            type: 'GET',
+            dataType: "json",
+            cache: false,
+            async: true,
+            data: requestParams,
+            success:function(data){
+               $("#iemi").text(data.imei);
+               $("#mac").text(data.m_wifi_mac);
+            }          
+            })
+        }
+         changeTheme();   
+</script>
+</html>

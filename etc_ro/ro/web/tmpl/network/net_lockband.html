@@ -1,0 +1,93 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="#home">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='network_settings'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+		<div class="nav_right">
+			<ul>
+			    <li><a href="#dial_setting" data-trans="dial_mode"></a></li>
+				<li><a href="#net_search_select" data-trans="net_search_select"></a></li>	
+				<li><a href="#net_select" data-trans="net_select"></a></li>					
+				<li><a href="#apn_setting" data-trans="apn_setting"></a></li>
+				<li class="active"><a href="#net_lockband" data-trans="net_lockband"></a></li>	
+				<li><a href="#net_lockpci" data-trans="net_lockpci"></a></li>
+				<!--li><a href="#net_ipv6config" data-trans="net_ipv6config"></a></li-->		
+				</ul>
+		</div>
+	    </div>
+
+	    <div class="col-xs-10">
+
+<form>
+<div class="form-body">
+	    <h3 class="form-title" data-trans="network_band_lock"></h3>
+    <div class="content">
+            <div class="row form-group">
+                <label class="col-xs-2 side-right" data-trans='network_band_select'></label>
+					<div class="col-xs-2 label-absolute">
+						<p id="roamBtn" class="checkbox floatleft margintop5 " data-bind="css:{'checkbox_selected': isBand3Select()=='on'},click: setBand3Select" manualControl="true">
+							<input type="checkbox" id="isBand3Select" value="on" data-bind="checked:isBand3Select()=='on'"/>
+						</p>
+						<label for="isBand3Select" data-trans="band3" class="update_inline floatleft lineheight25"></label>		
+					</div>	
+
+				<div class = "col-xs-1"></div>
+					<div class="col-xs-2 label-absolute">
+						<p id="roamBtn" class="checkbox floatleft margintop5 " data-bind="css:{'checkbox_selected': isBand38Select()=='on'},click: setBand38Select" manualControl="true">
+							<input type="checkbox" id="isBand38Select" value="on" data-bind="checked:isBand38Select()=='on'"/>
+						</p>
+						<label for="isBand38Select" data-trans="band38" class="update_inline floatleft lineheight25"></label>		
+					</div>	
+			
+				<div class="col-xs-1"></div>	
+					<div class="col-xs-2 label-absolute">
+						<p id="roamBtn" class="checkbox floatleft margintop5 " data-bind="css:{'checkbox_selected': isBand39Select()=='on'},click: setBand39Select" manualControl="true">
+							<input type="checkbox" id="isBand39Select" value="on" data-bind="checked:isBand39Select()=='on'"/>
+						</p>
+						<label for="isBand39Select" data-trans="band39" class="update_inline floatleft lineheight25"></label>		
+					</div>	
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-2"></div>	
+					<div class="col-xs-2 label-absolute">
+						<p id="roamBtn" class="checkbox floatleft margintop5 " data-bind="css:{'checkbox_selected': isBand40Select()=='on'},click: setBand40Select" manualControl="true">
+							<input type="checkbox" id="isBand40Select" value="on" data-bind="checked:isBand40Select()=='on'"/>
+						</p>
+						<label for="isBand40Select" data-trans="band40" class="update_inline floatleft lineheight25"></label>		
+					</div>						
+				<div class = "col-xs-1"></div>
+					<div class="col-xs-2 label-absolute">
+						<p id="roamBtn" class="checkbox floatleft margintop5 " data-bind="css:{'checkbox_selected': isBand41Select()=='on'},click: setBand41Select" manualControl="true">
+							<input type="checkbox" id="isBand41Select" value="on" data-bind="checked:isBand41Select()=='on'"/>
+						</p>
+						<label for="isBand41Select" data-trans="band41" class="update_inline floatleft lineheight25"></label>		
+					</div>	
+			</div>				
+    </div>
+	<div class="form-buttons">
+        <input type="button" class="btn btn-primary" data-bind='click: savebandconfig' data-trans="apply"/>
+    </div>	
+	
+    <div class="form-note">
+        <div class="notes-title">&nbsp;</div>
+        <ul class="notes-content">
+			<li data-trans="diconneted_operate_note"></li>
+            <li data-trans="dial_setting_note_automatic"></li>
+            <li data-trans="dial_setting_note_manual"></li>
+        </ul>
+    </div>
+</div>
+</form>
+    </div>
+</div>
+</div>

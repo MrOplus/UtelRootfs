@@ -1,0 +1,41 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10 m-t-15">
+             <ul class="nav nav-tabs" id="nav-tabs"></ul>
+             <div class="row" style="margin-top: 20px;display: none;" id="startAndStop">
+                        <div class="col-xs-6">
+                            <label data-trans="interface" style="font-weight: bold;font-size: 16px;"></label>
+                            <input type="text" name="port" id="port_tcpdump">
+                        </div>
+                        <div class="col-xs-5">
+                            <button id="start" data-trans="start" class="btn btn-default"
+                                    data-bind="click: btnStart"></button>
+                            <button id="stop" data-bind="click: btnStop" disabled data-trans="stop"
+                                    class="btn btn-default"></button>
+                        </div>
+            </div>
+                <div id="uploadSection">
+                <iframe id="fileUploadIframe" name="fileUploadIframe" scrolling="no" frameborder="0" width="0"
+                        height="0" style="height:0px;width:0px;"></iframe>
+                <form action="#" method="post" name="fileUploadForm" id="fileUploadForm" enctype="multipart/form-data"
+                      target="fileUploadIframe">
+                    <input id="fileField" name="filename" maxlength="200" type="file" dir="ltr"/>
+                    <div class="fileUploadDiv">
+                        <input data-trans="ota_title" id="fileUploadApplyBtn" name="fileUploadApplyBtn" type="button"
+                               class="btn btn-primary margin-left-5 margin-top-2"
+                               onclick="fileUploadSubmitClickHandlerBackup();"/>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+            <div class="form-body">
+                <div class="content">
+                    <a id="downloadURL" style="display:none;" target="_blank" data-trans="click_download"/>
+                </div>
+        </div>
+        </div>
+    </div>
+</div>
+

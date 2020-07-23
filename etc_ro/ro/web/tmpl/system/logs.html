@@ -1,0 +1,48 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs" id="nav-tabs"></ul>
+                <div class="content margin-top-20" id='trace'>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='logs_lev'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="col-xs-4">
+                            <select class="form-control" id="ddnsSetMode">
+                                <option value="Informative">Informative</option>
+                                <option value="Warning">Warning</option>                              
+                                <option value="Error">Error</option>
+                                <option value="Critical">Critical</option>
+                            </select>  
+                        </div>  
+                        </div>
+                    </div>
+                   
+                    <div class="row" style="display: none;">
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-8" >
+                            <button data-bind="click: startTrace" id="startTrace" data-trans="start"
+                                    class="btn btn-default"></button>
+                            <button disabled data-bind="click: stopTrace" id="stopTrace" data-trans="stop"
+                                    class="btn btn-default"></button>
+                        </div>
+                      
+                    </div>
+                      <div class="form-buttons">
+                    <input type="submit" data-bind="click: startTraceLogs" class="btn btn-primary margin-right-20" data-trans="apply"/>
+                </div>
+                    <div class="row">
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-8">
+                            <textarea name="traceData" id="traceData" class="form-control" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

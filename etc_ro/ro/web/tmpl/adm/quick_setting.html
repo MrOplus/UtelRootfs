@@ -1,0 +1,342 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-1 margin-top-15">
+        </div>
+        <div class="col-xs-11">
+
+            <form id='quickSettingForm' action="#quickSetting">
+                <div class="form-body">
+                    <div class="content">
+                        <div class="row form-group side-right form-buttons">
+                            <input id="btnBack" type="button" class="btn btn-primary"
+                                   data-bind="visible:currentStep()>2,click:previous" data-trans="prev_step">
+                            <input id="btnNext" type="submit" class="btn btn-primary"
+                                   data-bind="visible:currentStep()<6,disable: adBand()=='b' && adMode() == '2' && (selectedSecurityMode() == 'SHARED' || (selectedSecurityMode() == 'OPEN' && encryptType() == 'WEP'))"
+                                   data-trans="next_step">
+                            <input id="btnSave" type="submit" class="btn btn-primary"
+                                   data-bind="visible:currentStep()==6" data-trans="apply">
+                        </div>
+                        <div data-bind="visible:currentStep()==1" id="step1">
+                            <div class="step1Note">
+                                <p class="explain" data-trans="step1_exp1"></p>
+                                <p class="explain" data-trans="step1_exp2"></p>
+                            </div>
+                        </div>
+                        <div data-bind="visible:currentStep()==2" style="display: none" id="step2">
+                            <h3 class="form-title" data-trans="apn_settings"></h3>
+                            <div class="content">
+                                <div id="apnSetting" data-bind="visible:quickApnHide">
+                                    <div class="row form-group">
+                                        <label class="col-xs-3 side-right" for="profile_name"
+                                               data-trans="apn_profile_name"></label>
+                                        <div class="col-xs-6">
+                                            <input type="text" class=" form-control" name="txtProfileName"
+                                                   id="profile_name" maxlength="30" data-bind="value:profileName"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group" data-bind="visible:showIPv4">
+                                        <label class="col-xs-3 side-right" for="txtAPN"
+                                               data-bind="attr:{'data-trans':transAPN}"></label>
+                                        <div class="col-xs-6">
+                                            <input type="text" class="form-control required" name="txtAPN" id="txtAPN"
+                                                   maxlength="64" data-bind="value:apn,disable: apnDisabled()"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group" data-bind="visible:showIPv6">
+                                        <label class="col-xs-3 side-right" for="txtIPv6APN"
+                                               data-bind="attr:{'data-trans':transAPNIPv6}"></label>
+                                        <div class="col-xs-6">
+                                            <input type="text" autocomplete="off" class="form-control required"
+                                                   name="txtIPv6APN" id="txtIPv6APN" maxlength="64"
+                                                   data-bind="value:ipv6_apn,disable: apnDisabled()"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-note">
+                                <div class="notes-title">&nbsp;</div>
+                                <ul class="notes-content">
+                                    <li data-trans="step2_auto_apn_explain"></li>
+                                    <li data-trans="step2_profile_name_explain"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div data-bind="visible:currentStep()==3" style="display: none" id="step3">
+                            <h3 class="form-title" data-trans="ppp_authentication"></h3>
+                            <div class="content">
+                                <div class="row form-group" data-bind="visible:showIPv4">
+                                    <label class="col-xs-3 side-right" for="selAuthMode"
+                                           data-bind="attr:{'data-trans':transAuthMode}"></label>
+                                    <div class="col-xs-6">
+                                        <select id="selAuthMode" name="selAuthMode" class="form-control"
+                                                data-bind="options: authModes, disable: apnDisabled(), value: selectedAuthMode, optionsText: 'text', optionsValue: 'value'"></select>
+                                    </div>
+                                </div>
+                                <div class="row form-group" data-bind="visible:showIPv4">
+                                    <label class="col-xs-3 side-right" for="txtUserName"
+                                           data-bind="attr:{'data-trans':transUserName}"></label>
+                                    <div class="col-xs-6">
+                                        <input type="text" class=" form-control" name="txtUserName" id="txtUserName"
+                                               data-bind="value:username,disable: apnDisabled()" maxlength="64"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group" data-bind="visible:showIPv4">
+                                    <label class="col-xs-3 side-right" for="txtPassword"
+                                           data-bind="attr:{'data-trans':transPassword}"></label>
+                                    <div class="col-xs-6">
+                                        <input type="password" autocomplete="off" class=" form-control"
+                                               name="txtPassword" id="txtPassword" maxlength="64"
+                                               data-bind="value:password,disable: apnDisabled()"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group" data-bind="visible:showIPv6">
+                                    <label class="col-xs-3 side-right" for="selIPv6AuthMode"
+                                           data-bind="attr:{'data-trans':transAuthModeIPv6}"></label>
+                                    <div class="col-xs-6">
+                                        <select id="selIPv6AuthMode" name="selIPv6AuthMode" class="form-control"
+                                                data-bind="options: authModes, disable: apnDisabled(), value: ipv6_selectedAuthMode, optionsText: 'text', optionsValue: 'value'"></select>
+                                    </div>
+                                </div>
+                                <div class="row form-group" data-bind="visible:showIPv6">
+                                    <label class="col-xs-3 side-right" for="txtIPv6UserName"
+                                           data-bind="attr:{'data-trans':transUserNameIPv6}"></label>
+                                    <div class="col-xs-6">
+                                        <input type="text" class=" form-control" name="txtIPv6UserName"
+                                               id="txtIPv6UserName"
+                                               data-bind="value:ipv6_username,disable: apnDisabled()" maxlength="64"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group" data-bind="visible:showIPv6">
+                                    <label class="col-xs-3 side-right" for="txtIPv6Password"
+                                           data-bind="attr:{'data-trans':transPasswordIPv6}"></label>
+                                    <div class="col-xs-6">
+                                        <input type="password" class="form-control" name="txtIPv6Password"
+                                               id="txtIPv6Password" maxlength="64" autocomplete="off"
+                                               data-bind="value:ipv6_password,disable: apnDisabled()"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-note">
+                                <div class="notes-title">&nbsp;</div>
+                                <ul class="notes-content">
+                                    <li data-trans="step3_authentication_apn_explain1"></li>
+                                    <li data-trans="step3_authentication_apn_explain2"></li>
+                                    <li data-trans="step3_authentication_apn_explain3"></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div data-bind="visible:currentStep()==4" style="display: none" id="step4">
+                            <h3 class="form-title" data-trans="ssid_title"></h3>
+                            <div class="content">
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" for="txtSSID" data-trans="ssid_name"></label>
+                                    <div class="col-xs-6">
+                                        <input type="text" class="form-control required" name="txtSSID" id="txtSSID"
+                                               maxlength="32" data-bind="value:ssid"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" data-trans="ssid_broadcast"></label>
+                                    <div class="col-xs-6">
+                                        <input type="radio" name="radBroadcast" id="radBroadcastEnable"
+                                               data-bind="checked: broadcast" value="0"/>
+                                        <label for="radBroadcastEnable" data-trans="enable"></label>
+                                        <input type="radio" name="radBroadcast" id="radBroadcastDisable"
+                                               data-bind="checked: broadcast" value="1"/>
+                                        <label for="radBroadcastDisable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-note">
+                                <div class="notes-title">&nbsp;</div>
+                                <ul class="notes-content">
+                                    <li data-trans="step4_ssid_explain"></li>
+                                    <!-- <li data-trans="wifi_basic_note_network_name_input"></li> -->
+                                    <li data-trans="step4_ssid_broadcast_explain1"></li>
+                                     <!-- <li data-trans="quick_setting_wifi_off_help"></li>  -->
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div data-bind="visible:currentStep()==5" style="display: none" id="step5">
+                            <h3 class="form-title" data-trans="security_mode"></h3>
+                            <div class="content">
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" for="selSecurityMode"
+                                           data-trans="security_mode"></label>
+                                    <div class="col-xs-6">
+                                        <select id="selSecurityMode" name="selSecurityMode" class="form-control"
+                                                data-transid='security_mode'
+                                                data-bind="options: securityModes, value: selectedSecurityMode, optionsText: transOption('security_mode'), optionsValue: 'value'"></select>
+                                    </div>
+                                </div>
+                            <div id="wepSection">
+                                <div class="row form-group"
+                                     data-bind='visible: selectedSecurityMode() == "OPEN" && hasWifiWep'>
+                                    <label class="col-xs-3 side-right" for='selEncryptType'
+                                           data-trans='ap_station_encrypt_type'></label>
+                                    <div class="col-xs-6">
+                                        <select id="selEncryptType" class="form-control"
+                                                data-bind="value: encryptType,optionsValue: 'value'">
+                                            <option value="NONE" data-trans="ap_station_encrypt_type_none"></option>
+                                            <option value="WEP" data-trans="ap_station_encrypt_type_wep"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                    <div class="row form-group"
+                                     data-bind='visible:  (selectedSecurityMode() == "OPEN" && encryptType() == "WEP" && hasWifiWep) || (selectedSecurityMode() == "SHARED" && hasWifiWep)'>
+                                    <label class="col-xs-3 side-right" for='selWepKeyType' data-trans='ap_station_wep_default_key'></label>
+                                    <div class="col-xs-6">
+                                        <select id="selWepKeyType" class="form-control"
+                                                data-bind="value: keyID,optionsValue: 'value', event:{ change: profileChangeHandler}">
+                                            <option value="0" data-trans="ap_station_wep_key_0"></option>
+                                            <option value="1" data-trans="ap_station_wep_key_1"></option>
+                                            <option value="2" data-trans="ap_station_wep_key_2"></option>
+                                            <option value="3" data-trans="ap_station_wep_key_3"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group"
+                                     data-bind='visible: (selectedSecurityMode() == "OPEN" && encryptType() == "WEP" && hasWifiWep) || (selectedSecurityMode() == "SHARED" && hasWifiWep)'>
+                                    <label class="col-xs-3 side-right" for='pwdWepKey'
+                                           data-trans='ap_station_wep_key'></label>
+                                    <div class="col-xs-6">
+                                        <input id='pwdWepKey' autocomplete="off" name="pwdWepKey" type="password"
+                                               class="required form-control"
+                                               data-bind="value: wepPassword,visible:!showWifiPassword()"
+                                               maxlength='26'/>
+                                        <input id='txtWepKey' name="txtWepKey" type="text" class="required form-control"
+                                               data-bind="value: wepPassword,visible:showWifiPassword()"
+                                               maxlength='26'/>
+                                        <div class="margin-top-10">
+                                            <p class="checkbox"
+                                            data-bind="css:{'checkbox_selected': showWifiPassword()}, click: showWifiPasswordHandler"
+                                            manualControl="true">
+                                                <input id="showWepPassword" type="checkbox"
+                                                       data-bind="checked:showWifiPassword"/>
+                                            </p>
+                                            <label class="floatleft margintop5 lineheight25" for="showWepPassword"
+                                                   data-trans="display_password"/>
+                                        </div>
+                                        <div id="lblShowWepPassword" class="clear"></div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="row form-group"
+                                     data-bind="visible:selectedSecurityMode() == 'WPA2PSK' || selectedSecurityMode() == 'WPAPSKWPA2PSK' || selectedSecurityMode() == 'WPAWPA2PSKTKIP' || selectedSecurityMode() == 'WPAWPA2PSKAES'">
+                                    <label class="col-xs-3 side-right" for="txtWPAKey" data-trans="pass_phrase"></label>
+                                    <div class="col-xs-6">
+                                        <input type="password" class="form-control required" name="pwdWPAKey"
+                                               id="pwdWPAKey" minlength='8' maxlength='63' autocomplete="off"
+                                               data-bind="value:WPAKey,visible:!showWifiPassword()"/>
+                                        <input class="form-control required" type="text" name="txtWPAKey" id="txtWPAKey"
+                                               minlength='8' maxlength='63'
+                                               data-bind="disable:wifiClosed,value:WPAKey,visible:showWifiPassword()"/>
+                                        <p class="checkbox floatleft margintop10 marginleft5 marginright5"
+                                           data-bind="css:{'checkbox_selected': showWifiPassword()}, click: showWifiPasswordHandler"
+                                           manualControl="true">
+                                            <input id="showWifiPassword" type="checkbox"
+                                                   data-bind="checked:showWifiPassword"/>
+                                        </p>
+                                        <label class="floatleft margintop5 lineheight25" for="showWifiPassword"
+                                               data-trans="display_password"/>
+                                        <div id="lblShowWifiPassword" class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-note">
+                                <div class="notes-title">&nbsp;</div>
+                                <ul class="notes-content">
+                                    <li data-trans="step5_encryption_mode_info"></li>
+                                    <li class="no-style">
+                                        <ul>
+                                            <li data-trans="step5_encryption_mode_explain1"></li>
+                                            <!-- <li data-trans="step5_encryption_mode_explain2"></li> -->
+                                            <li data-trans="step5_encryption_mode_explain3"></li>
+                                        </ul>
+                                    </li>
+                                    <li data-trans="step5_encryption_mode_explain4"></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div data-bind="visible:currentStep()==6" style="display: none" id="step6">
+                            <h3 class="form-title" data-trans="step_name_6"></h3>
+                            <div class="content" id="quick_apn_hide">
+                               <!--  <div class="row form-group" data-bind="visible:quickApnHide">
+                                    <label class="col-xs-3 side-right" data-trans="apn_settings"></label>
+                                    <label class="col-xs-6"
+                                           data-bind="text:apnMode_display,attr:{'data-trans':apnMode_trans}"></label>
+                                </div> -->
+                                <div data-bind="visible:quickApnHide">
+                                    <div class="row form-group">
+                                        <label class="col-xs-3 side-right" data-trans="apn_profile_name"></label>
+                                        <label class="col-xs-6" data-bind="text:profileName"></label>
+                                    </div>
+                                    <div class="row form-group" data-bind="visible:showIPv4">
+                                        <label class="col-xs-3 side-right"
+                                               data-bind="attr:{'data-trans':transAPN}"></label>
+                                        <label class="col-xs-6 ellipsis" data-bind="text: apn,attr:{title:apn}"></label>
+                                    </div>
+                                    <div class="row form-group" data-bind="visible:showIPv4">
+                                        <label class="col-xs-3 side-right"
+                                               data-bind="attr:{'data-trans':transAuthMode}"></label>
+                                        <label class="col-xs-6" data-bind="text:selectedAuthMode_display"></label>
+                                    </div>
+                                    <div class="row form-group" data-bind="visible:showIPv4">
+                                        <label class="col-xs-3 side-right"
+                                               data-bind="attr:{'data-trans':transUserName}"></label>
+                                        <label class="col-xs-6 ellipsis"
+                                               data-bind="text:username,attr:{title:username}"></label>
+                                    </div>
+                                    <div class="row form-group" data-bind="visible:showIPv6">
+                                        <label class="col-xs-3 side-right"
+                                               data-bind="attr:{'data-trans':transAPNIPv6}"></label>
+                                        <label class="col-xs-6" data-bind="text:ipv6_apn"></label>
+                                    </div>
+                                    <div class="row form-group" data-bind="visible:showIPv6">
+                                        <label class="col-xs-3 side-right"
+                                               data-bind="attr:{'data-trans':transAuthModeIPv6}"></label>
+                                        <label class="col-xs-6" data-bind="text:ipv6_selectedAuthMode_display"></label>
+                                    </div>
+                                    <div class="row form-group" data-bind="visible:showIPv6">
+                                        <label class="col-xs-3 side-right"
+                                               data-bind="attr:{'data-trans':transUserNameIPv6}"></label>
+                                        <label class="col-xs-6 ellipsis"
+                                               data-bind="text:ipv6_username,attr:{title:ipv6_username}"></label>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" data-trans="ssid_name"></label>
+                                    <label class="col-xs-6" data-bind="text:ssid"></label>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" data-trans="ssid_broadcast"></label>
+                                    <label class="col-xs-6"
+                                           data-bind="text:broadcast_display,attr:{'data-trans':broadcast_trans}"></label>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-3 side-right" data-trans="security_mode"></label>
+                                    <label class="col-xs-6"
+                                           data-bind="text:selectedSecurityMode_display,attr:{'data-trans':selectedSecurityMode_trans}"></label>
+                                </div>
+                                <div class="form-note">
+                                    <div class="notes-title">&nbsp;</div>
+                                    <ul class="notes-content">
+                                        <li data-trans="step6_apply_explain"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

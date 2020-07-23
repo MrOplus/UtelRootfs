@@ -1,0 +1,41 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div id="nav-right" class="col-xs-2"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs" id="nav-tabs"></ul>
+                <form id="usbForm" class="margin-top-20" action="#">
+                    <div class="form-body">
+                        <div class="content">
+                            <div class="row form-group">
+
+                                <label class="col-xs-3 side-right" data-trans="usb_port"></label>
+                                <div class="col-xs-9">
+                                    <input type="radio" name="usbPortGrp" id="usbPortEnable" data-bind="checked: usbPortFlag" value="1"/>
+                                    <label for="usbPortEnable" data-trans="enable"></label>
+                                    &nbsp;&nbsp;
+                                    <input type="radio" name="usbPortGrp" id="usbPortDisable" data-bind="checked: usbPortFlag" value="0"/>
+                                    <label for="usbPortDisable" data-trans="disable"></label>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-3 side-right" data-trans="usb_download"></label>
+                                <div class="col-xs-9">
+                                    <input type="radio" name="usbDownloadGrp" id="usbDownloadEnable" data-bind="checked: usbDownloadFlag" value="1"/>
+                                    <label for="usbDownloadEnable" data-trans="enable"></label>
+                                    &nbsp;&nbsp;
+                                    <input type="radio" name="usbDownloadGrp" id="usbDownloadDisable" data-bind="checked: usbDownloadFlag " value="0"/>
+                                    <label for="usbDownloadDisable" data-trans="disable"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <input type="button" class="btn btn-primary" data-trans="apply" data-bind="click: save"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

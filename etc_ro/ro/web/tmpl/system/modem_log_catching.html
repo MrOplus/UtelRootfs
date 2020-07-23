@@ -1,0 +1,59 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='system_settings'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="nav_right">
+                <ul>
+                    <li><a href="javascript:void(0)" data-trans="system_setting" onclick="tosms('#modify_password')"></a></li>
+                    <li><a href="javascript:void(0)" data-trans="system_check" onclick="tosms('#system_check')"></a></li>
+                    <li><a href="javascript:void(0)" data-trans="system_log" onclick="tosms('#system_log')"></a></li>
+                    <li><a href="javascript:void(0)" data-trans="system_upgrade" onclick="tosms('#system_upgrade')"></a></li>
+                    <!--<li><a href="#modem_upgrade" data-trans="modem_upgrade"></a></li>-->
+                    <li class="active"><a href="javascript:void(0)" data-trans="network_tools" onclick="tosms('#ping')"></a></li>
+                    <!--<li><a href="#modem_log_catching" data-trans="modem_log_catching"></a></li>-->
+                    <li><a href="javascript:void(0)" data-trans="reboot" onclick="tosms('#reboot')"></a></li>
+                    <!--<li><a href="#help" data-trans="help"></a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs">
+                    <li><a href="javascript:void(0)" data-trans="ping" onclick="tosms('#ping')"></a></li>
+                    <li><a href="javascript:void(0)" data-trans="trace" onclick="tosms('#trace')"></a></li>
+                    <li class="active"><a href="javascript:void(0)" data-trans="modem_log_catching" onclick="tosms('#modem_log_catching')"></a></li>
+                </ul>
+                <!--<form action="#" id='modemLogCatching' class="margin-top-20">-->
+                    <input type="hidden" name="CSRFToken">
+                    <div class="content">
+                        <div class="row">
+                            <label class="col-xs-11" data-trans='modem_log_catching_tips'></label>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-3" data-trans="status_f"></label>
+                            <label class="col-xs-8"></label>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-3" data-trans="log_catching"></label>
+                            <div class="col-xs-8">
+                                <input type="button" id='startCatching' data-trans="start_catching"/>
+                                <input type="button" id='stopCatching' data-trans="stop_catching"/>
+                            </div>
+                        </div>
+                    </div>
+                <!--</form>-->
+            </div>
+        </div>
+    </div>
+</div>

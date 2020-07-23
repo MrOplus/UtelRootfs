@@ -1,0 +1,118 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body">
+              <form id="frmWifiSwitch" role="form" action="#">
+                    <div class="content margin-top-20">
+                    </div>
+                </form>
+                <div data-bind="visible: isShowSSIDInfoDiv">
+                    <form action="#" id="mac_filter_form" role="form">
+                        <h3 class="form-title" data-trans="mac_filter"></h3>
+                        <div class="content margin-top-20">
+
+                            <div class="content">
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right" for="country"
+                                           data-trans="mac_filter_lable"></label>
+                                    <div class="col-xs-4">
+                                        <select name="country" id="country" class="form-control"
+                                                data-bind="value: selectedAction, event:{ change: ChangeHandler}">
+                                            <option value="0" data-trans="wlan_mac_filter_0"></option>
+                                            <option value="1" data-trans="wlan_mac_filter_1"></option>
+                                            <option value="2" data-trans="wlan_mac_filter_2"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right"></label>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_1" id="mac_1" maxlength="32" class="form-control"
+                                               data-bind="value: mac1,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_2" id="mac_2" maxlength="32" class="form-control"
+                                               data-bind="value: mac2,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right"></label>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_3" id="mac_3" maxlength="32" class="form-control"
+                                               data-bind="value: mac3,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_4" id="mac_4" maxlength="32" class="form-control"
+                                               data-bind="value: mac4,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right"></label>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_5" id="mac_5" maxlength="32" class="form-control"
+                                               data-bind="value: mac5,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_6" id="mac_6" maxlength="32" class="form-control"
+                                               data-bind="value: mac6,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right"></label>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_7" id="mac_7" maxlength="32" class="form-control"
+                                               data-bind="value: mac7,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_8" id="mac_8" maxlength="32" class="form-control"
+                                               data-bind="value: mac8,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right"></label>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_9" id="mac_9" maxlength="32" class="form-control"
+                                               data-bind="value: mac9,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input type="text" name="mac_10" id="mac_10" maxlength="32" class="form-control"
+                                               data-bind="value: mac10,disable:selectedAction() == 0,css:{disabled:selectedAction() == 0}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-buttons">
+                                <input type="submit" class="btn btn-primary" data-trans='apply'/>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="wif_filter_note1"></li>
+                            <li data-trans="wif_filter_note2"></li>
+                            <li data-trans="wif_filter_note3"></li>
+                            <li data-trans="wif_filter_note4"></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

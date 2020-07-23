@@ -1,0 +1,31 @@
+# /etc/profile: system-wide .profile file for sh.
+
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:/lib"
+
+export HOSTNAME="@HOSTNAME"
+
+export PS1="[\u@\h \W]\$"
+
+# auto-logout if idle for n secs
+#export TMOUT=3000
+
+umask 022
+
+#This fixes the backspace when telnetting in.
+if [ "$TERM" != "linux" ]; then
+        stty erase ^H
+fi
+
+alias quit="exit"
+alias dir="ls"
+alias vdir="ls -l"
+alias d="ls"
+alias v="ls -l"
+alias da="ls -a"
+alias va="ls -la"
+alias ll="ls -l"
+alias cd..="cd .."
+
+alias m="more"
+alias +="more"

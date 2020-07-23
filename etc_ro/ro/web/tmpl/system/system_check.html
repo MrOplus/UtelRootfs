@@ -1,0 +1,115 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div id="nav-right" class="col-xs-2"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="javascript:void(0)" data-trans="system_checking"
+                                          onclick="tosms('#system_checking')"></a></li>
+                </ul>
+                <div class="content" id="systemCheckContent">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='up_time'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="upTime"
+                                   data-bind="text: upTime,css: { 'text-red': upTime == 'FAIL','text-green': upTime == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='internet'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="internet"
+                                   data-bind="text: internet,css: { 'text-red': internet == 'FAIL','text-green': internet == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='net_register_status'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="netRegisterStatus"
+                                   data-bind="text: netRegisterStatus,css: { 'text-red': netRegisterStatus == 'FAIL','text-green': netRegisterStatus == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='signal'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="signal"
+                                   data-bind="text: signal,css: { 'text-red': signal == 'FAIL','text-green': signal == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='pin'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="pin"
+                                   data-bind="text: pin,css: { 'text-red': pin == 'FAIL','text-green': pin == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='puk'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="puk"
+                                   data-bind="text: puk,css: { 'text-red': puk == 'FAIL','text-green': puk == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='sim'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="sim"
+                                   data-bind="text: sim,css: { 'text-red': sim == 'FAIL','text-green': sim == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='wan_ip'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="wanIP"
+                                   data-bind="text: wanIP,css: { 'text-red': wanIP == 'FAIL','text-green': wanIP == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='wan_net_mask'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="wanNetMask"
+                                   data-bind="text: wanNetMask,css: { 'text-red': wanNetMask == 'FAIL','text-green': wanNetMask == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='gateway'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="gateway"
+                                   data-bind="text: gateway,css: { 'text-red': gateway == 'FAIL','text-green': gateway == 'OK' }"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='dns'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <label id="dns"
+                                   data-bind="text: dns,css: { 'text-red': dns == 'FAIL','text-green': dns == 'OK' }"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

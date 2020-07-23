@@ -1,0 +1,51 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='system_settings'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="nav_right">
+                <ul>
+                    <li><a href="javascript:void(0)" data-trans="system_setting" onclick="tosms('#time_setting')"></a>
+                    </li>
+                    <li><a href="javascript:void(0)" data-trans="system_check" onclick="tosms('#system_check')"></a>
+                    </li>
+                    <li class="active"><a href="javascript:void(0)" data-trans="system_log"
+                                          onclick="tosms('#system_log')"></a></li>
+                    <li><a href="javascript:void(0)" data-trans="system_upgrade" onclick="tosms('#system_upgrade')"></a>
+                    </li>
+                    <li><a href="javascript:void(0)" data-trans="network_tools" onclick="tosms('#ping')"></a></li>
+                    <li><a href="javascript:void(0)" data-trans="reboot" onclick="tosms('#reboot')"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <form id='systemLog'>
+                    <h3 class="form-title" data-trans="system_log"></h3>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-11">
+                                <textarea data-bind="text:getSysLog" class="form-control" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-3">
+                                <input type="button" data-bind="click: clearLog" id="clearLog" data-trans="clear_log">
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

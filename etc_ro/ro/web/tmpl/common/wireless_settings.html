@@ -1,0 +1,12 @@
+<div class="nav_right">
+    <ul>
+    	<li id="wifiSwitch" class="wifiSwitch"><a href="javascript:void(0)" data-trans="wifiSwitch" onclick="tosms('#wifiSwitch')"></a></li>
+        <li class="wifi_main" id="wifi_main" data-bind="visible: isShowSSIDInfoDiv"><a href="javascript:void(0)" data-trans="setssid" onclick="tosms('#wifi_main')"></a></li>
+      
+        <!--<li class="wifi_guest" data-bind="visible: hasMultiSSID"><a href="javascript:void(0)" data-trans="multi_ssid_2" onclick="tosms('#wifi_guest')"></a></li>-->
+        <li id="wps" class="wps" data-bind="visible: isShowSSIDInfoDiv"><a href="javascript:void(0)" data-trans="wps" onclick="tosms('#wps')"></a></li>
+        <li class="wifi_advance" data-bind="visible: isShowSSIDInfoDiv"><a href="javascript:void(0)" data-trans="wifi_advance" onclick="tosms('#wifi_advance')"></a></li>
+        <li class="mac_filter" data-bind="visible: hasWlanMacfilter && isShowSSIDInfoDiv"><a href="javascript:void(0)" data-trans="mac_filter" onclick="tosms('#mac_filter')"></a></li>
+         <li class="hotsporServer" id="hotsporServer" data-bind="visible: isShowSSIDInfoDiv"><a href="javascript:void(0)" data-trans="hotsporServer" onclick="tosms('#hotsporServer')"></a></li>
+    </ul>
+</div>

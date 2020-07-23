@@ -1,0 +1,41 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10 m-t-15">
+            <div id="uploadSection">
+                <iframe id="fileUploadIframe" name="fileUploadIframe" scrolling="no" frameborder="0" width="0"
+                        height="0" style="height:0px;width:0px;"></iframe>
+                <form action="#" method="post" name="fileUploadForm" id="fileUploadForm" enctype="multipart/form-data"
+                      target="fileUploadIframe">
+                    <input id="fileField" name="filename" maxlength="200" type="file" dir="ltr"/>
+                    <div class="fileUploadDiv">
+                        <input data-trans="ota_title" id="fileUploadApplyBtn" name="fileUploadApplyBtn" type="button"
+                               class="btn btn-primary margin-left-5 margin-top-2"
+                               onclick="fileUploadSubmitClickHandler();"/>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+            <form action="#">
+                <div class="form-body">
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="import_export_restart"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <div class="form-body">
+                <div class="content">
+                    <a id="downloadURL" style="display:none;" target="_blank" data-trans="click_download"/>
+                </div>
+                <div class="form-buttons">
+                    <input type="button" class="btn btn-primary" data-trans="export" data-bind="click:backupFirewall"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

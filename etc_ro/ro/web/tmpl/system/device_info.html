@@ -1,0 +1,66 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='device_info'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="nav_right">
+                <ul>
+                    <li class="active"><a href="#device_info" data-trans="device_info"
+                                          onclick="tosms('#device_info')"></a></li>
+                    <li><a href="#systerm_statue" data-trans="systerm_statue" onclick="tosms('#systerm_statue')"></a>
+                    </li>
+                    <li><a href="#mobilenetwork_info" data-trans="mobilenetwork_info"
+                           onclick="tosms('#mobilenetwork_info')"></a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-10">
+            <form id="DeviceInfoForm">
+                <div class="form-body">
+                    <h3 class="form-title" data-trans="device_info"></h3>
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='software_version_info'></label>
+                            <label class="col-xs-8" data-bind="text: sw_version"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='hardware_version_info'></label>
+                            <label class="col-xs-8" data-bind="text: hw_version"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='running_time'></label>
+                            <label class="col-xs-8" data-bind="text: run_time"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='product_version'></label>
+                            <label class="col-xs-8" data-bind="text: pd_version"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='imei_num'></label>
+                            <label class="col-xs-8" data-bind="text: imei"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='sim_iccid'></label>
+                            <label class="col-xs-8" data-bind="text: iccid"></label>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='sim_imsi'></label>
+                            <label class="col-xs-8" data-bind="text: imsi"></label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+﻿<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div id="nav-right" class="col-xs-2"></div>
+
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs" id="nav-tabs"></ul>
+            </div>
+            <form id="frmOTAUpdate" role="form" data-bind="visible: updateType() == 'mifi_fota'">
+                <h3 class="form-title" data-trans="ota_update_manual"></h3>
+                <div class="form-body margin-top-20">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-6">
+                            </div>
+                            <div class="col-xs-6 align-right">
+                                <input id="btnCheckNewVersion" type="button" class="btn btn-primary margin-right-20"
+                                       data-trans="ota_check_new_version"
+                                       data-bind="click:checkNewVersion"/>
+                            </div>
+                        </div>
+                        <div class="form-note">
+                            <div class="notes-title">&nbsp;</div>
+                            <ul class="notes-content">
+                                <li data-trans="ota_check_new_version_desc"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <h3 class="form-title" data-trans="ota_update_setting"></h3>
+                        <div class="row">
+                            <label class="col-xs-4 side-right" data-trans="ota_auto_update_switch"></label>
+
+                            <div class="col-xs-8">
+                                <div class="row form-group">
+                                    <div class="col-xs-3">
+                                        <input type="radio" name="updateMode" id="auto_update_enable"
+                                               data-bind="checked: updateMode" value="1"/>
+                                        <label for="auto_update_enable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input type="radio" name="updateMode" id="auto_update_disable"
+                                               data-bind="checked: updateMode" value="0"/>
+                                        <label for="auto_update_disable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group" data-bind="visible: false">
+                            <label class="col-xs-4 side-right" data-trans="ota_update_interval_day"
+                                   for="selInterValDay"></label>
+
+                            <div class="col-xs-3">
+                                <select id="selInterValDay" name="selInterValDay" data-bind="value: updateIntervalDay"
+                                        class="form-control">
+                                    <option value="1" data-trans="ota_update_every_day"></option>
+                                    <option value="15" data-trans="ota_update_15_day"></option>
+                                    <option value="30" data-trans="ota_update_30_day"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group" data-bind="visible: updateMode()=='1'">
+                            <div class="col-xs-12 padding-top-10">
+                                <p class="checkbox"
+                                   data-bind="css:{'checkbox_selected': allowRoamingUpdate()=='1'}, click: clickAllowRoamingUpdate"
+                                   manualControl="true">
+                                    <input type="checkbox" id="chkUpdateRoamPermission" name="chkUpdateRoamPermission"
+                                           value="1"
+                                           data-bind="checked:allowRoamingUpdate()=='1'"/>
+                                </p>
+                                <label data-trans="ota_update_roaming_remind" class="update_inline floatleft"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-buttons">
+                            <input id="btnApply" type="submit" class="btn btn-primary" data-trans="apply"/>
+                        </div>
+                        <div class="form-note">
+                            <div class="notes-title">&nbsp;</div>
+                            <ul class="notes-content">
+                                <li data-trans="fota_note1"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <div id="uploadSection" data-bind="visible: updateType() == 'mifi_local'">
+                <!--<h3 class="form-title" data-trans="software_upload"></h3>-->
+                <iframe id="fileUploadIframe" name="fileUploadIframe" scrolling="no" frameborder="0" width="0"
+                        height="0" style="height:0px;width:0px;"></iframe>
+                <form method="post" name="fileUploadForm" id="fileUploadForm"
+                      action="../../cgi-bin/zte_upload/upload.cgi" enctype="multipart/form-data"
+                      target="fileUploadIframe">
+                    <input id="fileField" name="filename" maxlength="200" type="file" dir="ltr"/>
+                    <div class="fileUploadDiv">
+                        <input data-trans="ota_title" id="fileUploadApplyBtn" name="fileUploadApplyBtn" type="button"
+                               class="btn btn-primary margin-left-5 margin-top-2"
+                               onclick="fileUploadSubmitClickHandler();"/>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+            <form data-bind="visible: updateType() == 'mifi_local'">
+                <div class="form-body">
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="local_note"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

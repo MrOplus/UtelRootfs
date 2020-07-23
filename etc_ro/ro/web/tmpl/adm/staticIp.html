@@ -1,0 +1,299 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body">
+                <form action="#" id="frmStaticIpSwitch" role="form">
+                    <div class="content margin-top-20">
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans="static_ip_switch"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="static_ip_switch" id="static_ip_switch_enable"
+                                               data-bind="checked: static_ip_enable,click: staticIpHandle.bind($data, 1)" value="1"/>
+                                        <label for="static_ip_switch_enable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="static_ip_switch" id="static_ip_switch_disable"
+                                               data-bind="checked: static_ip_enable,click: staticIpHandle.bind($data, 0)" value="0"/>
+                                        <label for="static_ip_switch_disable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="form-buttons">-->
+                            <!--<input id="static_ip_switch_apply" type="submit" class="btn btn-primary" data-trans='apply'/>-->
+                        <!--</div>-->
+                    </div>
+                </form>
+                <div id="staticIpDiv" data-bind="visible: isShowStaticIpDiv">
+                    <form id="static_ip_mac" role="form">
+                        <h3 class="form-title" data-trans="static_ip_settings"></h3>
+                        <div id="page" class="content margin-top-20">
+                            <div id="content" class="content">
+                                <div id="page1Content" data-bind="visible: page1" class="pageContent page1">
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_1" id="ip_1" class="form-control ip-input"
+                                                   data-bind="value: ip1"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_1" id="mac_1" class="form-control mac-input"
+                                                   data-bind="value: mac1"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_2" id="ip_2" class="form-control ip-input"
+                                                                                      data-bind="value: ip2"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_2" id="mac_2" class="form-control mac-input"
+                                                                                       data-bind="value: mac2"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_3" id="ip_3" class="form-control ip-input"
+                                                                                      data-bind="value: ip3"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_3" id="mac_3" class="form-control mac-input"
+                                                                                       data-bind="value: mac3"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_4" id="ip_4" class="form-control ip-input"
+                                                                                      data-bind="value: ip4"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_4" id="mac_4" class="form-control mac-input"
+                                                                                       data-bind="value: mac4"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_5" id="ip_5" class="form-control ip-input"
+                                                                                      data-bind="value: ip5"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_5" id="mac_5" class="form-control mac-input"
+                                                                                       data-bind="value: mac5"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="page2Content" data-bind="visible: page2" class="pageContent page2">
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_6" id="ip_6" class="form-control ip-input"
+                                                                                      data-bind="value: ip6"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_6" id="mac_6" class="form-control mac-input"
+                                                                                       data-bind="value: mac6"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_7" id="ip_7" class="form-control ip-input"
+                                                                                      data-bind="value: ip7"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_7" id="mac_7" class="form-control mac-input"
+                                                                                       data-bind="value: mac7"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_8" id="ip_8" class="form-control ip-input"
+                                                                                      data-bind="value: ip8"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_8" id="mac_8" class="form-control mac-input"
+                                                                                       data-bind="value: mac8"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_9" id="ip_9" class="form-control ip-input"
+                                                                                      data-bind="value: ip9"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_9" id="mac_9" class="form-control mac-input"
+                                                                                       data-bind="value: mac9"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_10" id="ip_10" class="form-control ip-input"
+                                                                                      data-bind="value: ip10"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_10" id="mac_10" class="form-control mac-input"
+                                                                                       data-bind="value: mac10"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="page3Content" data-bind="visible: page3" class="pageContent page3">
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_11" id="ip_11" class="form-control ip-input"
+                                                                                      data-bind="value: ip11"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_11" id="mac_11" class="form-control mac-input"
+                                                                                       data-bind="value: mac11"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_12" id="ip_12" class="form-control ip-input"
+                                                                                      data-bind="value: ip12"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_12" id="mac_12" class="form-control mac-input"
+                                                                                       data-bind="value: mac12"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_13" id="ip_13" class="form-control ip-input"
+                                                                                      data-bind="value: ip13"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_13" id="mac_13" class="form-control mac-input"
+                                                                                       data-bind="value: mac13"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_14" id="ip_14" class="form-control ip-input"
+                                                                                      data-bind="value: ip14"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_14" id="mac_14" class="form-control mac-input"
+                                                                                       data-bind="value: mac14"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_15" id="ip_15" class="form-control ip-input"
+                                                                                      data-bind="value: ip15"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_15" id="mac_15" class="form-control mac-input"
+                                                                                       data-bind="value: mac15"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="page4Content" data-bind="visible: page4" class="pageContent page4">
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_16" id="ip_16" class="form-control ip-input"
+                                                                                      data-bind="value: ip16"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_16" id="mac_16" class="form-control mac-input"
+                                                                                       data-bind="value: mac16"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_17" id="ip_17" class="form-control ip-input"
+                                                                                      data-bind="value: ip17"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_17" id="mac_17" class="form-control mac-input"
+                                                                                       data-bind="value: mac17"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_18" id="ip_18" class="form-control ip-input"
+                                                                                      data-bind="value: ip18"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_18" id="mac_18" class="form-control mac-input"
+                                                                                       data-bind="value: mac18"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_19" id="ip_19" class="form-control ip-input"
+                                                                                      data-bind="value: ip19"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_19" id="mac_19" class="form-control mac-input"
+                                                                                       data-bind="value: mac19"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="col-xs-4 side-right"></label>
+                                        <div class="col-xs-3 pos-rel">
+                                            <span class="placeholder">IP</span><input type="text" name="ip_20" id="ip_20" class="form-control ip-input"
+                                                                                      data-bind="value: ip20"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="placeholder">MAC</span><input type="text" name="mac_20" id="mac_20" class="form-control mac-input"
+                                                                                       data-bind="value: mac20"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-left: 430px;">
+                                <ul class="pagination">
+                                    <li id="preview" class="slide-page disabled"><a href="javascript: void(0);" disabled="disabled">&laquo;</a></li>
+                                    <li id="page1" class="pages active"><a data-bind="event: { click: function(data, event) {pageHandle('#page1') } }" href="javascript: void(0);">1</a></li>
+                                    <li id="page2" class="pages"><a data-bind="event: { click: function(data, event) {pageHandle('#page2') } }" href="javascript: void(0);">2</a></li>
+                                    <li id="page3" class="pages"><a data-bind="event: { click: function(data, event) {pageHandle('#page3') } }" href="javascript: void(0);">3</a></li>
+                                    <li id="page4" class="pages"><a data-bind="event: { click: function(data, event) {pageHandle('#page4') } }" href="javascript: void(0);">4</a></li>
+                                    <li id="next" class="slide-page"><a href="javascript: void(0);">&raquo;</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="form-buttons">
+                    <input type="button" data-bind="click: submitApply" class="btn btn-primary" data-trans='apply'/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

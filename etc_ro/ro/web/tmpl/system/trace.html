@@ -1,0 +1,44 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs" id="nav-tabs"></ul>
+                <div class="content margin-top-20" id='trace'>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label data-trans='url_or_ip'></label>
+                        </div>
+                        <div class="col-xs-8">
+                            <input type="text" id="urlOrIp" class="required"/>
+                        </div>
+                    </div>
+                    <!--<div class="row" data-bind="visible: false">-->
+                        <!--<div class="col-xs-3">-->
+                            <!--<label data-trans='port'></label>-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-8">-->
+                            <!--<input type="text" id="port"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="row">
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-8">
+                            <button data-bind="click: startTrace" id="startTrace" data-trans="start"
+                                    class="btn btn-default"></button>
+                            <button disabled data-bind="click: stopTrace" id="stopTrace" data-trans="stop"
+                                    class="btn btn-default"></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-8">
+                            <textarea name="traceData" id="traceData" class="form-control" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

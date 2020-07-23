@@ -1,0 +1,105 @@
+[HELP]
+usage: netdog [OPTION] ...
+
+-h  print help messages 
+-s  [fastnat                     set fastnat level(0~2 & 5)
+     fastbr                      set fastbr  level(0~1)
+     leak                        open or close leakcheck(0~1)
+     loglevel]                   set loglevel,such as:loglevel=at_ctl:XYZ, X:soctime(0~1),Y:syslogd(1~4),Z:printf(1~4)
+-g  [all                         show all information,only used by net team!
+     ppp                         check network device ppp0 state
+     fast                        show more infomation for fast
+     skb                         show the using skb num and max used
+     slab                        show net using slab and  max value,not include kmalloc 
+     dev                         show active dev,include:name/ip/mac/br_port...
+     rj45                        show rj45 ip/mac info,and ping check
+     ps                          show ps ip/mac info,and ping check
+     wifi                        show wifi ip/mac info,and ping check
+     usb                         show usb ip/mac info,and ping check
+     hotplug                     show log:hotplug  and  dev act/deact/register/unregister ...rtnl  event
+     mynetlink                   show log:net defined my netlink event,include :open/close/PPP and so on
+     errno                       show log:kernel resport errno info 
+     signal                      show log:kernel resport app exit signal info
+     dnsmasq                     show log:print resquest infomation for dns
+     max_msg                     show resource using num & max
+     conn                        show connection info of netfilter and fast
+     ptype                       show the information for ptype_all and ptype_base
+     rate                        show the information of rate
+     route                       show the current route info 
+     fota                        check the connection to fota server domain and the sntp result state
+     clk_tree                    get the relationships and states of the clocks
+     pkt_lost]                   show packet lost info of tcp connection
+-p  real ip|dev=xxx              check the real ip or ip for dev can ping sucess
+-k  progress_name                used to kill the specific progress
+-e  xxx                          get the errinfo
+-u  url                          check the connection to the url
+
+If you want to know the use of net tools(tcpdump/telnet), please use:netdog -h tool
+
+[TOOL]
+
+telnet 192.168.0.1 4719            use telnet to login
+top                                check CPU and memory usage
+ping 114.114.114.114 [-t][-l 2000] ping specific ip, with -t will run all time without ctrl+c, 
+                                     -l specify the length of the data field
+ping 2000::31                      ping specific ip for ipv6
+ifconfig                           list the network device already up
+ifconfig -a                        list all of the network device both up and down
+ifconfig xxx up|down               up or down the network device, xxx should be exist in ifconfig -a
+tcpdump -i xxx [-w xxx.pcap]       use tcpdump to catch package, xxx is the network device name from ifconfig,
+                                     if you want to catch package to file, you can with parameter -w xxx.pwap
+tftp -pr xxx 192.168.1.100         tftp file xxx to the IP address for the 192.168.1.100 PC, PC need
+                                     running tftp tool at first
+iperf -c 192.168.1.100 -i 1 -w 20480 -t 9999 -p 21 client commands for iperf. -i 1 means output report for every 1 sec
+                                                     -w 20480 set buffer size, -t 9999 set transmission time for iperf,
+                                                     -p 21 set port.
+iperf [-u] -s -i 1 -p 21           server commands for iperf. with -u will bagging with UDP, default is TCP
+                                   if you want iperf from PC to device, you should running client on PC 
+                                    and server on device.
+ipconfig /release                  remove the dynamic IP address of the network card on PC
+ipconfig /renew                    re dynamically assigned IP address for the network adapter on PC
+
+
+config-portmirroring.sh            Port mirroring function, please use this script  
+
+
+if you want to know detailed information for command, such as tcpdump, you can use:tcpdump -h
+
+[NET]
+usage: netdog [OPTION] ...
+
+-h  net                                 print help messages for net
+-s  [set_print                          open/close if print(0~3)
+     set_tcpdump                        open/close tcpdump by ziyan(0~1)
+     br_name|ps_name|usb_name|ppp_name  set adapter-name for net device
+     brip                               open/close assert when the ip for br0 change by someone(0~1)
+     ackdrop                            open/close the package for ack droped
+     leak_list_max                      set the size of the leak list
+     track_max                          set the max number for track
+     stack_lenmax                       set byte for tracking stack relationship
+     exitsig                            open/close signal monitoring of kill process(0~1)
+     errno=xxx                          check the stack for process, xxx is the process name
+     leak_full_panic                    open/close if data_leak can't create new node for panic(0~1)
+     skb_max_panic                      set the skb max number, use volume up to this limit will be panic
+     skb_max_fail                       set the skb max number, use volume up to this limit return failed
+     skb_queue_type                     set skb packet type, print insert queue and unlink queue info
+     print_pkt                          print packet data
+     app_active_net                     after x minute, printf which apps send packets; 
+     pkt_lost_track]                    set packet lost track(0: close, 1: open)
+-d  [0-F]-[0-F]-...                     dump stack using key word             
+-g  [fastnat                            get the fastnat level
+     fastbr                             get the fastbr level
+     set_print                          get the set_print level
+     set_tcpdump                        get the parameter set_tcpdump set before
+     leak                               get the leak_set number
+     brip                               get the switch setting for br_ip
+     ackdrop                            get the switch setting for ackdrop
+     listmax                            get the total node number for skb
+     set_psbufleak                      get the value for kernel switch, defalut 0
+     set_extskbleak                     get the value for kernel switch, defalut 0
+     leak_full_panic                    get the switch for leak full
+     skb_max_panic                      get the switch for skb max number as panic
+     skb_max_fail                       get the switch for skb max number as failed
+     ueip                               show statistics of ue ip, only used by xgw
+     imsi]                              show statistics and ue ip info of imsi, only used by xgw
+-k   progress_name                      used to kill the specific progress

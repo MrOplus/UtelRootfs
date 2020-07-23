@@ -1,0 +1,19 @@
+#!/bin/sh
+
+export MYEXEC=${0##*/}
+
+if [ x"${MYEXEC}" == x"get_rb_reason" ]; then
+	TMP=`nv get reboot_val_flag`
+	if [ x"${TMP}" == x"BBBB" ]; then
+		nv get reboot_reason 2>&1 1>`tty`
+	else
+		echo "unknow" 1>`tty`
+	fi
+	exit 0
+else
+	if [ -n $1 ]; then
+		nv set reboot_reason=$1
+		nv set reboot_val_flag=AAAA
+		nv save
+	fi
+fi

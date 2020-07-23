@@ -1,0 +1,14 @@
+#
+# reserved values
+#
+255	local
+254	main
+253	default
+300	user_config
+301	multi_apn2
+302	multi_apn3
+0	unspec
+#
+# local
+#
+#1	inr.ruhep

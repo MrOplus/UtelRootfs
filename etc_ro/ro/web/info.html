@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="pragma" content="no-store">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-store">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <title></title> 
+    <link type="text/css" href="theme/css.css" rel="stylesheet" />
+    <link href="favicon.ico" rel="shortcut icon" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/lib/html5shiv.js"></script>
+    <script type="text/javascript" src="js/lib/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container" id="topContainer">
+    <div id="langLogoBar" class="row">
+        <div class="col-xs-4">
+            <a href="main.html"><img type="image/png" src="img/logo_globe.jpg"/></a>
+        </div>
+        <div id="statusBar" class="col-xs-8 text-right" style="display: none;">
+            <span class="statusItem" title="network_type" i18n="true" id="networkType" data-bind="text: networkType"></span>
+            <span class="statusItem" title="network_provider" i18n="true" id="operator"></span>
+            <span class="statusItem" title="ota_title" i18n="true" id="OTA" data-bind="visible:isShowFotaNewversionIcon()">
+                <a onclick="return showOTAAlert();">
+                    <img class="paddingbottom6" src="./img/update.gif"/>
+                </a>
+            </span>
+            <span class="statusItem" title="signal_strength" i18n="true" id="signal_strength"><i class="signal" data-bind="attr:{'class': signalCssClass}">&nbsp;</i></span>
+            <span class="statusItem" title="connection_status" i18n="true" id="connection_status"><i class="icon_connection" data-bind="attr:{'class': connectionCssClass}">&nbsp;</i></span>
+            <span class="statusItem" title="rj45_connection_status" i18n="true" id="rj45_connection_status" data-bind="visible: false"><i class="icon_connection" data-bind="attr:{'class': rj45ConnectionCssClass}">&nbsp;</i></span>
+            <span class="statusItem" title="sms_unread_count" i18n="true" id="sms_unread_count" data-bind="visible: smsUnreadCount() > 0 || showSmsDeleteConfirm()" style="display: none; position: relative;">
+                <a onclick="return gotoSmsList();" href="javascript: void(0)">
+                    <img data-bind="visible: smsUnreadCount() > 0 && !showSmsDeleteConfirm()" class="paddingbottom6" src="./img/sms_unread.png"/>
+                    <img data-bind="visible: showSmsDeleteConfirm()" class="paddingbottom6" src="./img/sms_full.gif"/>
+                    <sup data-bind="visible: smsUnreadCount() > 0, text: smsUnreadCount" class="smsUnreadCount"></sup>
+                </a>
+            </span>
+            <span class="statusItem" title="sim_status" i18n="true" id="statusItemSimStatus"><img data-bind="attr: {src: simStatus}" class="paddingbottom6"/></span>
+            <span class="statusItem" title="roaming_status" i18n="true" id="roamingStatus" data-bind="visible: roamingStatus() == 'R'" style="display: none;"><img class="paddingbottom6" src="./img/roaming.png"/></span>
+            <span class="statusItem" title="wifi_status" i18n="true" id="wifi_status" data-bind="visible: hasWifi">
+                <i class="wifi_status" data-bind="attr:{'class': wifiStatusCssClass}">&nbsp;</i>
+            </span>
+            <span class="statusItem" title="battery_level" i18n="true" data-bind="visible: hasBattery"><img class="paddingbottom6" id="batteryCharging" data-bind="attr: {src: batteryPers}"/></span>
+        </div>
+    </div>
+    <div id="languageBar" class="row">
+        <div id="themeContainer" class="col-xs-12 text-right">
+            <span id="logout">
+                <a class="margin-right-10" id="logoutlink" data-trans="logout" href="javascript:void(0)" data-bind="click:logout,visible:showLogout() " style="display: none;"></a>
+            </span>
+            <span id="login">
+                <a class="margin-right-10" id="loginlink" data-trans="login" href="javascript:void(0)" data-bind="click:login,visible:showLogin() " style="display: none;"></a>
+            </span>
+            <select style="display: none;" id="language" class="marginright10" data-bind="visible: false, options: languages, value: currentLan, optionsText: 'text', optionsValue: 'value', event:{ change: langChangeHandler}"></select>
+        </div>
+    </div>
+</div>
+<div class="container" id="indexContainer">
+    <div id="mainContainer" style="min-height: 450px;">
+        <div id='container'></div>
+    </div>
+</div>
+
+<div id='result-overlay'>
+    <div class='header'></div>
+    <br/>
+    <div class="text-center">
+        <div>
+            <div id="result-image"></div>
+        </div>
+        <div id="result_wording"></div>
+    </div>
+</div>
+
+<div id='loading'>
+    <div class='header'><span id="loadMsg"></span></div>
+    <br/>
+    <div class="text-center">
+        <div><span id="loading_wording" class="message"></span></div>
+        <img id="loadingImg" src="img/loading.gif"/>
+        <div id="loading_container"></div>
+    </div>
+</div>
+
+<script type="text/javascript" data-main="js/main" src="js/lib/require/require-jquery.js"></script>
+</body>
+</html>

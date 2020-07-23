@@ -1,0 +1,2 @@
+kernel/drivers/scsi/scsi_wait_scan.ko
+kernel/net/core/SI/portmirroring/portmirroring.ko

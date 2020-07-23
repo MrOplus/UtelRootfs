@@ -1,0 +1,59 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+        	<form action="#" id="automaticDialingButton" role="form">
+            <div class="form-body">
+            	<ul class="nav nav-tabs" id="nav-tabs"></ul>
+         
+                    <div class="content margin-top-20">
+
+                          <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans="switch"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="port_settings" id="static_ip_switch_enable"
+                                               data-bind="checked: port_settings" value="yes"/>
+                                        <label for="static_ip_switch_enable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="port_settings" id="static_ip_switch_disable"
+                                               data-bind="checked: port_settings" value="no"/>
+                                        <label for="static_ip_switch_disable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                   	 <input type="button" class="btn btn-primary" data-trans='apply' data-bind="click:click"/>
+                	</div>
+           
+                
+                 <div class="form-note">
+                    <div class="notes-title">&nbsp;</div>
+                    <ul class="notes-content">
+                        <!-- <li data-trans="ddns_port"></li> -->
+                    </ul>
+                </div>
+            </div>
+             </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

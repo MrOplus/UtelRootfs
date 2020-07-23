@@ -1,0 +1,75 @@
+<div id="innerContainer">
+<div class="row header-row">
+    <div class="col-xs-1">
+        <a href="javascript:void(0)" onclick="tosms('#home')">
+            <img alt="" src="img/arrow-back.png">
+        </a>
+    </div>
+    <div class="col-xs-11">
+        <div class="form-title">
+            <h1 data-trans='advanced_settings'></h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+	     <div class="nav_right">
+		    <ul>
+				<!--<li><a href="#sleep_mode" data-trans="sleep_mode"></a></li>-->
+				<li><a href="javascript:void(0)" data-trans="router_setting" onclick="tosms('#router_setting')"></a></li>
+				<li><a href="javascript:void(0)" data-trans="firewall" onclick="tosms('#firewall')"></a></li>
+				<!--<li data-bind="visible:hasUpdateCheck"><a href="#ota_update" data-trans="update_settings"></a></li>-->
+				<li data-bind="visible:hasUssd"><a href="javascript:void(0)" data-trans="USSD" onclick="tosms('#firewall')"></a></li>
+				<li class="active"><a href="javascript:void(0)" data-trans="hardware_setting" onclick="tosms('#usb')"></a></li>
+				<li data-bind="visible:hasDdns"><a href="javascript:void(0)" data-trans="DDNS" onclick="tosms('#ddns')"></a></li>
+				<li data-bind="visible:hasTr069"><a href="javascript:void(0)" data-trans="tr069config" onclick="tosms('#tr069config')"></a></li>
+                <li><a href="javascript:void(0)" data-trans="frequency" onclick="tosms('#frequency')"></a></li>
+                <li><a href="javascript:void(0)" data-trans="others" onclick="tosms('#others')"></a></li>
+                <li data-bind="visible:true"><a href="javascript:void(0)" data-trans="parental_control" onclick="tosms('#parental_control')"></a></li>
+			</ul>
+		</div>
+    </div>
+    <div class="col-xs-10">
+
+<div class="form-body margin-top-20">
+    <!--hide wifi range settings until sw implements it-->
+    <form id='usbModeForm'>
+	    <h3 class="form-title" data-trans="usb_mode_setting"></h3>
+        <div class="content">
+            <div class="row">
+                <label class="col-xs-3" data-trans='usb_mode'></label>
+                <div class="col-xs-8">
+					<div class="col-xs-3">
+						<input type="radio" name="modeGroup" id='main_mode' value="0" data-bind="checked: usbMode" />
+						<label for='main_mode' data-trans='usb_main_mode'></label>
+					</div>
+					<div class="col-xs-3">
+						<input type="radio" name="modeGroup" id='slave_mode' value="1" data-bind="checked: usbMode" />
+						<label for='slave_mode' data-trans='usb_slave_mode'></label>
+					</div>                
+                </div>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <input type="submit" class="btn btn-primary" data-trans='apply'/>
+        </div>
+    </form>
+    
+    <form id='uartBaudrateForm'>
+        <h3 class="form-title" data-trans='uart_baudrate'></h3>
+        <div class="content">
+            <div class="row">
+                <label class="col-xs-3" for='baudRates' data-trans='baud_rate'></label>
+                <div class="col-xs-4">
+                <select id="baudRates" data-bind="options: baudrates, value: selectedRate, optionsText: 'text', optionsValue: 'value'" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <input type="submit" class="btn btn-primary" data-trans='apply'/>
+        </div>
+    </form>
+</div>
+    </div>
+</div>
+</div>

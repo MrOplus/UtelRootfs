@@ -1,0 +1,222 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body">
+                <form id="frmMultiSSID">
+
+                    <div class="content">
+                        <div class="row form-group" data-bind="visible: hasWifiSwitch">
+                            <label class="col-xs-4 side-right" data-trans="wifi_switch"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="wifi_switch" id="wifi_switch_enable"
+                                               data-bind="checked: wifi_enable" value="1"/>
+                                        <label for="wifi_switch_enable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="wifi_switch" id="wifi_switch_disable"
+                                               data-bind="checked: wifi_enable" value="0"/>
+                                        <label for="wifi_switch_disable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row form-group">
+                            <label class="col-xs-4 side-right" for="txtIpAddress" data-trans="ip_address"></label>
+                            <div class="col-xs-3">
+                                <input id="txtIpAddress" name="txtIpAddress" type="text" data-bind="value: ipAddress"
+                                       class="required form-control" maxlength="15"/>
+                            </div>
+                         </div>
+                    </div>
+                </form>
+                <div>
+                    <form action="#" id="frmSSID1">
+                        <div data-bind="visible: isShowSSIDW13">
+                        <div class="content">
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" for="ssid" data-trans="network_name"></label>
+                                <div class="col-xs-6">
+                                    <input type="text" name="ssid" readonly="readonly" data-bind="value: ssid,event: { mouseover: toPassword,mouseout: toReadonly}" id="ssid" class="required form-control" maxlength="32"/>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4"></label>
+                                <div class="col-xs-8 label-absolute">
+                                    <p class="checkbox" data-bind="css:{'checkbox_selected': broadcast() == '0'}">
+                                        <input id="broadcastCheckbox" name="broadcastCheckbox" type="checkbox"
+                                               data-bind="checked: broadcast() == '0'" value="1"/>
+                                    </p>
+                                    <label data-trans="wifi_broadcast_desc"></label>
+                                </div>
+                            </div>
+                            <div id="ssidIsolated" class="row form-group" data-bind="visible: showIsolated">
+                                <label class="col-xs-4"></label>
+                                <div class="col-xs-8">
+                                    <p class="checkbox" data-bind="css:{'checkbox_selected': apIsolation() == 1}">
+                                        <input id="apisolatedCheckbox" name="apisolatedCheckbox" type="checkbox"
+                                               data-bind="checked: apIsolation() == 1" value="1"/>
+                                    </p>
+                                    <label data-trans="wifi_isolated_desc"></label>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" for='mode' data-trans='security_mode'></label>
+                                <div class="col-xs-6">
+                                    <select data-transid='security_mode' class="form-control"
+                                            data-bind="options: modess, value: selectedMode, optionsText: transOption('security_mode'), optionsValue: 'value'"></select>
+                                </div>
+                            </div>
+                        <div id="wepSection">
+                            <div  class="row form-group"
+                                 data-bind='visible: selectedMode() == "OPEN" && hasWifiWep'>
+                                <label class="col-xs-4 side-right" for='selEncryptType'
+                                       data-trans='ap_station_encrypt_type'></label>
+                                <div class="col-xs-6">
+                                    <select id="selEncryptType" class="form-control"
+                                            data-bind="value: encryptType,optionsValue: 'value'">
+                                        <option value="NONE" data-trans="ap_station_encrypt_type_none"></option>
+                                        <option value="WEP" data-trans="ap_station_encrypt_type_wep"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div id="ssidDefaultKey" class="row form-group"
+                                 data-bind='visible:  (selectedMode() == "OPEN" && encryptType() == "WEP" && hasWifiWep) || (selectedMode() == "SHARED" && hasWifiWep)'>
+                                <label class="col-xs-4 side-right" for='selWepKeyType'
+                                       data-trans='ap_station_wep_default_key'></label>
+                                <div class="col-xs-6">
+                                    <select id="selWepKeyType" class="form-control"
+                                            data-bind="value: keyID,optionsValue: 'value', event:{ change: profileChangeHandler}">
+                                        <option value="0" data-trans="ap_station_wep_key_0"></option>
+                                        <option value="1" data-trans="ap_station_wep_key_1"></option>
+                                        <option value="2" data-trans="ap_station_wep_key_2"></option>
+                                        <option value="3" data-trans="ap_station_wep_key_3"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="ssidKey" class="row form-group"
+                                 data-bind='visible: (selectedMode() == "OPEN" && encryptType() == "WEP" && hasWifiWep) || (selectedMode() == "SHARED" && hasWifiWep)'>
+                                <label class="col-xs-4 side-right" for='pwdWepKey'
+                                       data-trans='ap_station_wep_key'></label>
+                                <div class="col-xs-6">
+                                    <input id='pwdWepKey' autocomplete="off" name="pwdWepKey" type="password"
+                                           class="required form-control"
+                                           data-bind="value: wepPassword,visible:!showPassword()" maxlength='26'/>
+                                    <input id='txtWepKey' name="txtWepKey" type="text" class="required form-control"
+                                           data-bind="value: wepPassword,visible:showPassword()" maxlength='26'/>
+                                    <div class="margin-top-10">
+                                        <p class="checkbox"
+                                           data-bind="css:{'checkbox_selected': showPassword()}, click: showPasswordHandler"
+                                           manualControl="true">
+                                            <input id="showWepPassword" type="checkbox"
+                                                   data-bind="checked:showPassword"/>
+                                        </p>
+                                        <label class="floatleft margintop5 lineheight25" for="showWepPassword"
+                                               data-trans="display_password"/>
+                                    </div>
+                                    <div id="lblShowWepPassword" class="clear"></div>
+                                </div>
+                            </div>
+                            </div>
+                            <div id="passwordContainer" class="row form-group"
+                                 data-bind='visible: selectedMode() == "WPA2PSK" || selectedMode() == "WPAPSKWPA2PSK" || selectedMode() == "WPAWPA2PSKTKIP" || selectedMode() == "WPAWPA2PSKAES"'>
+                                <label class="col-xs-4 side-right" for='txtWPAKey' data-trans='pass_phrase'></label>
+                                <div class="col-xs-6">
+                                    <input id='pwdWPAKey' readonly="readonly" autocomplete="off" name="pwdWPAKey" type="password"
+                                           data-bind="value: passPhrase,visible:!showPassword(),event: { mouseover: toPassword,mouseout: toReadonly}"
+                                           class="required form-control"
+                                           minlength='8' maxlength='63'/>
+                                    <input id='txtWPAKey' name="txtWPAKey" type="text"
+                                           data-bind="value: passPhrase,visible:showPassword()"
+                                           class="required form-control"
+                                           minlength='8' maxlength='63'/>
+                                    <div class="margin-top-10">
+                                        <p class="checkbox"
+                                           data-bind="css:{'checkbox_selected': showPassword()}, click: showPasswordHandler"
+                                           manualControl="true">
+                                            <input id="showPassword" type="checkbox" data-bind="checked:showPassword"/>
+                                        </p>
+                                        <label class="floatleft lineheight25 margintop5"
+                                               data-trans="display_password"></label>
+                                    </div>
+                                    <div id="lblshowWPAPassword" class="clear"></div>
+                                </div>
+                            </div>
+                            
+                             <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" for="mode" data-trans="network_mode"
+                                   id="modeLabel"></label>
+                            <div class="col-xs-6">
+                                <select name="mode" data-transid="network_mode_select" id="mode" class="form-control"
+                                        data-bind="options: modes, value: selectedMode2, optionsText: transOption('network_mode_select'), optionsValue: 'value', event:{ change: modeChangeHandler}"
+                                        required="true" style="display:none"></select>
+                                <label data-bind="visible: modes().length == 1, attr:{'data-trans': oneModeTrans}"></label>
+                                <select name="mode" data-transid="network_modes_band_select" id="modeFor5HZ"
+                                        class="form-control"
+                                        data-bind="options: modes, value: selectedMode2, optionsText: transOption('network_modes_band_select'), optionsValue: 'value', event:{ change: modeChangeHandler}"
+                                        required="true" class="hide"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group" data-bind="visible: hasBandwidth()">
+                            <label class="col-xs-4 side-right" for="wifi_channel_bandwidth"
+                                   data-trans="wifi_channel_bandwidth"></label>
+                            <div class="col-xs-6">
+                                <select name="channelBandwidth" id="wifi_channel_bandwidth" class="form-control"
+                                        data-bind="options: channelBandwidths, value: selectedChannelBandwidth, optionsText: 'text', optionsValue: 'value'"
+                                        required="true"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" for="channel" data-trans="frequency_channel"></label>
+                            <div class="col-xs-6">
+                                <select name="channel" id="channel" class="form-control"
+                                        data-transid="frequency_channel"
+                                        data-bind="options: channels, value: selectedChannel, optionsText: transOption('frequency_channel', true), optionsValue: 'value', visible: selectedBand() == 'b' || !hasWifiBand()"></select>
+                                <label data-trans='auto'
+                                       data-bind="visible: selectedBand() == 'a' && hasWifiBand()"></label>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                        </div>
+                        <div class="form-buttons">
+                            <input id="ssid1_apply" type="submit" class="btn btn-primary" data-trans='apply'
+                                   data-bind="disable: (adBand()=='b' && adMode() == '2' && selectedMode() == 'SHARED') || (adBand()=='b' && adMode() == '2' && selectedMode() == 'OPEN' && encryptType() == 'WEP')"/>
+                            
+                        </div>
+                    </form>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-bind="visible: hasMultiSSID" data-trans="wifi_basic_note_multi_ssid_switch"></li>
+                            <li data-trans="wifi_basic_note_network_name"></li>
+                            <li data-trans="wifi_basic_note_broadcast"></li>
+                            <li data-trans="wifi_basic_note_security_mode"></li>
+                            <li class="no-style">
+                                <ul>
+                                    <li data-trans="wifi_basic_note_no_encryption"></li>
+                                    <li data-trans="wifi_basic_note_wpa_psk_aes"></li>
+                                    <li data-trans="wifi_basic_note_wpa_psk"></li>
+                                </ul>
+                            </li>
+                            <li data-trans="wifi_basic_note_pass_phrase"></li>
+                            <li data-trans="wifi_basic_note_max_station_number"></li>
+                        </ul>
+                    </div>
+                </div>
+           
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

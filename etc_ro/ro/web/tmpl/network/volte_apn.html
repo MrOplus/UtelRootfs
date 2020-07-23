@@ -1,0 +1,57 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+
+            <form action="#" id="apn_setting_form">
+                <div class="form-body">
+                    <ul class="nav nav-tabs margin-bottom-20" id="nav-tabs"></ul>
+                    <div class="content">
+                      <div  id="volteAPN">
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" for="volteAPN_input"
+                                  data-trans="volteAPN" ></label>
+                            <div class="col-xs-6">
+                                <input type="text" name="volteAPN_input"
+                                       data-bind="value: volteAPN" id="volteAPN_input"
+                                       class="required form-control" maxlength="64"/>
+                            </div>
+                        </div>
+                        <div id="volteUrl">
+                          <div class="row form-group">
+                              <label class="col-xs-3 side-right" for="volteUrl_input"
+                                 data-trans="volteUrl"></label>
+                              <div class="col-xs-6">
+                                  <input type="text" name="volteUrl_input"
+                                         data-bind="value: volteUrl" id="volteUrl_input"
+                                         class="form-control" maxlength="64"/>
+                              </div>
+                          </div>
+                          
+                      </div>
+                      <div id="volteStatus">
+                        <div class="row form-group">
+                              <label class="col-xs-3 side-right" for="volteUrl_status"
+                                 data-trans="volte_status"></label>
+                              <span class="col-xs-6" id="volteUrl_status">
+                                  
+                              </span>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary showApnItems" data-trans="apply"/>
+                     </div>
+                    
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="cannot_operate_when_connected"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

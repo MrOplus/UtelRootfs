@@ -1,0 +1,18 @@
+<div class="nav_right">
+    <ul>
+        <li>
+        <a href="javascript:void(0);" data-trans="firewall_switch" onclick="tosms('#firewall_switch')"></a>
+        </li>
+        <li class="port_filter"><a href="javascript:void(0);" data-trans="port_filter" data-bind="visible:isHideFirewall" onclick="tosms('#port_filter')"></a></li>
+         <li class="port_forward"><a href="javascript:void(0);" data-trans="port_map" data-bind="visible:isHideFirewall" onclick="tosms('#port_forward')"></a></li>
+        <li class="port_map"><a href="javascript:void(0);" data-trans="port_forward" data-bind="visible:isHideFirewall" onclick="tosms('#port_map')"></a></li>
+       
+        <li id="urlFilter" class="main_url_filter"><a href="javascript:void(0)" data-bind="visible:isHideFirewall" data-trans="url_filter" onclick="tosms('#main_url_filter')"></a></li>
+        <li class="upnp"><a href="javascript:void(0);" data-trans="upnp" data-bind="visible:isHideFirewall" onclick="tosms('#upnp')"></a></li>
+        <li class="dmz"><a href="javascript:void(0);" data-trans="dmz" data-bind="visible:isHideFirewall" onclick="tosms('#dmz')"></a></li>
+        <li class="rate_limit"><a href="javascript:void(0);" data-bind="visible:isHideFirewall" data-trans="rate_limit" onclick="tosms('#rate_limit')"></a></li>
+        <li class="import_export"><a href="javascript:void(0);" data-bind="visible:isHideFirewall" data-trans="import_export" onclick="tosms('#import_export')"></a></li>
+        <li id="ddos" class="ddos" ><a href="javascript:void(0);" data-bind="visible:isHideFirewall" data-trans="ddos_protection" onclick="tosms('#ddos')"></a></li>
+        <li id="flow_setting" style="display: none;" class="flow_setting"><a href="javascript:void(0);" data-trans="flow_setting" onclick="tosms('#flow_setting')" data-bind="visible:isHideFirewall"></a></li> 
+    </ul>
+</div>

@@ -1,0 +1,21 @@
+#####FOTA#####
+dm_fotastatus=0
+dm_dlprocess=0
+dm_nextpollingtime=
+dm_pollingcycle=21600
+dm_pollingswitch=1
+dm_fota_allow_start=1
+dm_fota_allow_roaming=0
+dm_isautoupdate=0
+dm_showicon=0
+dm_updateflag=0
+imei=273190488888888
+wa_inner_version=UFI93B01
+wa_inner_mod=ZTE_MF910S
+battery_charging=
+battery_value=90
+fota_check_result=
+fota_upgrade_result=
+#####This item must be in the end#####
+nvc_reserved=1 
+#####The End#####

@@ -1,0 +1,161 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+
+        <div class="col-xs-10">
+            <form action="#" id="frmLan" role="form">
+               <ul class="nav nav-tabs margin-bottom-20" id="nav-tabs"></ul>
+                <div class="form-body margin-top-20">
+                    <div class="row form-group form-title">
+                            <label class="col-xs-4 side-right" data-trans="monitor_switch" style="font-weight: bold;"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="port_settings" id="static_ip_switch_enable"
+                                               data-bind="checked: port_settings,click: staticIpHandle.bind($data, 'yes')" value="yes"/>
+                                        <label for="static_ip_switch_enable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="port_settings" id="static_ip_switch_disable"
+                                               data-bind="checked: port_settings,click: staticIpHandle.bind($data, 'no')" value="no"/>
+                                        <label for="static_ip_switch_disable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="content" data-bind="visible:isShowContent()">
+                        <div class="row form-group">
+                            <div class="sip_left col-xs-3">
+                                <label class="side-right" for="txtIpAddress" data-trans="voip_register_status" style="font-weight: bold;"></label>
+                            </div>
+                            <div class="sip_right">
+                                <div  id="voip_reg_st">
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row form-group">
+                            <div class="sip_left col-xs-3">
+                                <label class="side-right" for="txtIpAddress" data-trans="authorization_state" style="font-weight: bold;"></label>
+                            </div>
+                            <div class="sip_right">
+                                <div id="voip_auth_st">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group" style="line-height: 40px;">
+                            <div class="sip_left col-xs-3" >
+                                <label class="side-right" for="txtIpAddress" data-trans="voip_apn_enable" style="font-weight: bold;"></label>
+                            </div>
+                            <div class="sip_port col-xs-4" style="padding-left: 0px !important;">
+                             <select data-bind="value:voip_apn_enable,click:changedEnable" class="form-control">
+                                 <option data-trans="enable" value="1"></option>
+                                 <option data-trans="disable" value="0"></option>
+                             </select>
+                            </div>
+                        </div>
+                         <div class="row form-group" data-bind="visible:isShowVoipApn()" style="line-height: 40px;">
+                            <div class="sip_left col-xs-3">
+                                <label class="side-right" for="txtIpAddress" data-trans="apn_setting" style="font-weight: bold;"></label>
+                            </div>
+                            <div class="sip_right">
+                                <input type="text" name="voipApn" data-bind="value:voip_apn" class="form-control_sip">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="sip_left col-xs-3">
+                                <label class="side-right" for="txtIpAddress" data-trans="reg_server" style="font-weight: bold;"></label>
+                            </div>
+                            <div class="sip_right">
+                                <div>
+                                    <label data-trans="reg_address" style="width: 120px;"></label>
+                                    <input  type="text" name="txtIpAddress1" data-bind="value: sip_reg_server"
+                                       class="required form-control_sip" maxlength="64"/>
+                                </div>
+                                <div class="sip_port" style="padding-left: 25%;">
+                                    <label  data-trans="reg_port" style="width: 120px;"></label>
+                                    <input  type="text" data-bind="value: sip_reg_port"
+                                       class="required form-control_sip" name="txtDestPort1" maxlength="5" style="width: 70px;"/>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="row form-group">
+                            <div class="sip_left col-xs-3">
+                                <label class="side-right" for="txtIpAddress" data-trans="sip_domain" style="font-weight: bold;"></label>
+                            </div>
+                            <div class="sip_right">
+                                <div>
+                                    <label data-trans="reg_domain" style="width: 120px;"></label>
+                                    <input  type="text" data-bind="value: sip_domain_address"
+                                       class="required form-control_sip" maxlength="64"/>
+                                </div>
+                                <div class="sip_port" style="padding-left: 25%;">
+                                    <label data-trans="reg_port" style="width: 120px;"></label>
+                                    <input  type="text" data-bind="value: sip_domain_port"
+                                       class="required form-control_sip" name="txtDestPort2" maxlength="5" style="width: 70px;" />
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row form-group">
+                            <div class="sip_left col-xs-3">
+                                <label class="side-right" for="txtIpAddress" data-trans="sip_proxy" style="font-weight: bold;"></label>
+                            </div>
+                            <div class="sip_right">
+                                <div>
+                                    <label data-trans="reg_address" style="width: 120px;"></label>
+                                    <input  type="text" name="txtIpAddress2" data-bind="value: sip_proxy_address"
+                                        maxlength="64" class="form-control_sip" />
+                                </div>
+                                <div class="sip_port" style="padding-left: 25%;">
+                                    <label data-trans="reg_port" style="width: 120px;"></label>
+                                    <input  type="text" data-bind="value: sip_proxy_port"
+                                       maxlength="5" name="txtDestPort3" style="width: 70px;" class="form-control_sip" />
+                                   </div>
+                                <div style="padding-left: 25%;">
+                                    <label data-trans="enable" style="width: 120px;"></label>
+                                    <input  type="checkbox" data-bind="checked:sip_proxy_enable" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="sip_left col-xs-3">
+                                <label class="side-right" for="txtIpAddress" data-trans="sip_authorization" style="font-weight: bold;"></label>
+                            </div>
+                            <div class="sip_right">
+                                <div>
+                                    <label data-trans="reg_name" style="width: 120px;"></label>
+                                    <input  type="text" data-bind="value: sip_display_name"
+                                        maxlength="64" class="form-control_sip"/>
+                                </div>
+                                <div class="sip_port" style="padding-left: 25%;">
+                                    <label data-trans="reg_phone" style="width: 120px;"></label>
+                                    <input  type="text" data-bind="value: sip_user_name"
+                                        maxlength="64" class="form-control_sip"/>
+                                </div>
+                                <div class="sip_port" style="padding-left: 25%;">
+                                    <label data-trans="reg_account" style="width: 120px;"></label>
+                                    <input  type="text" data-bind="value: sip_reg_account"
+                                        maxlength="64" class="form-control_sip"/>
+                                </div>
+                                <div class="sip_port" style="padding-left: 25%;">
+                                    <label data-trans="reg_password" style="width: 120px;"></label>
+                                    <input  type="text" data-bind="value: sip_reg_pwd"
+                                        maxlength="64" class="form-control_sip"/>
+                                </div>
+
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans="apply"/>
+                    </div>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

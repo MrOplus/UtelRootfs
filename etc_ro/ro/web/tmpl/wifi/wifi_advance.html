@@ -1,0 +1,105 @@
+<link type="text/css" href="./js/lib/jqui/jquery-ui.min.css" rel="stylesheet"/>
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="pageForward()" class="hidePageForward">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title form-title-multi">
+                <h1 data-trans='wifi_wireless_settings'></h1>
+                <p data-trans="wifi_main_sub_title"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body">
+               <form id="frmWifiSwitch" role="form" action="#">
+                    <div class="content margin-top-20">
+                    </div>
+                </form>
+
+
+                <form action="#" id="wifi_advance_form" data-bind="visible: isShowSSIDInfoDiv">
+                    <h3 class="form-title" data-bind="attr:{'data-trans': 'wifi_advance'}"></h3>
+                    <div class="content">
+                        <div class="row form-group" data-bind="visible: hasWifiBand()">
+                            <label class="col-xs-4 side-right" for="band_select"
+                                   data-trans="network_band_selection"></label>
+                            <div class="col-xs-6">
+                                <label data-bind="visible: bands().length == 1, attr:{'data-trans': oneBandTrans}"></label>
+                                <select name="band_select" id="band_select" class="form-control"
+                                        data-bind="options: bands, value: selectedBand, optionsText: 'text', optionsValue: 'value', visible: bands().length > 1,event:{ change: bandChangeHandler}"
+                                        required="true"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" for="mode" data-trans="network_mode"
+                                   id="modeLabel"></label>
+                            <div class="col-xs-6">
+                                <select name="mode" data-transid="network_mode_select" id="mode" class="form-control"
+                                        data-bind="options: modes, value: selectedMode, optionsText: transOption('network_mode_select'), optionsValue: 'value', event:{ change: modeChangeHandler}"
+                                        required="true" style="display:none"></select>
+                                <label data-bind="visible: modes().length == 1, attr:{'data-trans': oneModeTrans}"></label>
+                                <select name="mode" data-transid="network_modes_band_select" id="modeFor5HZ"
+                                        class="form-control"
+                                        data-bind="options: modes, value: selectedMode, optionsText: transOption('network_modes_band_select'), optionsValue: 'value', event:{ change: modeChangeHandler}"
+                                        required="true" class="hide"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group" data-bind="visible: hasBandwidth()">
+                            <label class="col-xs-4 side-right" for="wifi_channel_bandwidth"
+                                   data-trans="wifi_channel_bandwidth"></label>
+                            <div class="col-xs-6">
+                                <select name="channelBandwidth" id="wifi_channel_bandwidth" class="form-control"
+                                        data-bind="options: channelBandwidths, value: selectedChannelBandwidth, optionsText: 'text', optionsValue: 'value'"
+                                        required="true"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group" id="hide_country">
+                            <label class="col-xs-4 side-right" for="country" data-trans="country_region_code"></label>
+                            <div class="col-xs-6">
+                                <select name="country" id="country" class="form-control"
+                                        data-bind="options: countries, value: selectedCountry, optionsText: 'text', optionsValue: 'value', event:{ change: countryChangeHandler}"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" for="channel" data-trans="frequency_channel"></label>
+                            <div class="col-xs-6">
+                                <select name="channel" id="channel" class="form-control"
+                                        data-transid="frequency_channel"
+                                        data-bind="options: channels, value: selectedChannel, optionsText: transOption('frequency_channel', true), optionsValue: 'value', visible: selectedBand() == 'b' || !hasWifiBand()"></select>
+                                <label data-trans='auto'
+                                       data-bind="visible: selectedBand() == 'a' && hasWifiBand()"></label>
+                            </div>
+                        </div>
+                        <div id="wifiAdvanceRate" class="row form-group" data-bind="visible: hasWifiBand() == false">
+                            <label class="col-xs-4 side-right" for="rate" data-trans="rate"></label>
+                            <div class="col-xs-6">
+                                <select name="rate" id="rate" class="form-control" data-transid="rate"
+                                        data-bind="options: rates, value: selectedRate, optionsText: transOption('rate'), optionsValue: 'value'"></select>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <input type="submit" class="btn btn-primary" data-trans="apply"
+                                   data-bind="disable:isF() == 1 && selectedMode() == '2'"/>
+                        </div>
+                    </div>
+
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="wifi_advanced_note_band_selection"></li>
+                            <li data-trans="wifi_advanced_note_network_mode"></li>
+                            <li data-trans="wifi_advanced_note_country_code"></li>
+                            <li data-trans="wifi_advanced_note_frequency"></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

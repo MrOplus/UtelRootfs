@@ -1,0 +1,130 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+
+            <!--<ul class="nav nav-tabs nav-justified" role="tablist" data-bind="visible: isDataCard">-->
+                <!--<li><a href="javascript:void(0)" data-trans="dmz_setting" onclick="tosms('#dmz')"></a></li>-->
+                <!--<li class="active"><a href="javascript:void(0)" data-trans="pin_management"-->
+                                      <!--onclick="tosms('pin_management')"></a></li>-->
+                <!--<li><a href="javascript:void(0)" data-trans="update_settings" onclick="tosms('#ota_update')"></a></li>-->
+                <!--<li data-bind="visible:true"><a href="javascript:void(0)" data-trans="parental_control"-->
+                                                <!--onclick="tosms('#parental_control')"></a></li>-->
+            <!--</ul>-->
+            <h3 class="form-title" data-trans='pin_management'></h3>
+            <form action="#" id="frmPin" data-bind="css: {'margin-top-20': isDataCard}">
+                <div class="form-body">
+                    <div data-bind="visible:pageState()!=4">
+                        <div class="content">
+                            <div id="showPinWhenPinStaueNEQ3" data-bind="visible:pageState()!=3">
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right" data-trans="pin_status"></label>
+                                    <div class="col-xs-8">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <input type="radio" name="pinStatus" id="pinEnable" value="1"
+                                                       data-bind="checked: pinStatus,disable:pageState()==2" />
+                                                <label for="pinEnable" data-trans="enable"
+                                                       class="marginright10"></label>
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <input id="btnModifyPin" type="button" class="btn btn-primary"
+                                                       data-trans="modify_pin"
+                                                       data-bind="visible:showPinChange, enable:originPinStatus()==1,click: displayModifyPinPage,css:{disabled:originPinStatus()==0}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right"></label>
+                                    <div class="col-xs-8">
+                                        <input type="radio" name="pinStatus" id="pinDisable" value="0"
+                                               data-bind="checked: pinStatus,disable:pageState()==2"/>
+                                        <label for="pinDisable" data-trans="disable"></label>
+
+                                    </div>
+                                </div>
+                              
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right" data-trans="current_pin" for="txtPin"></label>
+                                    <div class="col-xs-3">
+                                        <input id="txtPin" autocomplete="off" name="txtPin" type="password"
+                                               class="required form-control" maxlength="8"
+                                               data-bind="value: currentPin,disable:pageState()==0,css:{disabled:pageState()==0}"/>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div id="showPukWhenPinStaueEQ3" data-bind="visible:pageState()==3">
+                                <div><p class="prompt" data-trans="enter_puk"></p></div>
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right" data-trans="puk" for="txtPuk"></label>
+                                    <div class="col-xs-3">
+                                        <input id="txtPuk" autocomplete="off" name="txtPuk" type="password"
+                                               class="required form-control" maxlength="8"
+                                               data-bind="value: puk, valueUpdate: 'keypress'"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-bind="visible:pageState()==2 || pageState()==3">
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right" data-trans="new_pin" for="txtNewPin"></label>
+                                    <div class="col-xs-3">
+                                        <input id="txtNewPin" autocomplete="off" name="txtNewPin" type="password"
+                                               data-bind="value: newPin"
+                                               class="required form-control" maxlength="8"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-xs-4 side-right" data-trans="confirm_pin"
+                                           for="txtConfirmPin"></label>
+                                    <div class="col-xs-3">
+                                        <input autocomplete="off" id="txtConfirmPin" name="txtConfirmPin"
+                                               type="password" data-bind="value: confirmPin"
+                                               class="required form-control" maxlength="8"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-bind="visible:pageState()<3">
+                                <div id="pinLeftMsg" class="row form-group" data-bind="visible:pinNumber()!=1">
+                                    <label class="col-xs-4 side-right"></label>
+                                    <div class="col-xs-8">
+                                        <p class="important-prompt" data-bind="visible:pinNumber()>1">
+                                            <span data-trans="attempts_left"></span>
+                                            <span data-bind='text:pinNumber'></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="pinLastMsg" data-bind="visible:pinNumber()==1">
+                                    <p class="important-prompt" data-trans="last_enter_pin"></p>
+                                </div>
+                            </div>
+                            <div data-bind="visible:pageState()==3">
+                                <div id="pukLeftMsg" class="row form-group" data-bind="visible:pukNumber()!=1">
+                                    <label class="col-xs-4 side-right"></label>
+                                    <div class="col-xs-8">
+                                        <p class="important-prompt" data-bind="visible:pukNumber()>1">
+                                            <span data-trans="attempts_left"></span>
+                                            <span data-bind='text:pukNumber'></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="pukLastMsg" data-bind="visible:pukNumber()==1">
+                                    <p class="important-prompt" data-trans="last_enter_puk"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <input type="submit" class="btn btn-primary" data-trans="apply"
+                                   data-bind="disable:pageState()==0,css:{disabled:pageState()==0}" id="btnPinApply"/>
+                        </div>
+                    </div>
+                    <div id="puk_locked" class="important-prompt" data-trans="puk_locked"
+                         data-bind="visible:pageState()==4"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

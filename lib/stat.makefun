@@ -1,0 +1,140 @@
+/*- makefun targets: MDFGH from file: stat.c */
+/*---    THIS IS NOT SOURCE CODE */
+
+#ifndef MAKEFUN___stat_makefun___stat_c /*once only*/
+#define MAKEFUN___stat_makefun___stat_c
+
+
+
+                    /*-,- From stat.c */
+/*-M- stat -- VoIP statistics module.
+ *                                  Author: Eason Yang, Nov.15, 2010
+ *
+ * The idea:
+ * Write VoIP stat info into system shared memory.
+ *     Modules having write access include phone/pjsua/pjm;
+ *     Modules having read access include tr069 for now.
+ *
+ */
+
+                    /*-,- From stat.c */
+/*-D- stat module
+*/
+
+#define STAT_MAX_LINES                  2
+#define STAT_MAX_CALLS_PER_LINE         2
+#define STAT_STR_MAX_LEN               32
+
+typedef unsigned stat_call_state;
+#define STAT_CALL_STATE_IDLE            0
+#define STAT_CALL_STATE_RING            1
+#define STAT_CALL_STATE_CALLING         2
+#define STAT_CALL_STATE_CONNECTED       3
+#define STAT_CALL_STATE_DISCONNECTING   4
+
+typedef unsigned stat_codec_type;
+#define STAT_CODEC_G711U                0
+#define STAT_CODEC_G711A                8
+#define STAT_CODEC_G722                 9
+#define STAT_CODEC_G729                18
+#define STAT_CODEC_G726_16            113
+#define STAT_CODEC_G726_24            114
+#define STAT_CODEC_G726_32            115
+#define STAT_CODEC_G726_40            116
+#define STAT_CODEC_T38                125
+
+typedef unsigned stat_call_type;
+#define STAT_CALL_TYPE_NONE             0
+#define STAT_CALL_TYPE_PACKET_VOICE     1
+#define STAT_CALL_TYPE_MODEM_DATA       2
+#define STAT_CALL_TYPE_FAX_PASSTHROUGH  3
+#define STAT_CALL_TYPE_FAX_T38          4
+
+typedef unsigned stat_call_direction;
+#define STAT_CALL_DIRECTION_NONE        0
+#define STAT_CALL_DIRECTION_INBOUND     1
+#define STAT_CALL_DIRECTION_OUTBOUND    2
+
+struct callStat {
+    stat_call_state State;
+    unsigned Duration;
+    unsigned TxPackets;
+    unsigned RxPackets;
+    unsigned LostPackets;
+    unsigned OutOfOrderPackets;
+    unsigned PacketJitter;
+    int Hold;
+    stat_codec_type EncoderType;
+    stat_codec_type DecoderType;
+    unsigned OutgoingPacketSize;
+    unsigned IncomingPacketSize;
+    stat_call_type Type;
+    stat_call_direction Direction;
+    char PeerNumber[STAT_STR_MAX_LEN];
+    char PeerName[STAT_STR_MAX_LEN];
+};
+
+typedef unsigned stat_line_hook_state;
+#define STAT_LINE_ON_HOOK               0
+#define STAT_LINE_OFF_HOOK              1
+#define STAT_LINE_FLASH_HOOK            2
+#define STAT_LINE_FLASH_HOOK_PENDING    3
+
+struct lineStat {
+    int Registered;
+    stat_line_hook_state HookState;
+    char LastIncomingNumber[STAT_STR_MAX_LEN];
+    char LastOutgoingNumber[STAT_STR_MAX_LEN];
+    int CallBackState;
+    int CurrentCallId;
+    struct callStat Calls[STAT_MAX_CALLS_PER_LINE];
+};
+
+typedef unsigned stat_SYS_state;
+#define STAT_SYS_CONNECTED              0
+#define STAT_SYS_DISCONNECTED           1
+
+typedef struct {
+    char SwVersion[STAT_STR_MAX_LEN * 2];
+    stat_SYS_state SysState;
+    struct lineStat Lines[STAT_MAX_LINES];
+} statS;
+
+
+
+                    /*-,- From stat.c */
+                    extern
+/*-F- statModuleInit -- stat module init
+ *
+ * return NULL on error
+ *
+ */   
+statS* statModuleInit()
+;
+                              /*-;-*/
+
+
+                    /*-,- From stat.c */
+                    extern
+/*-F- statModuleDeinit -- stat module de-init
+ *
+ * return non-zero on error
+ *
+ */
+int statModuleDeinit()
+;
+                              /*-;-*/
+
+
+
+#endif /* MAKEFUN___stat_makefun___stat_c */
+
+
+
+
+
+
+
+
+
+

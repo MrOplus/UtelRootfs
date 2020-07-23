@@ -1,0 +1,303 @@
+#!/bin/sh
+
+/bin/mount -t proc proc /proc
+
+echo "Starting mdevd..."
+/bin/mount -t tmpfs mdev /dev
+/bin/mount -t sysfs sysfs /sys
+echo /sbin/mdev > /proc/sys/kernel/hotplug
+mdev -s
+
+
+/bin/mount   -t  ramfs   ramfs    /tmp
+mkdir /dev/pts
+mkdir /dev/shm
+/bin/mount   -t  devpts  devpts   /dev/pts
+/bin/mount   -t  tmpfs   tmpfs    /dev/shm
+/bin/mount   -t  debugfs none     /sys/kernel/debug
+
+mkdir -p /securefs
+#mount -t jffs2 -o ro mtd:securefs /securefs
+mtdnum_securefs=$(cat /proc/mtd | grep "securefs" | awk '{print $1}'| cut -b 4- |sed 's/://g')
+ubiattach /dev/ubi_ctrl -m $mtdnum_securefs 
+mount -t ubifs  -o ro ubi1_0 /securefs
+
+if [ -f "/tz_upgrade_file_path/tz_new_update" ] && [ -f "/tz_upgrade_file_path/rootfs.tgz" ]; then
+ 	./tz_upgrade_file_path/tz_new_update
+fi
+
+mkdir -p /yaffs 
+mount -t jffs2 -o rw mtd:yaffs  /yaffs
+
+ln -s /tmp /tmp/local
+ln -s /tmp /tmp/tmp
+
+mkdir -p /tmp/mnt
+
+#####sunquan start
+mkdir -p /var/local/tmp/ppp/status
+mkdir -p /var/local/tmp/ppp/peers
+#####sunquan end
+
+mkdir -p /var/run
+mkdir -p /var/log
+mkdir -p /var/db
+mkdir -p /var/ct/tmp
+
+echo off > /sys/kernel/debug/kmemleak
+echo 32768 > /proc/sys/kernel/msgmnb
+#####sunquan start
+ifconfig lo 127.0.0.1 up
+#####sunquan end
+
+# insmod drivers
+KVER=`uname -r | cut -f 1 -d '-'`
+
+##### xuxinqiang start
+#mknod /dev/slic   c 211 0
+#insert slic modules
+if [ -f /lib/modules/$KVER/kernel/drivers/slic/slic.ko ]; then
+	insmod /lib/modules/$KVER/kernel/drivers/slic/slic.ko
+fi
+
+##### xujianqiang end
+#####sunquan start
+mknod /dev/myioctl   c 222 0
+#####sunquan end
+
+mknod /dev/tun c 10 200
+
+MODULE_PATH=/lib/modules/$KVER/net
+
+#####sunquan start
+#insert ipt modules
+if [ -f $MODULE_PATH/nf_conntrack_rtsp.ko ]; then
+	insmod $MODULE_PATH/nf_conntrack_rtsp.ko
+fi
+if [ -f $MODULE_PATH/nf_nat_rtsp.ko ]; then
+	insmod $MODULE_PATH/nf_nat_rtsp.ko
+fi
+if [ -f $MODULE_PATH/ipt_classify.ko ]; then
+	insmod $MODULE_PATH/ipt_classify.ko
+fi
+if [ -f $MODULE_PATH/xt_webstr.ko ]; then
+	insmod $MODULE_PATH/xt_webstr.ko
+fi
+#####sunquan end
+
+
+##### for app core dump start
+ulimit -c unlimited 
+mkdir -p /cache/pid-core-dumps
+echo /cache/pid-core-dumps/core.%e > /proc/sys/kernel/core_pattern
+##### for app core dump end
+
+echo 4096 > /proc/sys/vm/min_free_kbytes
+find / -name '.gitignore' | xargs rm -rf
+nvserver &
+tz_listen add_default_config
+# fota升级后相关nv更新，仅限fota升级后第一次开机
+#nv_fota_update.sh
+
+cmdline=$(cat /proc/cmdline)
+bootmode=${cmdline##*bootmode=}
+bootmode=${bootmode%% *}
+bootreason="${cmdline##*boot_reason=}"
+
+PPP_STATUS=`nv get disconnect_internet`
+
+if [[ $bootmode == "amt" ]]; then
+ nv set ver_mode=0
+# internet.sh 
+ zte_usbCfgMng &
+ zte_log_agent &
+
+ zte_amt -p 10027 &
+ 
+ chown root:root /bin/adbd
+ adbd &
+ mode_test&
+ exit 0
+fi
+
+nv set ver_mode=1
+
+if [[ $bootreason == "10" ]]; then
+ nv set ver_mode=2
+fi
+
+echo 0 > /etc_ro/wifiStatus
+echo 0 > /etc_ro/wpsStatus
+echo F > /etc_ro/staStatus
+
+zte_usbCfgMng &
+
+#####sunquan start
+mkdir -p /usr/netlog
+
+#syslogd -O /syslogd.log -l 2 -s 1024 &
+sysctl -w net.unix.max_dgram_qlen=5000
+syslogd -l 2 -s 10240 -f /etc/syslog.conf &
+#####sunquan end
+
+at_ctl 2>&1 1>/dev/null &
+zte_drvComMng &
+rtc-service &
+
+touch /tmp/open_wifi_calibration
+
+bootflag=$(nv get LanEnable)
+
+if [[ $bootflag == "1" ]]; then
+zte_mmi &
+fi
+
+echo /sbin/modprobe -d /lib/modules/3.4.5 > /proc/sys/kernel/modprobe
+
+#####sunquan start
+echo 2 > /proc/sys/net/ipv6/conf/default/accept_dad
+echo 1 > /proc/sys/net/ipv6/conf/all/forwarding
+#####sunquan end
+
+# start the page cache/kmem cache cleanup timer in the kernel
+echo 1 > /proc/sys/vm/drop-cache
+
+#####sunquan start
+# Change default NAT policy of UDP sessions, per Win7 Logo
+# requirement for Xbox-Live. The defaut session timeout on
+# linux 3.4.5 was 30 seconds. Win7 logo requires at least
+# 70.
+echo 120 > /proc/sys/net/ipv4/netfilter/ip_conntrack_udp_timeout
+
+# treat reset close session as fin close session, set same timeout
+# this is required to pass CDRouter NAT timeout test case.
+echo 120 > /proc/sys/net/ipv4/netfilter/ip_conntrack_tcp_timeout_close
+
+# add this to support up to 20 PPTP tunnel
+echo 40 > /proc/sys/net/netfilter/nf_conntrack_expect_max
+#####sunquan end
+
+##### zhouguopo say watch USB status
+mount -t usbfs none /proc/bus/usb
+
+echo 0 > /proc/sys/kernel/panic
+echo 1 > /proc/sys/kernel/panic_on_oops
+echo 2 > /proc/sys/vm/panic_on_oom
+
+#add for adbd
+chmod a+rw /dev/android_adb /dev/ptmx
+mkdir -p /system/bin
+ln -s /bin/busybox /system/bin/sh
+chown root:root /bin/adbd
+ln -sf /bin/netdog /bin/set_loglevl
+
+export MYRESETFLAG=`nv get reboot_val_flag`
+if [ x"${MYRESETFLAG}" == x"AAAA" ];then
+    nv set reboot_val_flag=BBBB
+elif [ x"${MYRESETFLAG}" == x"BBBB" ]; then
+    nv set reboot_val_flag=CCCC
+fi
+unset MYRESETFLAG
+nv save
+
+# apps start
+internet.sh
+
+if [[ $bootflag == "1" ]]; then
+# wifi要基于内网做配置，必须启动在内网后面
+wlan-server &
+fi
+
+zte_mainctrl &
+
+# for audio res ctrl 
+zte_audio_ctrl &
+
+USB_MODE=$(nv get tz_usb_support)
+if [[ $USB_MODE == "0" ]]; then
+zte_tools_agent &
+else
+zte_log_agent &
+fi
+
+zte_hotplug &
+
+## please confirm your app should place after or before
+## for dial up and wifi go faster
+sleep 7
+
+zte_watchdog &
+/sbin/zte_ipsec_proxy&
+
+tz_voice_type=$(nv get tz_voice_type)
+
+if [[ $bootflag == "1" ]]; then
+fluxstat &
+sntp &
+goahead &
+sd_hotplug &
+if [[ $tz_voice_type != "1" ]]; then
+ccapp &
+fi
+arm-linux-siproxd &
+zte_pcs &
+sms &
+phonebook &
+fi
+
+adbd_flag=$(nv get adbd_enable)
+if [ "$adbd_flag" == "y" ]; then
+adbd &
+fi
+
+mode_test&
+
+mac_switch=$(nv get tz_macwriter_switch)
+
+if [[ $mac_switch == "1" ]]; then
+tz_macwriter &
+fi
+
+tz_listen &
+
+echo "Starting ZTE FOTA apps......!!"
+##### fota need start
+mkdir -p /cache/media/zte/zte_socket
+##### fota need end
+#/sbin/start_update_app.sh &
+
+if [[ $bootflag == "1" ]]; then
+#/usr/sbin/telnetd -p 4719 &
+/sbin/start_telnetd.sh &
+fi
+
+mkdir /mnt/tmp
+mount --bind / /mnt/tmp
+
+if [ "${PPP_STATUS}" = "1" ]; then
+	touch /tmp/ppp_dis
+fi
+#when no network add iptables
+/etc/rc.d/rc.iptables_filter &
+
+dropbearflag=$(nv get dropbear_enable)
+if [ "$dropbearflag" == "y" ]; then
+/etc/rc.d/rc.sshd &
+fi
+
+# for debug
+netdog_init_set.sh
+#chmod +x /sbin/app_monitor.sh
+#app_monitor.sh open
+
+lanrecord &
+/usr/system/cksn &
+if [[ $tz_voice_type == "1" ]]; then
+slic_server &
+tz_phone &
+fi
+
+sleep 7 && cwmpd &
+/etc/rc.d/rc.xl2tpd pc &
+/sbin/rc_snmp.sh &
+/etc/rc.d/rc.pptp &

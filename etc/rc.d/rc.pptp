@@ -1,0 +1,176 @@
+#!/bin/sh
+##功能：pptp的配置、启动脚本
+
+#set -x
+
+##是否允许pptp
+pptp_enable=$(nv get tz_pptp_vpn_state)
+
+if [ "${pptp_enable}" != "yes" ]; then
+	exit 1
+fi
+##pptp服务器IP
+pptp_server=$(nv get tz_pptp_vpn_server)
+##pptp的用户名
+pptp_user_name=$(nv get tz_pptp_vpn_name)
+##pptp的认证密码
+pptp_user_pass=$(nv get tz_pptp_vpn_pass)
+##MTU
+pptp_mtu=$(nv get tz_pptp_vpn_mtu)
+##MPPE加密方式,1:require-mppe-128, 2:require-mppe-40, 3:require-mppe
+pptp_vpn_mppe=$(nv get tz_pptp_vpn_mppe)
+##是否添加默认路由
+pptp_vpn_defaultroute=$(tz_pptp_vpn_defaultroute)
+##default wan interface
+default_wan_if=$(nv get default_wan_rel)
+##pptp配置文件存放路径
+config_path_peerfiles=/tmp/ppp/peers
+##pptp客户端配置文件
+config_file_pptp=${config_path_peerfiles}/pptp_vpn_client
+##pptp的ifname
+pptp_vpn_ifname=pptp
+pptpConfig()
+{
+	rm -rf /tmp/ppp/resolv.conf
+	##开始往pptp配置文件中写入配置
+	echo "pty \"pptp ${pptp_server} --nolaunchpppd\"" > ${config_file_pptp}
+	
+	echo "name \"${pptp_user_name}\"" >> ${config_file_pptp}
+	echo "password \"${pptp_user_pass}\"" >> ${config_file_pptp}
+	echo "mtu ${pptp_mtu:=1400}" >> ${config_file_pptp} 
+	##最大接收单元, 对于VPN, 设置为1410 mru范围在128-1460
+	echo "mru ${pptp_mtu:=1400}" >> ${config_file_pptp}
+	##MPPE加密方式
+	if [ "${pptp_vpn_mppe}" = "1" ]; then
+		echo "require-mppe-128" >> ${config_file_pptp}
+	elif [ "${pptp_vpn_mppe}" = "2" ]; then
+		echo "require-mppe-40" >> ${config_file_pptp}
+	elif [ "${pptp_vpn_mppe}" = "3" ]; then
+		echo "require-mppe" >> ${config_file_pptp}
+	fi
+	##不要求对端认证自己
+	echo "noauth" >> ${config_file_pptp}
+	##LCP回响
+	echo "lcp-echo-interval 20" >> ${config_file_pptp}
+	echo "lcp-echo-failure 3" >> ${config_file_pptp}
+	##网络接口名
+	echo "ifname ${pptp_vpn_ifname}" >> ${config_file_pptp}
+	echo "usepeerdns" >> ${config_file_pptp}
+	echo "noipdefault" >> ${config_file_pptp}
+	
+	if [ "${pptp_vpn_defaultroute}" = "yes" ]; then
+		echo "defaultroute" >> ${config_file_pptp}
+	fi
+	##断线重拨,默认10次
+	echo "persist" >> ${config_file_pptp}
+	##0失败一直重拨,default 10次
+	echo "maxfail 0" >> ${config_file_pptp}
+}
+
+pptpstart()
+{
+	##停止pptp服务
+	if [ -n "$(ps | grep pppd | grep -v grep | grep pptp_vpn_client)" ]; then
+		killall pppd
+		sleep 1
+	fi
+	##重启pptp服务
+	pppd call pptp_vpn_client &
+	sleep 10
+}
+
+pptpstatus()
+{
+	pptp_state=disconnet
+
+	if [ -n "$(ip link | grep ^[0-9] | awk -F: '{print $2}' | grep ${pptp_vpn_ifname})" ]; then
+		#获取对端地址
+		pptp_peer_ip=$(ifconfig ${pptp_vpn_ifname} | grep 'P-t-P:' | awk -F: '{print $3}' | awk -F' ' '{print $1}')
+		
+		if [ -n "${pptp_peer_ip}" ]; then
+			pptp_state=connected
+		fi
+
+		nv set tz_pptp_peer_ip=${pptp_peer_ip}
+		pptp_get_ip=$(ifconfig ${pptp_vpn_ifname} | grep 'inet addr:' | awk -F: '{print $2}' | awk -F' ' '{print $1}')
+		nv set tz_pptp_get_ip=${pptp_get_ip}
+	else
+		nv set tz_pptp_peer_ip=
+		nv set tz_pptp_get_ip=
+	fi
+}
+
+PPTPRouteDef()
+{
+	route del default
+	route add default gw ${pptp_peer_ip} dev ${pptp_vpn_ifname}
+	iptables -t nat -F tz_apn1
+	iptables -t nat -A tz_apn1 -o ${pptp_vpn_ifname} -j MASQUERADE
+}
+
+WANRouteDef()
+{
+	default_wan_gw=$(nv get ${default_wan_if}_gw)
+	if [ -z "$(route -e | grep default | grep $default_wan_if)" ]; then
+		route del default
+		route add default gw ${default_wan_gw} dev ${default_wan_if}
+		iptables -t nat -F tz_apn1
+		iptables -t nat -A tz_apn1 -o ${default_wan_if} -j MASQUERADE
+	fi
+}
+##创建l2tp配置文件存放路径
+if [ ! -d "${config_path_peerfiles}" ]; then
+	mkdir -p ${config_path_peerfiles}
+fi
+
+WANRouteDef
+##配置
+pptpConfig
+##启动服务
+pptpstart
+##ppp状态检查
+while [ 1 ]
+do
+	##获取ppp当前状态
+	pptpstatus
+	
+	if [ "${pptp_state}" = "connected" ]; then
+		if [ "${pptp_state_last:=disconnet}" = "disconnet" ]; then
+			##检查新的默认路由是否存在，如果不存在，则添加之
+			if [ -z "$(route -e | grep default | grep $pptp_vpn_ifname)" ]; then
+				PPTPRouteDef
+			fi
+		elif [ ${routechecktime:=0} -gt 3 ]; then
+			#每隔30秒检查一次路由，看路由是否会出问题
+			if [ -z "$(route -e | grep default | grep $pptp_vpn_ifname)" ]; then
+				PPTPRouteDef
+				routechecktime=0;
+			fi
+		fi
+		
+		if [ -e "/tmp/ppp/resolv.conf" ]; then
+			if [ -z "$(ps | grep dnsmasq | grep -v grep | grep /tmp/ppp/resolv.conf)" ]; then
+				killall dnsmasq
+				dnsmasq -C /tmp/dnsmasq.conf -r /tmp/ppp/resolv.conf -K &
+			fi
+		fi
+
+		routechecktime=$(expr ${routechecktime} + 1)
+	else
+		WANRouteDef
+
+		if [ -n "$(ps | grep dnsmasq | grep -v grep)" ]; then
+			if [ -z "$(ps | grep dnsmasq | grep -v grep | grep '/etc_rw/dnsmasq.resolv.conf')" ]; then
+				killall dnsmasq
+				dnsmasq -C /tmp/dnsmasq.conf -r /etc_rw/dnsmasq.resolv.conf -K &
+			fi
+		fi
+		
+	fi
+	
+	if [ "${pptp_state_last:=disconnet}" != "${pptp_state}" ]; then
+		pptp_state_last=${pptp_state}
+	fi
+	
+	sleep 10
+done

@@ -1,0 +1,41 @@
+<form id="opmode_form">
+	<div class="form-body">
+		<div class="form-title" data-trans="opmode"></div>
+		<div class="content">
+			<!--<div class="row form-group">-->
+                <!--<div class="col-xs-1"></div>-->
+                <!--<div class="col-xs-10">-->
+                    <!--<input type="radio" name="opMode" id="opMode_bridge" data-bind="checked: selectedMode" value="BRIDGE">-->
+                    <!--<label for="opMode_bridge" data-trans="opmode_bridge"></label>-->
+                <!--</div>-->
+			<!--</div>-->
+			<div class="row form-group">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-10">
+                    <input type="radio" name="opMode" id="opMode_cable" data-bind="checked: selectedMode" value="PPPOE" />
+				    <label for="opMode_cable" data-trans="opmode_cable"></label>
+                </div>
+			</div>
+			<div class="row form-group">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-10">
+                    <input type="radio" name="opMode" id="opMode_gateway" data-bind="checked: selectedMode" value="PPP" />
+                    <label for="opMode_gateway" data-trans="opmode_gateway"></label>
+                </div>
+			</div>
+			<div class="row form-group">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-10">
+                    <input type="radio" name="opMode" id="opMode_auto" data-bind="checked: selectedMode" value="AUTO" />
+                    <label for="opMode_auto" data-trans="auto_select"></label>
+                </div>
+			</div>
+			<!--div>
+				<span class="op_msg help-block" data-trans="opmode_msg1" />
+			</div-->
+			<div class="form-buttons" style="margin-right: 0;">
+				<input type="submit" class="btn btn-default" data-trans="apply" />
+			</div>		
+		</div>
+	</div>
+</form>

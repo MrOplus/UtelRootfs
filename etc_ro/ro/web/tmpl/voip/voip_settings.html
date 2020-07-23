@@ -1,0 +1,78 @@
+<form id="voipSettingsForm">
+<div class="form-body">
+    <div class="form-title" data-trans="setting"></div>
+    <div class="content">
+		<div class="row-fluid">
+			<label class="span3 side-right" data-trans='outbound_mode'></label>
+			<div class="span8">
+				<input type="radio" name="outbound_enable" id="outbound_enable" data-bind="checked: outboundEnable, event: {click: changeOutboundSwitchHandler}" value="1"/>
+				<label for="outbound_enable" data-trans="enable"></label>
+				<input type="radio" name="outbound_enable" id="outbound_disable"
+					   data-bind="checked: outboundEnable, event: {click: changeOutboundSwitchHandler}" value="0"/>
+				<label for="outbound_disable" data-trans="disable"></label>
+            </div>
+		</div>
+		<div data-bind="visible:showOutboundDiv">
+			<div class="row-fluid">
+				<label class="span3 side-right" data-trans='outbound_server'></label>
+				<div class="span8">
+                    <input type="text" name="outbound_server" data-bind="value: outboundServer" id="outbound_server" class="required" maxlength="63"/>
+                </div>
+			</div>
+			
+			<div class="row-fluid">
+				<label class="span3 side-right" data-trans='outbound_port'></label>
+				<div class="span8">
+                    <input type="text" name="outbound_port" data-bind="value: outboundPort" id="outbound_port" class="required" maxlength="63"/>
+					<label id="outbound_port_label">[1024,65535]</label>
+                </div>
+			</div>
+		</div>
+		
+		<div class="row-fluid">
+			<label class="span3 side-right" data-trans='stun_mode'></label>
+			<div class="span8">
+				<input type="radio" name="stun_mode" id="stun_mode_enable" data-bind="checked: stunModeEnable, event: {click: changeStunSwitchHandler}" value="1"/>
+				<label for="stun_mode_enable" data-trans="enable"></label>
+				<input type="radio" name="stun_mode" id="stun_mode_disable"
+					   data-bind="checked: stunModeEnable, event: {click: changeStunSwitchHandler}" value="0"/>
+				<label for="stun_mode_disable" data-trans="disable"></label>
+            </div>
+		</div>
+		<div class="row-fluid" data-bind="visible: showStunDiv">
+			<label class="span3 side-right" data-trans='stun_server'></label>
+			<div class="span8">
+				<input type="text" name="stun_server" data-bind="value: stunServer" id="stun_server" class="required" maxlength="63"/>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<label class="span3 side-right" data-trans='register_every'></label>
+			<div class="span8">
+				<input type="text" name="register_time" data-bind="value: registerTime" id="register_time" class="required" maxlength="63"/>
+				<label id="register_time_label" data-trans="timeRange"></label>
+			</div>
+		</div>
+	</div>
+	<div class="form-title" data-trans="advanced_options"></div>
+	<div class="content">
+		<div class="row-fluid">
+			<label class="span3 side-right" data-trans='sip_port'></label>
+			<div class="span8">
+				<input type="text" name="sip_port" data-bind="value: sipPort" id="sip_port" class="required" maxlength="5"/>
+				<label id="sip_port_label">[1026,65535]</label>
+			</div>
+		</div>		
+		<div class="row-fluid">
+			<label class="span3 side-right" data-trans='rtp_port'></label>
+			<div class="span8">
+				<input type="text" name="sip_rtp_port_min" data-bind="value: rtpPortMin" id="sip_rtp_port_min" class="required" maxlength="5"/> - 
+				<input type="text" name="sip_rtp_port_max" data-bind="value: rtpPortMax" id="sip_rtp_port_max" class="required" maxlength="5"/>
+				<label id="rtp_port_label">[1026,65535]</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-buttons">
+		<input type="submit" data-bind="" class="btn-1 btn-primary" data-trans="apply"/>
+	</div>
+</div>
+</form>

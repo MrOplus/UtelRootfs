@@ -1,0 +1,118 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10 m-t-15">
+            <div class="form-body">
+                <form action="#" id="mapBasicForm">
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-3 side-right" data-trans="port_forward"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="mapGrp" id="mapEnable"
+                                               data-bind="checked: portMapEnable" value="1"/>
+                                        <label for="mapEnable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="mapGrp" id="mapDisable"
+                                               data-bind="checked: portMapEnable" value="0"/>
+                                        <label for="mapDisable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="btn btn-primary" data-trans="apply"/>
+                    </div>
+                    <div class="form-note">
+                        <div class="notes-title">&nbsp;</div>
+                        <ul class="notes-content">
+                            <li data-trans="port_forward_note_info"></li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-bind="visible: oriPortMapEnable() == '1' && portMapEnable() == '1' ">
+                    <form action="#" id="portMapForm">
+                        <div class="form-title">
+                            <h2 data-trans="port_forward_setting"></h2>
+                        </div>
+                        <div class="content">
+                            <div class="row form-group">
+                                <label class="col-xs-3 side-right" for="txtSourcePort" data-trans="source_port"></label>
+                                <div class="col-xs-6">
+                                    <input type="text" name="txtSourcePort" id="txtSourcePort"
+                                           data-bind="value: sourcePort" class="required form-control" maxlength="5"/>
+                                </div>
+                                <label class="col-xs-3" id="sourcePortExamLabel">(1~65000)</label>
+                                <div class="col-xs-9 col-md-offset-3" id="txtSourcePortErrorDiv"></div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-3 side-right" for="txtDestIpAddress"
+                                       data-trans="dest_ip_address"></label>
+                                <div class="col-xs-6">
+                                    <input type="text" name="txtDestIpAddress" id="txtDestIpAddress"
+                                           data-bind="value: destIpAddress" class="required form-control"
+                                           maxlength="15"/>
+                                </div>
+                                <label class="col-xs-3" data-trans="ipExam" id="ipExamLabel"></label>
+                                <div class="col-xs-9 col-md-offset-3" id="txtDestIpAddressErrorDiv"></div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-3 side-right" for="txtDestPort" data-trans="dest_port"></label>
+                                <div class="col-xs-6">
+                                    <input type="text" name="txtDestPort" id="txtDestPort" data-bind="value: destPort"
+                                           class="required form-control" maxlength="5"/>
+                                </div>
+                                <label class="col-xs-3" id="destPortExamLabel">(1~65000)</label>
+                                <div class="col-xs-9 col-md-offset-3" id="txtDestPortErrorDiv"></div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-3 side-right" for="protocol" data-trans="protocol"></label>
+                                <div class="col-xs-6">
+                                    <select id="protocol" data-transid="protocol"
+                                            data-bind="options: modes, value: selectedMode, optionsText: transOption('protocol'), optionsValue: 'value'"
+                                            class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-3 side-right" for="txtComment" data-trans="comment"></label>
+                                <div class="col-xs-6">
+                                    <input type="text" name="txtComment" id="txtComment" data-bind="value: comment"
+                                           class="required form-control" maxlength="32"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <input type="submit" class="btn btn-primary" data-trans="apply"/>
+                        </div>
+                        <div class="form-note">
+                            <div class="notes-title">&nbsp;</div>
+                          <ul class="notes-content">
+                                <li data-trans="port_map_note_port"></li>
+                                <li data-trans="port_map_note_dest_ip_address"></li>
+                                <li data-trans="port_forward_note_protocol"></li>
+                                <li data-trans="port_forward_note_comment"></li>
+                                <li data-trans="rule_max_note"></li>
+                            </ul>
+                        </div>
+                    </form>
+                    <form action="#" id="portMapListForm">
+                        <div class="form-title">
+                            <h2 data-trans="port_forward_list"></h2>
+                        </div>
+                        <div class="content">
+                            <div id="portMaps" class="fixTableScroll" data-bind="simpleGrid: gridTemplate"></div>
+                        </div>
+                        <div class="form-buttons">
+                            <input type="submit" class="btn btn-primary" data-trans="delete"
+                                   data-bind="enable: gridTemplate.checkedCount() > 0"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='mobilenetwork_info'></h1>
+            </div>
+        </div>
+    </div>
+	<div class="row">
+        <div class="col-xs-2">
+		    <div class="nav_right">
+		    <ul>
+				<li><a href="javascript:void(0)" data-trans="device_info" onclick="tosms('#device_info')"></a></li>
+				<li><a href="javascript:void(0)" data-trans="systerm_statue" onclick="tosms('#systerm_statue')"></a></li>
+				<li class="active"><a href="javascript:void(0)" data-trans="mobilenetwork_info" onclick="tosms('#mobilenetwork_info')"></a></li>
+			</ul>
+			</div>
+		</div>
+	    <div class="col-xs-10">
+<form id="NetworkForm">
+<div class="form-body">
+	<h3 class="form-title" data-trans="LTE_Statue"></h3>
+    <div class="content">
+		<div class="row form-group">
+			<label class="col-xs-3 side-right" data-trans='Mobile_Server_Info'></label>		
+			<label class="col-xs-3" data-bind="text: network_provider"></label>
+			<label class="col-xs-3" data-trans='Network_Mode_Type'></label>		
+			<label class="col-xs-3" data-bind="text: network_type"></label>					
+		</div>
+		<div class="row form-group">
+			<label class="col-xs-3 side-right" data-trans='Current_Band'></label>		
+			<label class="col-xs-3" data-bind="text: CurrentBand"></label>
+			<label class="col-xs-3 side-right" data-trans='Current_Afrcn'></label>		
+			<label class="col-xs-3" data-bind="text: CurrentAfrcn"></label>	
+			
+			<!--label class="col-xs-3" data-trans='Current_Bandwidth'></label>		
+			<label class="col-xs-3" data-bind="text: CurrentBandwidth"></label-->		
+		</div>		
+		<div class="row form-group">
+			<label class="col-xs-3 side-right" data-trans='Globle_ID'></label>		
+			<label class="col-xs-3" data-bind="text: GlobleID"></label>
+			<label class="col-xs-3" data-trans='Phycell_ID'></label>		
+			<label class="col-xs-3" data-bind="text: PhycellID"></label>		
+		</div>	
+		<div class="row form-group">
+			<label class="col-xs-3 side-right" data-trans='RSRP'></label>		
+			<label class="col-xs-3" data-bind="text: RSRP"></label>
+			<label class="col-xs-3" data-trans='RSRQ'></label>		
+			<label class="col-xs-3" data-bind="text: RSRQ"></label>		
+		</div>	
+		<div class="row form-group">
+			<label class="col-xs-3 side-right" data-trans='SINR'></label>		
+			<label class="col-xs-3" data-bind="text: SINR"></label>
+			<label class="col-xs-3" data-trans='RSSI'></label>		
+			<label class="col-xs-3" data-bind="text: RSSI"></label>		
+		</div>	
+		<div class="row form-group">
+			<label class="col-xs-3 side-right" data-trans='Dail_Statue'></label>		
+			<label class="col-xs-3" data-bind="text: DailStatue"></label>		
+		</div>		
+	</div>
+</div>
+</form>
+
+</div>
+</div>
+</div>

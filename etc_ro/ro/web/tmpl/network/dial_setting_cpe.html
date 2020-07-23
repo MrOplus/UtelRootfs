@@ -1,0 +1,157 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#time_setting')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='wan'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1 margin-top-15">
+        </div>
+        <div class="col-xs-11">
+
+<form id="pppoeForm">
+<input type="hidden" data-bind="value: action" />
+<div class="form-body">
+    <div class="content">
+		<div class="row form-group">
+			<label class="col-xs-3 side-right" data-trans='dial_mode'></label>
+			<div class="col-xs-6">
+				<select data-transid="pppoe_mode_type" id='pppoe_mode' name="pppoe_mode" class="form-control" data-bind="options: modes, value: currentMode, optionsText: transOption('pppoe_mode_type'), optionsValue: 'value', event: {change: changeModeDiv}">
+				</select>
+			</div>
+		</div>
+		<div id="pppoeMode" data-bind="visible: isPppoeMode">
+			<!--div class="form-title">PPPoE</div-->
+			<div class="row form-group">
+				<label class="col-xs-3 side-right" data-trans='apn_user_name'></label>
+				<div class="col-xs-6">
+					<input type="text" data-bind="value: user" class="required form-control" maxlength="30">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="col-xs-3 side-right" data-trans='apn_password'></label>
+				<div class="col-xs-6">
+					<input type="password" data-bind="value: password" class="required form-control" maxlength="30">
+				</div>
+			</div>
+			<div class="row form-group" data-bind="visible:pppoeNoticeShow">
+				<label class="col-xs-3 side-right" data-trans="net_status"></label>
+				<label class="col-xs-6 side-left" data-bind="text:pppoeNoticeText,attr:{'data-trans':pppoeNotice}"></label>
+			</div>			
+		</div>
+		
+		<div id="staticMode" data-bind="visible: isStaticMode">
+			<!--div class="form-title">Static</div-->
+			<div class="row form-group">
+                <label class="col-xs-3 side-right" for="txtIpAddress" data-trans="ip_address"></label>
+                <div class="col-xs-6">
+					<input id="txtIpAddress" name="txtIpAddress" type="text" data-bind="value: ipAddress" class="required form-control" maxlength="15"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-3 side-right" for="txtSubnetMask" data-trans="subnet_mask"></label>
+                <div class="col-xs-6">
+					<input id="txtSubnetMask" name="txtSubnetMask"  type="text" data-bind="value: subnetMask" class="required form-control" maxlength="15"/>
+                </div>
+            </div>
+			<div class="row form-group">
+                <label class="col-xs-3 side-right" for="txtDefaultGateway" data-trans="default_Gateway"></label>
+                <div class="col-xs-6">
+					<input id="txtDefaultGateway" name="txtDefaultGateway" type="text" data-bind="value: defaultGateway" class="required form-control" maxlength="15"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-3 side-right" for="txtPrimaryDNS" data-trans="primary_dns"></label>
+                <div class="col-xs-6">
+					<input id="txtPrimaryDNS" name="txtPrimaryDNS"  type="text" data-bind="value: primaryDNS" class="required form-control" maxlength="15"/>
+                </div>
+            </div>
+			<div class="row form-group">
+                <label class="col-xs-3 side-right" for="txtSecondaryDNS" data-trans="secondary_dns"></label>
+                <div class="col-xs-6">
+					<input id="txtSecondaryDNS" name="txtSecondaryDNS"  type="text" data-bind="value: secondaryDNS" class="required form-control" maxlength="15"/>
+                </div>
+            </div>
+			<div class="row form-group" data-bind="visible:staticNoticeShow">
+				<label class="col-xs-3 side-right" data-trans="net_status"></label>
+				<label class="col-xs-6 side-left" data-bind="text:staticNoticeText,attr:{'data-trans':staticNotice}"></label>
+			</div>
+		</div>	
+
+        <div id="autoMode" data-bind="visible: isAutoMode()">
+			<div class="row form-group">
+				<label class="col-xs-3 side-right" data-trans='apn_user_name'></label>
+				<div class="col-xs-6">
+					<input type="text" data-bind="value: autoUser" class="required form-control" maxlength="30">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="col-xs-3 side-right" data-trans='apn_password'></label>
+				<div class="col-xs-6">
+					<input type="password" data-bind="value: autoPassword" class="required form-control" maxlength="30">
+				</div>
+			</div>
+			<div class="row form-group" data-bind="visible:autoNoticeShow">
+				<label class="col-xs-3 side-right" data-trans="net_status"></label>
+				<label class="col-xs-6 side-left" data-bind="text:autoNoticeText,attr:{'data-trans':autoNotice}"></label>
+			</div>
+        </div>		
+		
+		<div class="row form-group">
+				<label class="col-xs-3 side-right" data-trans='dial_mode_cpe'></label>
+				<div class="col-xs-3">
+					<input type="radio" name="pppMode" id="autoDial" class="" data-bind="checked: pppMode, enable: enableFlag" value="auto_dial"/>
+					<label for="autoDial" data-trans="auto_select"></label>
+				</div>
+				<div class="col-xs-3">
+					<input type="radio" name="pppMode" id="manualMode" class="" data-bind="checked: pppMode" value="manual_dial"/>
+					<label for="manualMode" data-trans="manual_select"></label>
+				</div>
+		</div>
+		
+		<div class="row form-group" data-bind="visible:dhcpNoticeShow">
+			<label class="col-xs-3 side-right" data-trans="net_status"></label>
+			<label class="col-xs-6 side-left" data-bind="attr:{'data-trans':dhcpNotice},text:dhcpNoticeText"></label>
+		</div>		
+	</div>
+	<div class="form-buttons">
+		<input type="submit" id="pppoeApply" class="btn btn-primary" data-bind='attr: {"data-trans": btnTrans}'/>
+		<input type="button" id="cancelConnect" class="btn btn-primary" data-trans="cancelconnect" data-bind='click: cancelConnect, visible: isShowCancelbtn'/>
+		<input type="button" id="disconnectConnect" class="btn btn-primary" data-trans="disconnect" data-bind='click: cancelConnect, visible: isShowDisbtn'/>
+	</div>
+    
+    <div class="form-note">
+        <div class="notes-title">&nbsp;</div>
+        <ul class="notes-content">
+            <li data-trans="wan_note_connection_mode"></li>
+            <li class="no-style">
+                <ul>
+                    <li data-trans="wan_note_connection_mode_pppoe"></li>
+                    <li data-trans="wan_note_connection_mode_dhcp"></li>
+                    <li data-trans="wan_note_connection_mode_static"></li>
+					<li data-trans="wan_note_connection_mode_auto"></li>
+                </ul>
+            </li>
+            <li data-bind="visible: isPppoeMode || isAutoMode()" data-trans="wan_note_user_name"></li>
+            <li data-bind="visible: isPppoeMode || isAutoMode()" data-trans="wan_note_password"></li>
+            <li data-bind="visible: isPppoeMode" data-trans="wan_note_dial"></li>
+            <li data-bind="visible: isPppoeMode" class="no-style">
+                <ul>
+                    <li data-trans="dial_setting_note_automatic"></li>
+                    <li data-trans="dial_setting_note_manual"></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</form>
+    </div>
+</div>
+</div>

@@ -1,0 +1,111 @@
+<div id="innerContainer">
+    <div class="row header-row">
+        <div class="col-xs-1">
+            <a href="javascript:void(0)" onclick="tosms('#home')">
+                <img alt="" src="img/arrow-back.png">
+            </a>
+        </div>
+        <div class="col-xs-11">
+            <div class="form-title">
+                <h1 data-trans='net_setting'></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+		<div class="nav_right">
+			<ul>
+                <li><a href="javascript:void(0)" data-trans="dial_mode" onclick="tosms('#dial_setting')"></a></li>
+                <li  class="active"><a href="javascript:void(0)" data-trans="net_search_select" onclick="tosms('#net_search_select')"></a></li> 
+                <li><a href="javascript:void(0)" data-trans="net_select" onclick="tosms('#net_select')"></a></li>                   
+                <li><a href="javascript:void(0)" data-trans="apn_setting" onclick="tosms('#apn_setting')"></a></li>
+                <li><a href="javascript:void(0)" data-trans="net_lockband" onclick="tosms('#net_lockband')"></a></li>   
+                <li><a href="javascript:void(0)" data-trans="net_lockpci" onclick="tosms('#net_lockpci')"></a></li>
+                <!--li><a href="#net_ipv6config" data-trans="net_ipv6config"></a></li-->        
+            </ul>
+		</div>
+	    </div>
+
+	    <div class="col-xs-10">
+
+<form role="form">
+<div class="form-body">
+	    <h3 class="form-title" data-trans="net_select"></h3>
+    <div class="content">
+        <!--<div class="row form-group">-->
+            <!--<label class="col-xs-4" data-trans='current_network'></label>-->
+            <!--<div class="col-xs-8" data-bind="text: currentNetwork"></div>-->
+        <!--</div>-->
+        <div class="row form-group">
+            <label class="col-xs-4 side-right" data-trans='net_search_select'></label>
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <input type="radio" name="selectGroup" id='auto_select' value="auto_select" data-bind="checked: selectMode, enable: enableFlag" />
+                        <label for='auto_select' data-trans='auto_select'></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="col-xs-4 side-right"></label>
+            <div class="col-xs-8">
+                <input type="radio" name="selectGroup" id='manual_select'  value="manual_select" data-bind="checked: selectMode, enable: enableFlag" />
+                <label for='manual_select' data-trans='manual_select'></label>
+            </div>
+        </div>
+
+    <div class="form-buttons">
+        <input type="button" class="btn btn-primary" data-bind='click: save, visible: selectMode() == "auto_select", enable: enableFlag, css: {disabled: !enableFlag()}' data-trans='apply'/>
+        <input type="button" class="btn btn-primary" data-bind='click: search, visible: selectMode() != "auto_select", enable: enableFlag, css: {disabled: !enableFlag()}' data-trans='search'/>
+    </div>
+    
+    <div class="content" data-bind='visible: networkList().length > 0 && selectMode() == "manual_select"'>
+        <div class="form-title">
+            <h2 data-trans='network_list'></h2>
+        </div>
+        <div class="content">
+            <div class="ko-grid-container marginnone">
+                <table class="table table-striped table-hover" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th width="12%" data-trans="option"></th>
+                        <th width="16%" data-trans="net_status"></th>
+                        <th width="21%" data-trans="network_provider"></th>
+                        <th width="18%" data-trans="mccmnc"></th>
+                        <th width="18%" data-trans="networktype"></th>
+                        <th width="15%" data-trans="subnet"></th>
+                    </tr>
+                    </thead>
+                    <tbody data-bind='foreach: networkList'>
+                    <tr data-bind="css:{odd:$index()%2==1, even:$index()%2==0}">
+                        <td><input type="radio" name="networkGroup"
+                                   data-bind='value: $root.networkValue($data), checked: $root.selectNetwork, attr: {id: $root.networkValue($data)}, enable: $root.enableFlag'/>
+                        </td>
+                        <td data-bind='attr: {"data-trans": $root.networkStatusId($data)}, text: $root.networkStatus($data)'></td>
+                        <td data-bind='text: $root.operatorName($data)'></td>
+                        <td data-bind='text: $root.networkText($data)'></td>
+                        <td data-bind='attr: {"data-trans": $root.networkTypeId($data)}, text: $root.networkType($data)'></td>
+                        <td data-bind='attr: {"data-trans": $root.subnetTypeId($data)}, text: $root.subnetworkType($data)'></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	     <div class="form-buttons">
+		     <input type="button" class="btn btn-primary" data-bind='click: register, enable: selectNetwork() != "" && enableFlag, css: {disabled: selectNetwork() == "" || !enableFlag()}' data-trans='register'/>
+		 </div>
+     </div>
+    <div class="form-note">
+        <div class="notes-title">&nbsp;</div>
+        <ul class="notes-content">
+			<li data-trans="diconneted_operate_note"></li>
+            <li data-trans="net_select_note_automatic"></li>
+            <li data-trans="net_select_note_manual"></li>
+        </ul>
+    </div>
+</div>
+</form>
+    </div>
+</div>
+</div>

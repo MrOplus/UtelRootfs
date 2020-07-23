@@ -1,0 +1,417 @@
+<style type="text/css">
+    
+@font-face {
+    font-family: "sahel";
+    /*src: url("Farsi-Digits/IRANSansWeb.woff2") format("woff2"),
+    url("Farsi-Digits/IRANSansWeb.woff") format("woff"),
+    url("fonts/Farsi-Digits/IRANSansWeb.eot") format("eot");*/
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+    -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge*/
+   user-select: none;        
+      -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+   user-drag: none;
+}
+a{
+    color: #0988CC !important;
+    text-decoration: none;
+}
+body {
+  font-family: 'sahel', sans-serif;
+  direction: rtl;
+  color: white;
+  font-weight: 300;
+  background-color: #fff;
+}
+body ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-family: 'sahel', sans-serif;
+  color: #555;
+  font-weight: 300;
+}
+body :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-family: 'sahel', sans-serif;
+  color: white;
+  opacity: 1;
+  font-weight: 300;
+}
+body ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-family: 'sahel', sans-serif;
+  color: white;
+  opacity: 1;
+  font-weight: 300;
+}
+body :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-family: 'sahel', sans-serif;
+  color: gray;
+  font-weight: 300;
+}
+
+.wrapper {
+    /* background: #8FCA20; */
+    /* background: linear-gradient(to bottom right, #8FCA20 0%, #8FCA20 100%); */
+    background: #fff; 
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+h3,p{
+    color: #555;
+}
+.wrapper.form-success .container h1 {
+  -webkit-transform: translateY(85px);
+          transform: translateY(85px);
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 0;
+  height: 400px;
+  text-align: center;
+    z-index: 999;
+    position: relative;
+}
+.container h1 {
+  font-size: 20px;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-put;
+  font-weight: 200;
+  color: black;
+
+}
+form {
+  padding: 20px 0;
+  position: relative;
+  z-index: 2;
+}
+form input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: 0;
+  border: 1px solid rgba(138,200, 25, 0.4);
+  background-color: rgba(138,200, 25, 0.2);
+  width: 260px;
+  border-radius: 3px;
+  padding: 10px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: black;
+  transition-duration: 0.25s;
+  font-weight: 300;
+}
+form input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #aaa;
+    opacity: 1; /* Firefox */
+}
+form input:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+form input:focus {
+    font-family:sahel;
+    font-size:12px;
+  background-color: white;
+  width: 300px;
+  height:43px;
+  color: #000;
+}
+form button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: 0;
+  background-color: white;
+  border: 0;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 3px;
+    font-family:sahel;
+  width: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition-duration: 0.25s;
+  
+      background: #8cc71e;
+    border: 1px solid #5da40e;
+    text-shadow: 0px 0px 2px #6fb212;
+}
+form button:hover {
+  background-color: #f5f7f9;
+  
+    text-shadow: none;
+  color: #8cc71e;
+}
+.bg-bubbles {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.bg-bubbles li {
+  position: absolute;
+  list-style: none;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.0);
+  bottom: -160px;
+  -webkit-animation: square 25s infinite;
+  animation: square 25s infinite;
+  transition-timing-function: linear;
+}
+.bg-bubbles li:nth-child(1) {
+  left: 10%;
+}
+.bg-bubbles li:nth-child(2) {
+  left: 20%;
+  width: 80px;
+  height: 80px;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  -webkit-animation-duration: 17s;
+          animation-duration: 17s;
+}
+.bg-bubbles li:nth-child(3) {
+  left: 25%;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+}
+.bg-bubbles li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation-duration: 22s;
+          animation-duration: 22s;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.bg-bubbles li:nth-child(5) {
+  left: 70%;
+}
+.bg-bubbles li:nth-child(6) {
+  left: 80%;
+  width: 120px;
+  height: 120px;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.bg-bubbles li:nth-child(7) {
+  left: 32%;
+  width: 160px;
+  height: 160px;
+  -webkit-animation-delay: 7s;
+          animation-delay: 7s;
+}
+.bg-bubbles li:nth-child(8) {
+  left: 55%;
+  width: 20px;
+  height: 20px;
+  -webkit-animation-delay: 15s;
+          animation-delay: 15s;
+  -webkit-animation-duration: 40s;
+          animation-duration: 40s;
+}
+.bg-bubbles li:nth-child(9) {
+  left: 25%;
+  width: 10px;
+  height: 10px;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  -webkit-animation-duration: 40s;
+          animation-duration: 40s;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.bg-bubbles li:nth-child(10) {
+  left: 90%;
+  width: 160px;
+  height: 160px;
+  -webkit-animation-delay: 11s;
+          animation-delay: 11s;
+}
+@-webkit-keyframes square {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-700px) rotate(600deg);
+            transform: translateY(-700px) rotate(600deg);
+  }
+}
+@keyframes square {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-700px) rotate(600deg);
+            transform: translateY(-700px) rotate(600deg);
+  }
+}
+.float-right{
+    float: right;
+    direction: rtl;
+}
+.float-left{
+    float: left;
+}
+.box-footer {
+    width: 100%;
+    z-index: 9999;
+    margin-bottom: 37px;
+    float: right;
+    background-color: rgba(255,255,255,0.2);
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+.box-footer .box1{
+    
+    box-shadow: 0 0 15px #ccc;    width: 100%;
+    z-index: 9999;
+    margin-bottom: 37px;
+    float: right;
+    background-color: rgba(138,200, 25, 0.2);
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+.box-footer a{
+    width: 100%;
+    text-decoration:none;
+}
+.box-footer li{
+    list-style: none;
+    float: right;
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+.btn-primary, .form-submit {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #fff !important;
+    background: #8cc71e;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,#8cc71e 0%,#75b714 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#8cc71e),color-stop(100%,#75b714));
+    background: -webkit-linear-gradient(top,#8cc71e 0%,#75b714 100%);
+    background: -o-linear-gradient(top,#8cc71e 0%,#75b714 100%);
+    background: -ms-linear-gradient(top,#8cc71e 0%,#75b714 100%);
+    background: linear-gradient(to bottom,#8cc71e 0%,#75b714 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cc71e',endColorstr='#75b714',GradientType=0);
+    border: 1px solid #5da40e;
+    text-shadow: 0px 0px 2px #6fb212;
+    padding:10px 26px 10px 26px; text-decoration:none;
+}
+p{
+    font-size: 13px;
+}
+.titletext{
+        width: 50%;
+    margin-right: 25%;
+    border-radius: 0 0 17px 17px;
+    background-color: #fff;
+    padding: 8px;
+    /* border-bottom: solid #000; */
+    box-shadow: 0 2px 1px #aaa;
+    position: relative;
+    top: -12px;
+    z-index: 0;
+}
+.modemimg{
+    
+
+    position: relative;
+    z-index: 2;
+    right: -48px;
+    top: 13%;
+
+}
+.logo{
+    
+    width: 235px;
+}
+.top{
+    padding: 25px;background-color: white;
+}
+</style>
+<div class="wrapper">
+    <div class="top">
+        <img src="../img/logo-mobinnet22.png" class="logo float-right" >
+        <div style="width: 250px; color: black; margin-right: 150px;" class="float-left">
+            <a class="btn-primary float-left" href="http://ecare.mobinnet.ir/login" target="_blank" >حساب کاربری من </a>
+            <div style="display: inline-block;float: left;margin-top:10px;width: 66%;">
+                <div style="float: right"><img src="../img/phone22.png"  style="width:33px;vertical-align: middle" /> 1575</div>
+                <div style="float: right; margin-right: 10px"><img src="../img/help22.png"  style="width:33px;vertical-align: middle" /> <a target="_blank" href="http://mobinnet.ir/sites/default/files/Guide/KZtech-AM3000M-help.pdf">راهنما</a></div>
+            </div></div>
+        </div>
+        <div class="container" >
+            <div class="float-right">
+                <h1>ورود به تنظیمات مودم</h1>
+                <form class="form">
+                    <input type="text" placeholder="نام کاربری" id="iran_name">
+                    <input type="password" placeholder="کلمه عبور" id="iran_password">
+                    <button type="submit" id="login-button" data-bind="click:login">ورود</button>
+                </form></div>
+                <div class="float-left" style=" background-color: rgba(255,255,255,0.6);width: 55%;text-align: center;padding: 16px;border-radius: 15px 0 0px 15px;height: 100%;border-right: 6px solid #63A51B;">
+                    <img src="../img/iranS12.png" width="32%" class="modemimg">
+                </div>
+                <div class="box-footer">
+                    <div class="box1">
+                        <img src="../img/BTS.gif" style="
+                        position: absolute;
+                        left: 0;
+                        bottom: 23px;
+                        width: 15%;
+                        z-index: -2;
+                        ">
+                        <h3 class="titletext">مـشـتـرک گـرامـی</h3>
+                        <br/>
+                        <p>این پنل کاربری تنها برای مشاهده و تغییر تنظیمات مودم شما طراحی شده است. بنابراین به‌منظور مدیریت حساب کاربری و اطلاع از میزان مصرف، تمدید و تغییر بسته و اطلاع از آخرین طرح‌ها و تعرفه‌ها می‌توانید به صفحه‌ی حساب کاربری خود به نشانی <a href="https://my.mobinnet.ir
+                            " target="_blank">my.mobinnet.ir</a> مراجعه کنید.</p>
+                        </div>
+                        <br/><br/><br/><br/><br/>
+                        <ul>
+                            <li><a href="http://mobinnet.ir/" target="_blank">وب‌سایت مبین‌نت</a></li>
+                            <li><a href="http://mobinnet.ir/LTEPlans/" target="_blank">تعرفه‌های اینترنت پرسرعت</a></li>
+                            <li><a href="http://mobinnet.ir/coverage" target="_blank">مناطق تحت پوشش</a></li>
+                            <li><a href="http://mobinnet.ir/dealers" target="_blank">عوامل مجاز فروش</a></li>
+                            <li><a href="http://mobinnet.ir/faq" target="_blank">سوالات متداول</a></li>
+                            <li><a href="http://mobinnet.ir/mobinnet" target="_blank">ارتباط با ما</a></li>
+                        </ul>
+                    </div>
+                </div>
+</div>
+
+<!--Begin Comm100 Live Chat Code-->
+<div id="comm100-button-3890"></div>
+<script type="text/javascript">
+  var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement("script"),c=document.getElementsByTagName("script")[0];a.type="text/javascript",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:3890,div_id:"comm100-button-3890"}),t.site_id=1000120,t.main_code_plan=3890,e("https://ent.comm100.com/chatserver/livechat.ashx?siteId="),setTimeout(function(){t.loaded||e("https://appmax1.comm100.com/chatserver/livechat.ashx?siteId=")},5e3)})(Comm100API||{})
+</script>
+<!--End Comm100 Live Chat Code-->
+<script language="JavaScript">
+document.oncontextmenu =new Function("return false;")
+</script>    

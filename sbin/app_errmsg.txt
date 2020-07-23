@@ -1,0 +1,29 @@
+AP_ERRNO_BASE,
+NO_IDLE_CID,	        =no idle pdp cid
+TWO_NOMARL_CID,         =more than one PDP_NOMARL pdp
+PDP_ACTIVE_INFO_ERR,    =pdpInfo struct error
+GET_IPV6_ADDR_FAIL,    	=get ipv6 addr fail
+NW_DEACT_DURING_ACTIVE, =network deactive pdp while it is activing 
+MSISDN_IS_NULL,         =MSISDN in sim card is null
+DM_SOCKERT_ERR,         =DM module's errs about socket 
+SAFECARE_SOCKET_ERR,    =safecare module's errs about socket
+HTTP_ERR_301,          =the request data has moved to new places permantly
+HTTP_ERR_302,          =the request data has different url temporary
+HTTP_ERR_303,          =response to the request can be found with another URI , and the GET method should be used to retrieve the response
+HTTP_ERR_304,          =not modified document as expected
+HTTP_ERR_305,          =must pass the proxy provided in the location field to access the requested resource
+HTTP_ERR_400,          =the request have grammar question, or the server can't satisfy the request
+HTTP_ERR_401,          =client has no right to access to data
+HTTP_ERR_402,          =need to pay
+HTTP_ERR_403,          =client can't access to the server
+HTTP_ERR_404,          =the server can not find the given resource, the document does't exist
+HTTP_ERR_407,          =the client must use a proxy authentication itself in the first place
+HTTP_ERR_415,          =server does not support the format of the request
+HTTP_ERR_500,          =because of unexpected circumstances, the server cannot complete the request
+HTTP_ERR_501,          =server does not support the request of the tool
+HTTP_ERR_502,          =bad gateway
+HTTP_ERR_503,          =unable to get service
+GENAT_ERRNO_BASE1,
+GENAT_ERRNO_BASE2,
+OS_ERRNO_BASE,
+CP_ERRNO_BASE,

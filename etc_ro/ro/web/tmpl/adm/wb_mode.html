@@ -1,0 +1,54 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div class="col-xs-2" id="nav-right"></div>
+        <div class="col-xs-10">
+            <div class="form-body">
+                <form action="#" id="frmStaticIpSwitch" role="form">
+                    <div class="content margin-top-20">
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans="monitor_switch"></label>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <input type="radio" name="port_settings" id="static_ip_switch_enable"
+                                               data-bind="checked: port_settings" value="1"/>
+                                        <label for="static_ip_switch_enable" data-trans="enable"></label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input type="radio" name="port_settings" id="static_ip_switch_disable"
+                                               data-bind="checked: port_settings" value="0"/>
+                                        <label for="static_ip_switch_disable" data-trans="disable"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-buttons">
+                    <input type="button" data-bind="click: submitApply" class="btn btn-primary" data-trans='apply'/>
+                </div>
+                 <div class="form-note">
+                    <div class="notes-title">&nbsp;</div>
+                    <ul class="notes-content">
+                        <li data-trans="ddns_port"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

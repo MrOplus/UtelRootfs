@@ -1,0 +1,128 @@
+<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+    <div class="row">
+        <div id="nav-right" class="col-xs-2"></div>
+        <div class="col-xs-10">
+            <div class="form-body margin-top-20">
+                <ul class="nav nav-tabs" id="nav-tabs"></ul>
+                <form action="#" id='sntpForm' class="margin-top-20">
+                    <div class="content">
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='local_current_time'></label>
+                            <div class="col-xs-8">
+                                <span class="span3" data-bind="text: localTime"></span>
+                                <span>&nbsp;</span>
+                                <span id="weekday" data-bind="text: day"></span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-xs-4 side-right" data-trans='time_set_mode' for="sntpSetTimeMode"></label>
+                            <div class="col-xs-4">
+                                <select id="sntpSetTimeMode" class="form-control" data-transid="time_set_time"
+                                        data-bind="options: timeSetModes, value: currentMode, optionsText: transOption('time_set_time'), optionsValue: 'value', event:{change: changeSetTimeMode}"></select>
+                            </div>
+                        </div>
+                        <div id="manualSetTime" data-bind="visible: isManualSetTime">
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='time_set_time_manual'></label>
+
+                                <div class="col-xs-8">
+                                    <select id="manualYear" class="form-control"
+                                            style="display:inline-block; width:auto; padding-right:5px; padding-left:5px"
+                                            data-bind="options: years, value: currentYear, optionsText: 'text', optionsValue: 'value', event:{change: initDateList}"></select>
+                                    <label for="manualYear" style="display:inline-block; width:auto; padding-right:0"
+                                           data-trans="year"></label>
+
+                                    <select id="manualMonth" class="form-control"
+                                            style="display:inline-block; width:auto; padding-right:5px; padding-left:5px"
+                                            data-bind="options: months, value: currentMonth, optionsText: 'text', optionsValue: 'value', event: {change: initDateList}"></select>
+                                    <label for="manualMonth" style="display:inline-block; width:auto; padding-right:0"
+                                           data-trans="month"></label>
+
+                                    <select id="manualDate" class="form-control"
+                                            style="display:inline-block; width:auto; padding-right:5px; padding-left:5px"
+                                            data-bind="options: dates, value: currentDate, optionsText: 'text', optionsValue: 'value'"></select>
+                                    <label for="manualDate" style="display:inline-block; width:auto; padding-right:0"
+                                           data-trans="date"></label>
+
+                                    <select id="manualHour" class="form-control"
+                                            style="display:inline-block; width:auto; padding-right:5px; padding-left:5px"
+                                            data-bind="options: hours, value: currentHour, optionsText: 'text', optionsValue: 'value'"></select>
+                                    <label for="manualHour" style="display:inline-block; width:auto; padding-right:0"
+                                           data-trans="hour"></label>
+
+                                    <select id="manualMinute" class="form-control"
+                                            style="display:inline-block; width:auto; padding-right:5px; padding-left:5px"
+                                            data-bind="options: minutes, value: currentMinute, optionsText: 'text', optionsValue: 'value'"></select>
+                                    <label for="manualMinute" style="display:inline-block; width:auto; padding-right:0"
+                                           data-trans="minute"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="autoSntpTime" data-bind="visible: isAutoSntpTime">
+                            <div class="row form-group" id="sntp_server0">
+                                <label class="col-xs-4 side-right" data-trans='stnp_server1'
+                                       for="sntp_server1_select"></label>
+                                <div class="col-xs-4">
+                                    <select id="sntp_server1_select" class="form-control"
+                                            data-bind="options: serverList, value: currentServer0, optionsText: 'text', optionsValue: 'value', event: {change: changeServerSelect}"></select>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="sntp_other_server0" name="sntp_other_server0"
+                                           data-bind="value:customServer0, visible:isOther0"
+                                           class="required form-control"/>
+                                </div>
+                            </div>
+                            <div class="row form-group" id="sntp_server1">
+                                <label class="col-xs-4 side-right" data-trans='stnp_server2'
+                                       for="stnp_server2_select"></label>
+                                <div class="col-xs-4">
+                                    <select id="stnp_server2_select" class="form-control"
+                                            data-bind="options: serverList, value: currentServer1, optionsText: 'text', optionsValue: 'value', event: {change: changeServerSelect}"></select>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="sntp_other_server1" name="sntp_other_server1"
+                                           data-bind="value:customServer1, visible:isOther1"
+                                           class="required form-control"/>
+                                </div>
+                            </div>
+                            <div class="row form-group" id="sntp_server2">
+                                <label class="col-xs-4 side-right" data-trans='stnp_server3'
+                                       for="stnp_server3_select"></label>
+                                <div class="col-xs-4">
+                                    <select id="stnp_server3_select" class="form-control"
+                                            data-bind="options: serverList, value: currentServer2, optionsText: 'text', optionsValue: 'value', event: {change: changeServerSelect}"></select>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" id="sntp_other_server2" name="sntp_other_server2"
+                                           data-bind="value:customServer2, visible:isOther2"
+                                           class="required form-control"/>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='time_zone'
+                                       for="time_zone_select"></label>
+                                <div class="col-xs-4">
+                                    <select id="time_zone_select" class="form-control" data-transid="time_zone"
+                                            data-bind="options: timeZones, value: currentTimeZone, optionsText: transOption('time_zone'), optionsValue: 'value'"></select>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-xs-4 side-right" data-trans='daylight_saving_time'
+                                       for="daylight_saving_time_select"></label>
+                                <div class="col-xs-4">
+                                    <select id="daylight_saving_time_select" class="form-control"
+                                            data-transid="daylightsave"
+                                            data-bind="options: daylightSaves, value: currentDaylightSave, optionsText: transOption('daylightsave'), optionsValue: 'value'"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" data-bind="" class="btn btn-primary margin-right-20" data-trans="apply"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

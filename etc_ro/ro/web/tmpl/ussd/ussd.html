@@ -1,0 +1,58 @@
+﻿<div id="innerContainer">
+    <div class="row header-row" id="innerHeader"></div>
+<div class="row">   
+		<div class="col-xs-2" id="nav-right"></div>
+	<div class="col-xs-10">   
+    <form id="frmUSSD">
+	<div class="form-body">
+	    <h3 class="form-title" data-trans="USSD"></h3>
+        <div class="form-body margin-top-20" id="USSD_send_div"  data-bind="visible: USSDLocation()==0">
+            <div class="content">
+                <div class="row form-group">
+                    <label class="col-xs-4 side-right" data-trans="ussd_send_to"></label>
+                    <div class="col-xs-3">
+                        <input type="text" size="20" id="USSD_send" class="required form-control" data-bind="value:USSDSend,valueUpdate:'afterkeydown'">
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <input type="button" data-trans='ussd_send' data-bind="disable:USSDSend().length<=0,css:{disabled:USSDSend().length<=0},click:sendToNet" id="sendToNet" class="btn btn-primary marginright10" />
+                    <!--input type="reset"  data-trans='ussd_cancel' data-bind="disable:USSDSend().length<=0,css:{disabled:USSDSend().length<=0},click:resetUSSD" id="cancelToNet" class="btn btn-primary"/-->
+                </div>
+            </div>
+        </div>
+        <div  class="form-body margin-top-20" id="USSD_reply_div" data-bind="visible: USSDLocation()==1">
+            <!--<div class="form-title" data-trans='ussd_contents'></div>!-->
+            <div class="content">
+                <div class="row form-group">
+                    <label class="col-xs-4 side-right" data-trans="ussd_contents"></label>
+                    <div class="col-xs-3">
+                        <textarea name="USSD_Content" id="USSD_Content" rows="8" cols="50" readonly="readonly"></textarea>
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <input type="button" data-trans='ussd_cancel' class="btn btn-primary marginright10" data-bind="click:noReplyCancel"/>
+                </div>
+                <div id="ussd_action" data-bind="visible: ussd_action()!=0">
+                    <div class="row form-group">
+                        <label class="col-xs-4 side-right" data-trans="ussd_reply_to"></label>
+                        <div class="col-xs-3">
+                            <input type="text" name="USSD_reply" id="USSD_reply" class="required form-control" size="20" data-bind="value:USSDReply">
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <input type="button" data-trans='ussd_reply' data-bind="click:replyToNet" class="btn btn-primary marginright10"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-note">
+            <div class="notes-title">&nbsp;</div>
+            <ul class="notes-content">
+                <li data-trans="ussd_note1"></li>
+            </ul>
+        </div>
+	</div>
+	</form>
+    </div>
+    </div>
+</div>
